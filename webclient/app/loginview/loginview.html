@@ -1,0 +1,25 @@
+<div ng-controller="LoginCtrl" layout="column">
+  <md-toolbar layout-padding>
+    <h2>Login</h2>
+  </md-toolbar>
+  <md-content>
+    <form name="loginForm">
+      <div layout="" layout-sm="column">
+        <md-input-container flex="">
+          <label>User name</label>
+          <input ng-model="user.user_name">
+        </md-input-continer>
+      </div>
+      <div layout="" layout-sm="column">
+        <md-input-container flex="">
+          <label>Password</label>
+          <input ng-model="user.password" type="password">
+        </md-input-continer>
+      </div>
+      <div layout="" layout-sm="column">
+        <md-button class="md-raised md-primary" ng-click="login(user)">Login</md-button>
+        <md-button class="md-raised" id="register" ng-click="register()">Register</md-button>
+      </div>
+    </form>
+  </md-content>
+</div>

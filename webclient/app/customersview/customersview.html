@@ -1,0 +1,26 @@
+<div ng-controller="CustomersCtrl" layout="column">
+  <md-toolbar layout-padding>
+    <h2>Cusomers</h2>
+  </md-toolbar>
+  <md-content layout-padding>
+    <md-list>
+      <md-list-item role="listitem" class="md-2-line"
+                  ng-click="openNewCustomerModal($event)">
+        <img class="md-avatar" src="img/ic_add_black_24dp_2x.png"/>
+        <div class="md-list-item-text">
+          <h3>Create New Customer</h3>
+          <p></p>
+        </div>
+      </md-list-item>
+      <md-list-item role="listitem" class="md-2-line"
+                    ng-repeat="customer in customers"
+                    ng-click="show(customer)">
+          <img class="md-avatar" src="img/ic_person_black_24dp_2x.png" style="opacity: 0.53;"/>
+          <div class="md-list-item-text">
+            <h3>{{ customer.name }}</h3>
+            <p>{{ customer.tr_number }}</p>
+          </div>
+      </md-list-item>
+    </md-list>
+  </md-content>
+</div>

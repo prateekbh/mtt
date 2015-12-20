@@ -1,0 +1,43 @@
+<md-dialog>
+<div layout="column">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>Create New Customer</h2>
+      <span flex></span>
+      <md-button class="md-icon-button" ng-click="close()">
+        <md-icon md-svg-src="img/ic_close_white_24px.svg" aria-label="Close dialog"></md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-content layout-padding>
+    <div layout="" layout-sm="column">
+      <md-input-container flex="">
+        <label>Name</label>
+        <input ng-model="customer.name">
+      </md-input-continer>
+    </div>
+    <div layout="" layout-sm="column">
+      <md-input-container flex="">
+        <label>TR Number</label>
+        <input ng-model="customer.trNumber">
+      </md-input-continer>
+    </div>
+    <div layout="" layout-sm="column">
+      <md-input-container flex="">
+        <label>Mobile</label>
+        <input ng-model="customer.mobile">
+      </md-input-continer>
+    </div>
+    <div layout="" layout-sm="column">
+      <md-input-container flex="">
+        <label>Vehicle</label>
+        <input ng-model="customer.vehicle">
+      </md-input-continer>
+    </div>
+    <div layout="" layout-sm="column">
+      <md-button class="md-raised md-primary" ng-click="create(customer)">Create</md-button>
+    </div>
+  </md-content>
+</div>
+</md-dialog>
+
