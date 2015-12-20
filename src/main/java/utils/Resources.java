@@ -17,7 +17,8 @@ import java.util.logging.Logger;
  */
 
 public class Resources {
-    private static final String configFile = "/opt/mtt/config/main.properties";
+    private static final String USER_HOME = "/Users/govardhanreddy";
+    private static final String CONFIG_FILE = USER_HOME + "/.config/mtt/main.properties";
 
     private static final String DB_URL_ = "url";
     private static final String DB_HOST_NAME_ = "hostName";
@@ -41,7 +42,7 @@ public class Resources {
 
     public static void loadResources() throws Exception {
         try {
-            properties.load(new FileInputStream(utils.Resources.configFile));
+            properties.load(new FileInputStream(utils.Resources.CONFIG_FILE));
 
             DB_URL = properties.getProperty(DB_URL_);
             DB_HOST_NAME = properties.getProperty(DB_HOST_NAME_);

@@ -30,12 +30,14 @@ public class Signup {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     public Response handleRequest(String jsonRequest) throws Exception{
+        System.out.println("POST method of singup");
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(jsonRequest);
         String uname = jsonNode.get(TSRTA_CONSTANTS.USER_NAME_REQUEST_PARAM).asText();
         String pwd = jsonNode.get(TSRTA_CONSTANTS.PASSWORD_REQUEST_PARAM).asText();
         String agentName = jsonNode.get(TSRTA_CONSTANTS.AGENT_NAME_REQUEST_PARAM).asText();
         //store the uname and pwd in DB. Also call login to get auth_token and return the same.
+        System.out.println("uname: " + uname + " pwd " + pwd + " agentName " + agentName);
         Response.ResponseBuilder responseBuilder = Response.ok();
         if (userAlreadyExists(uname)) {
             System.out.println("User already exists ####");
@@ -49,6 +51,10 @@ public class Signup {
     }
 
     private boolean userAlreadyExists(String userName) throws Exception {
+        if (null == Resources.connection) {
+            System.out.println("connection is null \n\n");
+            return true;
+        }
         Statement query = Resources.connection.createStatement();
         String agentExistenceQuery = String.format(TSRTA_CONSTANTS.AGENT_EXISTENCE_ENQURY_DB_QUERY, userName);
         ResultSet resultSet = query.executeQuery(agentExistenceQuery);
