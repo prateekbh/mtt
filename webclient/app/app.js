@@ -13,8 +13,8 @@ angular.module('myApp', [
   'myApp.customerview',
   'myApp.version'
 ])
-
-.constant('API_BASE_URL', 'http://107.191.47.213:8080')
+// localhost should be replaced with backend's ip
+.constant('API_BASE_URL', 'http://localhost:8080')
 
 .config(['$urlRouterProvider', '$mdThemingProvider', '$httpProvider', 
     function($urlRouterProvider, $mdThemingProvider, $httpProvider) {

@@ -5,6 +5,25 @@ public class TSRTA_CONSTANTS {
 
     public static final String DB_FIELD_SEPERATOR = ", ";
 
+//    create table question (
+//            id integer PRIMARY KEY,
+//            short_desc varchar(20),
+//    answered_correct integer,
+//    answered_wrong integer,
+//    not_attempted integer,
+//    created_on timestamp without time zone,
+//    modified_on timestamp without time zone
+//    );
+
+    public static final String TABLE_NAME_QUESTION = "question";
+    public static final String QUESTION_ID_COLUMN = "id";
+    public static final String QUESTION_SHORT_DESC = "short_desc";
+    public static final String QUESTION_ANSWERED_CORRECT = "answered_correct";
+    public static final String QUESTION_answered_wrong = "answered_wrong";
+    public static final String QUESTION_not_attempted = "not_attmepted";
+    public static final String QUESTION_created_on = "created_on";
+    public static final String QUESTION_modified_on = "modified_on";
+
     public static final String AGENT_TABLE = "agent";
     public static final String USER_NAME_COLUMN_DB_AGENT_TABLE = "user_name";
     public static final String AGENT_NAME_COLUMN_DB_AGENT_TABLE = "agent_name";
