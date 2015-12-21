@@ -1,5 +1,6 @@
+drop table question, contest, student, volunteer, center, volunteer_auth_token;
 create table question (
-    id integer PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     short_desc varchar(20),
     answered_correct integer,
     answered_wrong integer,
@@ -19,7 +20,7 @@ create table contest (
 );
 
 create table student (
-    id integer,
+    id SERIAL PRIMARY KEY,
     name varchar(50),
     govt_or_private boolean,
     school varchar(50),
@@ -36,16 +37,26 @@ create table student (
 );
 
 create table volunteer (
-    id integer,
+    id SERIAL PRIMARY KEY,
     name varchar(50),
-    center integer
+    user_name varchar(30),
+    password varchar(30),
+    center integer,
+    created_on timestamp without time zone,
+    modified_on timestamp without time zone
 );
 
 create table center (
-    id integer,
+    id SERIAL PRIMARY KEY,
     attended integer,
     boys integer,
     girls integer,
     govt_school integer,
     private_school integer
+);
+
+create table volunteer_auth_token (
+    user_name varchar(50) PRIMARY KEY,
+    auth_token varchar(50),
+    created_on timestamp without time zone
 );

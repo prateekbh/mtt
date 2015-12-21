@@ -1,7 +1,7 @@
 package utils;
 
 
-public class TSRTA_CONSTANTS {
+public class MTT_CONSTANTS {
 
     public static final String DB_FIELD_SEPERATOR = ", ";
 
@@ -16,13 +16,95 @@ public class TSRTA_CONSTANTS {
 //    );
 
     public static final String TABLE_NAME_QUESTION = "question";
-    public static final String QUESTION_ID_COLUMN = "id";
-    public static final String QUESTION_SHORT_DESC = "short_desc";
-    public static final String QUESTION_ANSWERED_CORRECT = "answered_correct";
-    public static final String QUESTION_answered_wrong = "answered_wrong";
-    public static final String QUESTION_not_attempted = "not_attmepted";
-    public static final String QUESTION_created_on = "created_on";
-    public static final String QUESTION_modified_on = "modified_on";
+    public static final String QUESTION_TABLE_COLUMN__ID = "id";
+    public static final String QUESTION_TABLE_COLUMN_SHORT_DESC = "short_desc";
+    public static final String QUESTION_TABLE_COLUMN_ANSWERED_CORRECT = "answered_correct";
+    public static final String QUESTION_TABLE_COLUMN_ANSWERED_WRONG = "answered_wrong";
+    public static final String QUESTION_TABLE_COLUMN_NOT_ATTEMPTED = "not_attmepted";
+    public static final String QUESTION_TABLE_COLUMN_CREATED_ON = "created_on";
+    public static final String QUESTION_TABLE_COLUMN_MODIFIED_ON = "modified_on";
+
+//    create table contest (
+//            _year integer PRIMARY KEY,
+//            attended integer,
+//            boys integer,
+//            girls integer,
+//            govt_school integer,
+//            private_school integer,
+//            centers int[]
+//    );
+//
+
+    public static final String TABLE_NAME_STUDENT = "student";
+    public static final String STUDENT_TABLE_COLUMN_ID = "id";
+    public static final String STUDENT_TABLE_COLUMN_NAME = "name";
+    public static final String STUDENT_TABLE_COLUMN_GOVT_OR_PVT = "govt_or_private";
+    public static final String STUDENT_TABLE_COLUMN_SCHOOL = "school";
+    public static final String STUDENT_TABLE_COLUMN_PLACE = "place";
+    public static final String STUDENT_TABLE_COLUMN_MANDAL = "mandal";
+    public static final String STUDENT_TABLE_COLUMN_CENTER = "center";
+    public static final String STUDENT_TABLE_COLUMN_CORRECTLY_ANSWERED_QUESTIONS = "correctly_answered_questions";
+    public static final String STUDENT_TABLE_COLUMN_INCORRECTLY_ANSWERED_QUESTIONS = "incorrectly_answered_questions";
+    public static final String STUDENT_TABLE_COLUMN_UNANSWERED_QUESTIONS = "unanswered_questions";
+    public static final String STUDENT_TABLE_COLUMN_SCORE = "score";
+
+
+    //    create table student (
+//            id integer,
+//            name varchar(50),
+//    govt_or_private boolean,
+//    school varchar(50),
+//    place varchar(50),
+//    mandal varchar(50),
+//    center integer,
+//    correctly_answered_questions int[],
+//    incorrectly_answered_questions int[],
+//    unanswered_questions int[],
+//    answered_correct integer,
+//    answered_wrong integer,
+//    not_attempted integer,
+//    score double precision
+//    );
+//
+//    create table volunteer (
+//            id integer,
+//            name varchar(50),
+//            user_name varchar(30),
+//    center integer,
+//    created_on timestamp without time zone,
+//    modified_on timestamp without time zone
+    //    );
+//
+    public static final String TABLE_NAME_VOLUNTEER = "volunteer";
+    public static final String VOLUNTEER_TABLE_COLUMN_ID = "id";
+    public static final String VOLUNTEER_TABLE_COLUMN_NAME = "name";
+    public static final String VOLUNTEER_TABLE_COLUMN_USER_NAME = "user_name";
+    public static final String VOLUNTEER_TABLE_COLUMN_PASSWORD = "password";
+    public static final String VOLUNTEER_TABLE_COLUMN_CENTER = "center";
+    public static final String VOLUNTEER_TABLE_COLUMN_CREATED_ON = "created_on";
+    public static final String VOLUNTEER_TABLE_COLUMN_MODIFIED_ON = "modified_on";
+
+    //    create table center (
+//            id integer,
+//            attended integer,
+//            boys integer,
+//            girls integer,
+//            govt_school integer,
+//            private_school integer
+//    );
+//
+
+
+
+    public static final String TABLE_NAME_VOLUNTEER_AUTH_TOKEN = "volunteer_auth_token";
+    public static final String VOLUNTEER_AUTH_TOKEN_TABLE_COLUMN_USER_NAME = "user_name";
+    public static final String VOLUNTEER_AUTH_TOKEN_TABLE_COLUMN_AUTH_TOKEN = "auth_token";
+    public static final String VOLUNTEER_AUTH_TOKEN_TABLE_COLUMN_CREATED_ON = "created_on";
+
+    // request param names
+    public static final String VOLUNTEER_NAME_REQUEST_PARAM = "vname";
+    public static final String VOLUNTEER_USER_NAME_REQUEST_PARAM = "vuname";
+    public static final String VOLUNTEER_PASSWORD_REQUEST_PARAM = "vpwd";
 
     public static final String AGENT_TABLE = "agent";
     public static final String USER_NAME_COLUMN_DB_AGENT_TABLE = "user_name";
@@ -64,22 +146,40 @@ public class TSRTA_CONSTANTS {
     public static final String VEHICLE_PUT_CUSTOMER_PARAM = "vehicle";
     public static final String AGENT_NAME_PUT_CUSTOMER_PARAM = "agentname";
 
-    public static final String WRITE_AUTH_TOKEN_DB_QUERY = "insert into " + AGENT_AUTH_TOKEN_TABLE + "(" + USER_NAME_COLUMN_DB_AGENT_TOKEN_TABLE + ", " +
-            TOKEN_COLUMN_DB_AGENT_TOKEN_TABLE + ", " + TOKEN_CREATED_ON_COLUMN_DB_AGENT_TOKEN_TABLE + ") values('%s', '%s', now())";
-    public static final String DELETE_AUTH_TOKEN_DB_QUERY = "delete from " + AGENT_AUTH_TOKEN_TABLE + " where " + USER_NAME_COLUMN_DB_AGENT_TOKEN_TABLE + "='%s'";
+//    public static final String WRITE_AUTH_TOKEN_DB_QUERY = "insert into " + AGENT_AUTH_TOKEN_TABLE + "(" + USER_NAME_COLUMN_DB_AGENT_TOKEN_TABLE + ", " +
+//            TOKEN_COLUMN_DB_AGENT_TOKEN_TABLE + ", " + TOKEN_CREATED_ON_COLUMN_DB_AGENT_TOKEN_TABLE + ") values('%s', '%s', now())";
+//    public static final String DELETE_AUTH_TOKEN_DB_QUERY = "delete from " + AGENT_AUTH_TOKEN_TABLE + " where " + USER_NAME_COLUMN_DB_AGENT_TOKEN_TABLE + "='%s'";
     public static final String GET_UNAME_PWD_DB_QUERY =
             "select " + PASSWORD_HASH_COLUMN_DB_AGENT_TABLE + " from " + AGENT_TABLE + " where " + USER_NAME_COLUMN_DB_AGENT_TABLE + "='%s'";
-    public static final String INSERT_AGENT_DB_QUERY = "insert into " + AGENT_TABLE + "(" + USER_NAME_COLUMN_DB_AGENT_TABLE + ", "
-            + PASSWORD_HASH_COLUMN_DB_AGENT_TABLE + ", " + AGENT_NAME_COLUMN_DB_AGENT_TABLE + ", " +
-            CREATED_ON_COLUMN_DB_AGENT_TABLE + ") values('%s', '%s', '%s', now())";
 
-    public static final String AGENT_EXISTENCE_ENQURY_DB_QUERY = "select 1 from " + AGENT_TABLE + " where " + USER_NAME_COLUMN_DB_AGENT_TABLE + "='%s'";
     public static final String GET_TOKEN_DETAILS_DB_QUERY = "select " + TOKEN_CREATED_ON_COLUMN_DB_AGENT_TOKEN_TABLE + " from " +
             AGENT_AUTH_TOKEN_TABLE + " where " + TOKEN_COLUMN_DB_AGENT_TOKEN_TABLE + "='%s'";
     public static final String GET_USERS_FOR_AGENT_QUERY = "select name, tr_number, mobile_number, vehicle, " +
             "agent_name, status, created_on, modified_on from customer where agent_name = '%s'";
     public static final String GET_ALL_CUSTOMERS_QUERY = "select name, tr_number, mobile_number, vehicle, " +
             "agent_name, status, created_on, modified_on from customer";
+
+
+    /*
+    For MTT *******************
+     */
+    public static final String VOLUNTEER_EXISTENCE_ENQURY_DB_QUERY =
+            "select " + VOLUNTEER_TABLE_COLUMN_USER_NAME + " from " + TABLE_NAME_VOLUNTEER + " where " +
+                    VOLUNTEER_TABLE_COLUMN_USER_NAME + "='%s'";
+
+    public static final String INSERT_VOLUNTEER_DB_QUERY = "insert into " + TABLE_NAME_VOLUNTEER +
+            "(" + VOLUNTEER_TABLE_COLUMN_NAME + ", " + VOLUNTEER_TABLE_COLUMN_USER_NAME + ", " +
+            VOLUNTEER_TABLE_COLUMN_PASSWORD + ", " + VOLUNTEER_AUTH_TOKEN_TABLE_COLUMN_CREATED_ON + ", " +
+            VOLUNTEER_TABLE_COLUMN_MODIFIED_ON + ") values('%s', '%s', '%s', now(), now())";
+
+    public static final String WRITE_AUTH_TOKEN_DB_QUERY = "insert into " + TABLE_NAME_VOLUNTEER_AUTH_TOKEN +
+            "(" + VOLUNTEER_AUTH_TOKEN_TABLE_COLUMN_USER_NAME + ", " + VOLUNTEER_AUTH_TOKEN_TABLE_COLUMN_AUTH_TOKEN +
+            ", " + VOLUNTEER_AUTH_TOKEN_TABLE_COLUMN_CREATED_ON + ") values('%s', '%s', now())";
+
+
+    public static final String DELETE_AUTH_TOKEN_DB_QUERY = "delete from " + TABLE_NAME_VOLUNTEER_AUTH_TOKEN +
+            " where " + VOLUNTEER_AUTH_TOKEN_TABLE_COLUMN_USER_NAME + "='%s'";
+
 
 //    public static final String GET_AGENT_NAME_FOR_TOKEN_QUERY = "select "
 //            + USER_NAME_COLUMN_DB_AGENT_TABLE + DB_FIELD_SEPERATOR

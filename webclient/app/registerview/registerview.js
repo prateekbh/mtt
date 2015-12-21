@@ -16,7 +16,7 @@ RegisterCtrl.prototype.register_ = function(scope, state, user) {
 
 RegisterCtrl.prototype.validate_ = function(user) {
   var d = this.q_.defer();
-  if (user.password === user.confirm_password) {
+  if (user.vpwd === user.confirm_password) {
     d.resolve(user);
   } else {
     d.reject();

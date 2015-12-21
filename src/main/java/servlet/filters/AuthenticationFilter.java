@@ -1,7 +1,7 @@
 package servlet.filters;
 
 
-import utils.TSRTA_CONSTANTS;
+import utils.MTT_CONSTANTS;
 import utils.Utils;
 
 import javax.ws.rs.HttpMethod;
@@ -33,20 +33,20 @@ public class AuthenticationFilter implements ContainerRequestFilter {
             return;
         }
 
-        String authToken = ctx.getCookies().containsKey(TSRTA_CONSTANTS.AUTH_TOKEN_COOKIE_NAME)
-                ? ctx.getCookies().get(TSRTA_CONSTANTS.AUTH_TOKEN_COOKIE_NAME).getValue() : null;
+        String authToken = ctx.getCookies().containsKey(MTT_CONSTANTS.AUTH_TOKEN_COOKIE_NAME)
+                ? ctx.getCookies().get(MTT_CONSTANTS.AUTH_TOKEN_COOKIE_NAME).getValue() : null;
 
         try {
             if (!Utils.isValidAuthToken(authToken)) {
                 Response.ResponseBuilder builder = Response.serverError();
-                builder.status(TSRTA_CONSTANTS.HTTP_UNAUTH_CODE);
+                builder.status(MTT_CONSTANTS.HTTP_UNAUTH_CODE);
                 ctx.abortWith(builder.build());
                 return;
             }
         } catch (Exception e) {
             e.printStackTrace();
             Response.ResponseBuilder builder = Response.serverError();
-            builder.status(TSRTA_CONSTANTS.HTTP_INTERNAL_SERVER_ERROR);
+            builder.status(MTT_CONSTANTS.HTTP_INTERNAL_SERVER_ERROR);
             ctx.abortWith(builder.build());
             return;
         }

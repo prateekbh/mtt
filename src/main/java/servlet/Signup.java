@@ -3,7 +3,7 @@ package servlet;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import utils.Resources;
-import utils.TSRTA_CONSTANTS;
+import utils.MTT_CONSTANTS;
 
 import javax.servlet.ServletException;
 import javax.ws.rs.GET;
@@ -33,19 +33,19 @@ public class Signup {
         System.out.println("POST method of singup");
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(jsonRequest);
-        String uname = jsonNode.get(TSRTA_CONSTANTS.USER_NAME_REQUEST_PARAM).asText();
-        String pwd = jsonNode.get(TSRTA_CONSTANTS.PASSWORD_REQUEST_PARAM).asText();
-        String agentName = jsonNode.get(TSRTA_CONSTANTS.AGENT_NAME_REQUEST_PARAM).asText();
+        String volunteerName = jsonNode.get(MTT_CONSTANTS.VOLUNTEER_NAME_REQUEST_PARAM).asText();
+        String uname = jsonNode.get(MTT_CONSTANTS.VOLUNTEER_USER_NAME_REQUEST_PARAM).asText();
+        String pwd = jsonNode.get(MTT_CONSTANTS.VOLUNTEER_PASSWORD_REQUEST_PARAM).asText();
         //store the uname and pwd in DB. Also call login to get auth_token and return the same.
-        System.out.println("uname: " + uname + " pwd " + pwd + " agentName " + agentName);
+        System.out.println("uname: " + uname + " pwd " + pwd + " volunteerName " + volunteerName);
         Response.ResponseBuilder responseBuilder = Response.ok();
         if (userAlreadyExists(uname)) {
-            System.out.println("User already exists ####");
-            responseBuilder.status(TSRTA_CONSTANTS.HTTP_CONFLICT_CODE);
+            System.out.println("Volunteer already exists ####");
+            responseBuilder.status(MTT_CONSTANTS.HTTP_CONFLICT_CODE);
             return responseBuilder.build();
         }
-        insertNewAgentIntoDB(uname, pwd, agentName);
-        responseBuilder.status(TSRTA_CONSTANTS.HTTP_OK_CODE);
+        insertNewVolunteerIntoDB(uname, pwd, volunteerName);
+        responseBuilder.status(MTT_CONSTANTS.HTTP_OK_CODE);
         responseBuilder.cookie(new Login().getUserCookie(uname));
         return responseBuilder.build();
     }
@@ -56,18 +56,20 @@ public class Signup {
             return true;
         }
         Statement query = Resources.connection.createStatement();
-        String agentExistenceQuery = String.format(TSRTA_CONSTANTS.AGENT_EXISTENCE_ENQURY_DB_QUERY, userName);
-        ResultSet resultSet = query.executeQuery(agentExistenceQuery);
+        System.out.println("check query: " + MTT_CONSTANTS.VOLUNTEER_EXISTENCE_ENQURY_DB_QUERY);
+        String userExistenceQuery = String.format(MTT_CONSTANTS.VOLUNTEER_EXISTENCE_ENQURY_DB_QUERY, userName);
+        ResultSet resultSet = query.executeQuery(userExistenceQuery);
         boolean userAlreadyExists = resultSet.next();
         query.close();
         return userAlreadyExists;
     }
 
-    private void insertNewAgentIntoDB(String uname, String pwd, String agentName) throws Exception {
+    private void insertNewVolunteerIntoDB(String uname, String pwd, String volunteerName) throws Exception {
         String hashedPassword = getHashedPassword(pwd);
-        String insertAgentQuery = String.format(TSRTA_CONSTANTS.INSERT_AGENT_DB_QUERY, uname, hashedPassword, agentName);
+        String insertVolunteerQuery =
+                String.format(MTT_CONSTANTS.INSERT_VOLUNTEER_DB_QUERY, uname, hashedPassword, volunteerName);
         Statement query = Resources.connection.createStatement();
-        query.execute(insertAgentQuery);
+        query.execute(insertVolunteerQuery);
         query.close();
     }
 

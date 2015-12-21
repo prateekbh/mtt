@@ -1,20 +1,6 @@
 package servlet;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
-import utils.Resources;
-import utils.TSRTA_CONSTANTS;
-import utils.Utils;
-
 import javax.ws.rs.*;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import java.io.IOException;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 @Path(ResourcesPath.CUSTOMER)
 public class Customer {

@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
-import utils.TSRTA_CONSTANTS;
+import utils.MTT_CONSTANTS;
 import utils.Utils;
 
 import java.util.List;
@@ -21,43 +21,43 @@ public class StatusRefresherScript {
 
         WebDriver driver = new HtmlUnitDriver();
 
-        driver.get(TSRTA_CONSTANTS.TSRTA_URL);
+        driver.get(MTT_CONSTANTS.TSRTA_URL);
 
         WebElement select = driver.findElement(By.xpath("//select"));
         List<WebElement> allOptions = select.findElements(By.tagName("option"));
         for (WebElement option : allOptions) {
-            if (!TSRTA_CONSTANTS.TR_NUMBER_INPUT_FORM_ID.equals(option.getAttribute("value"))) continue;
+            if (!MTT_CONSTANTS.TR_NUMBER_INPUT_FORM_ID.equals(option.getAttribute("value"))) continue;
             System.out.println(String.format("Value is: %s", option.getAttribute("value")));
             option.click();
         }
 
-        WebElement numEle = driver.findElement(By.id(TSRTA_CONSTANTS.TR_NUMBER_RESPONSE_FORM_ID_TSRTA_SITE));
+        WebElement numEle = driver.findElement(By.id(MTT_CONSTANTS.TR_NUMBER_RESPONSE_FORM_ID_TSRTA_SITE));
         numEle.sendKeys(trNum);
         numEle.submit();
-        WebElement btnEle = driver.findElement(By.id(TSRTA_CONSTANTS.GET_DATA_BUTTON_INPUT_FORM_TSRTA_SITE));
+        WebElement btnEle = driver.findElement(By.id(MTT_CONSTANTS.GET_DATA_BUTTON_INPUT_FORM_TSRTA_SITE));
         btnEle.click();
-        WebElement form = driver.findElement(By.id(TSRTA_CONSTANTS.FORM_ID_TSRTA_SITE));
+        WebElement form = driver.findElement(By.id(MTT_CONSTANTS.FORM_ID_TSRTA_SITE));
         form.submit();
         //        Document document = Jsoup.parse(pageResponse);
-//        Element element = document.select(TSRTA_CONSTANTS.STATUS_ID_TSRTA_SITE).first();
+//        Element element = document.select(MTT_CONSTANTS.STATUS_ID_TSRTA_SITE).first();
 //        System.out.println(" element : " + element + " data " + element.data());
         String pageResponse = driver.getPageSource();
-        if (!pageResponse.contains(TSRTA_CONSTANTS.STATUS_ID_TSRTA_SITE)) {
+        if (!pageResponse.contains(MTT_CONSTANTS.STATUS_ID_TSRTA_SITE)) {
             System.out.println(" page does not contain status ????? ");
         } else {
             System.out.println(" page contains Status :)");
         }
 
-        if (pageResponse.contains(TSRTA_CONSTANTS.NO_DATA_FOUND_TSRTA_SITE)) {
+        if (pageResponse.contains(MTT_CONSTANTS.NO_DATA_FOUND_TSRTA_SITE)) {
             System.out.println("No Data Found for TR Number : " + trNum);
             return null;
         }
-        System.out.println(" contains ? " + pageResponse.contains(TSRTA_CONSTANTS.STATUS_ID_TSRTA_SITE) + " trnum " + trNum);
+        System.out.println(" contains ? " + pageResponse.contains(MTT_CONSTANTS.STATUS_ID_TSRTA_SITE) + " trnum " + trNum);
 
-        String statusValueInForm = parseDataForId(pageResponse, TSRTA_CONSTANTS.STATUS_ID_TSRTA_SITE);
-        String registrationNumber = parseDataForId(pageResponse, TSRTA_CONSTANTS.REGISTRATION_NUMBER_RESPONSE_TSRTA_SITE);
-        String makerClass = parseDataForId(pageResponse, TSRTA_CONSTANTS.MAKER_CLASS_RESPONSE_TSRTA_SITE);
-        String vehicleColor = parseDataForId(pageResponse, TSRTA_CONSTANTS.VEHICLE_COLOR_RESPONSE_TSRTA_SITE);
+        String statusValueInForm = parseDataForId(pageResponse, MTT_CONSTANTS.STATUS_ID_TSRTA_SITE);
+        String registrationNumber = parseDataForId(pageResponse, MTT_CONSTANTS.REGISTRATION_NUMBER_RESPONSE_TSRTA_SITE);
+        String makerClass = parseDataForId(pageResponse, MTT_CONSTANTS.MAKER_CLASS_RESPONSE_TSRTA_SITE);
+        String vehicleColor = parseDataForId(pageResponse, MTT_CONSTANTS.VEHICLE_COLOR_RESPONSE_TSRTA_SITE);
 
         VehicleRegistrationStatus registrationStatus = new VehicleRegistrationStatus();
         registrationStatus.setStatus(statusValueInForm);
