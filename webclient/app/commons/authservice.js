@@ -16,7 +16,7 @@ AuthService.prototype.login = function(user) {
 
 
 AuthService.prototype.loginSuccess_ = function(d, user) {
-  this.store_.setItem('user_name', user.user_name);
+  this.store_.setItem('vuname', user.vuname);
   d.resolve(user);
 };
 

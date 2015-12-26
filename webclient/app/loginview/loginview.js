@@ -22,7 +22,7 @@ LoginCtrl.prototype.onLoginSuccess_ = function(scope, state) {
 };
 
 LoginCtrl.prototype.onLoginFailure_ = function(scope) {
-  alert('Please check the login credentials.');
+  alert('Login failed. Please check the login credentials.');
 }
 
 angular.module('myApp.loginview', ['ui.router'])

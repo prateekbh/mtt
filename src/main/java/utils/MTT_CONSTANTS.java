@@ -106,13 +106,6 @@ public class MTT_CONSTANTS {
     public static final String VOLUNTEER_USER_NAME_REQUEST_PARAM = "vuname";
     public static final String VOLUNTEER_PASSWORD_REQUEST_PARAM = "vpwd";
 
-    public static final String AGENT_TABLE = "agent";
-    public static final String USER_NAME_COLUMN_DB_AGENT_TABLE = "user_name";
-    public static final String AGENT_NAME_COLUMN_DB_AGENT_TABLE = "agent_name";
-    public static final String PASSWORD_HASH_COLUMN_DB_AGENT_TABLE = "password_hash";
-    public static final String CREATED_ON_COLUMN_DB_AGENT_TABLE = "created_on";
-    public static final String MODIFIED_ON_COLUMN_DB_AGENT_TABLE = "modified_on";
-
     public static final String AGENT_AUTH_TOKEN_TABLE = "agent_token";
     public static final String USER_NAME_COLUMN_DB_AGENT_TOKEN_TABLE = "user_name";
     public static final String TOKEN_COLUMN_DB_AGENT_TOKEN_TABLE = "auth_token";
@@ -132,12 +125,7 @@ public class MTT_CONSTANTS {
 
     public static final long TOKEN_EXPIRY_TIME = 30L * 24 * 60 * 60 * 1000L;  // 30 days * 24 hrs * 60 min * 60 sec * 1000 millis
 
-    public static final String USER_NAME_REQUEST_PARAM = "user_name";
-    public static final String PASSWORD_REQUEST_PARAM = "password";
-    public static final String AGENT_NAME_REQUEST_PARAM = "agent_name";
     public static final String AUTH_TOKEN_COOKIE_NAME = "auth_token";
-    public static final long AGENT_REGISTRATION_OTP_VALID_FOR = (5 * 60 * 1000);   // 5 minutes -> millis
-    public static final String AGENT_PASSWORD_ENCODING = "UTF-8";
 
     //Insert customer params
     public static final String NAME_PUT_CUSTOMER_PARAM = "name";
@@ -150,7 +138,8 @@ public class MTT_CONSTANTS {
 //            TOKEN_COLUMN_DB_AGENT_TOKEN_TABLE + ", " + TOKEN_CREATED_ON_COLUMN_DB_AGENT_TOKEN_TABLE + ") values('%s', '%s', now())";
 //    public static final String DELETE_AUTH_TOKEN_DB_QUERY = "delete from " + AGENT_AUTH_TOKEN_TABLE + " where " + USER_NAME_COLUMN_DB_AGENT_TOKEN_TABLE + "='%s'";
     public static final String GET_UNAME_PWD_DB_QUERY =
-            "select " + PASSWORD_HASH_COLUMN_DB_AGENT_TABLE + " from " + AGENT_TABLE + " where " + USER_NAME_COLUMN_DB_AGENT_TABLE + "='%s'";
+            "select " + VOLUNTEER_TABLE_COLUMN_PASSWORD + " from " + TABLE_NAME_VOLUNTEER + " where "
+                    + VOLUNTEER_TABLE_COLUMN_USER_NAME + "='%s'";
 
     public static final String GET_TOKEN_DETAILS_DB_QUERY = "select " + TOKEN_CREATED_ON_COLUMN_DB_AGENT_TOKEN_TABLE + " from " +
             AGENT_AUTH_TOKEN_TABLE + " where " + TOKEN_COLUMN_DB_AGENT_TOKEN_TABLE + "='%s'";
@@ -164,8 +153,8 @@ public class MTT_CONSTANTS {
     For MTT *******************
      */
     public static final String VOLUNTEER_EXISTENCE_ENQURY_DB_QUERY =
-            "select " + VOLUNTEER_TABLE_COLUMN_USER_NAME + " from " + TABLE_NAME_VOLUNTEER + " where " +
-                    VOLUNTEER_TABLE_COLUMN_USER_NAME + "='%s'";
+            "select " + VOLUNTEER_TABLE_COLUMN_USER_NAME + " from " + TABLE_NAME_VOLUNTEER + " where lower(" +
+                    VOLUNTEER_TABLE_COLUMN_USER_NAME + ")=lower('%s')";
 
     public static final String INSERT_VOLUNTEER_DB_QUERY = "insert into " + TABLE_NAME_VOLUNTEER +
             "(" + VOLUNTEER_TABLE_COLUMN_NAME + ", " + VOLUNTEER_TABLE_COLUMN_USER_NAME + ", " +

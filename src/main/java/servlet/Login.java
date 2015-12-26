@@ -12,6 +12,7 @@ import javax.ws.rs.core.*;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -36,6 +37,10 @@ public class Login {
 
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(jsonRequest);
+        Iterator<String> iterator = jsonNode.fieldNames();
+        while (iterator.hasNext()) {
+            System.out.println("fieldName:  " + iterator.next());
+        }
         String uname = jsonNode.get(MTT_CONSTANTS.VOLUNTEER_USER_NAME_REQUEST_PARAM).textValue();
         String pwd = jsonNode.get(MTT_CONSTANTS.VOLUNTEER_PASSWORD_REQUEST_PARAM).asText();
 
@@ -62,7 +67,7 @@ public class Login {
         ResultSet resultSet = getStatement.executeQuery(getUnamePwdQuery);
         String readPwd = null;
         while (resultSet.next()) {
-            readPwd = resultSet.getString(MTT_CONSTANTS.PASSWORD_HASH_COLUMN_DB_AGENT_TABLE);
+            readPwd = resultSet.getString(MTT_CONSTANTS.VOLUNTEER_TABLE_COLUMN_PASSWORD);
         }
         System.out.println("uname and pwd are VALID ####");
         return isValidPassword(readPwd, password);
@@ -71,6 +76,6 @@ public class Login {
     private boolean isValidPassword(String dbPassword, String givenPassword) {
         // todo : now plain .. should be hashed later
         System.out.println(" db pwd : " + dbPassword + " given : " + givenPassword);
-        return givenPassword.equals(dbPassword);
+        return givenPassword.equalsIgnoreCase(dbPassword);
     }
 }

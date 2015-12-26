@@ -63,7 +63,7 @@ public class Utils {
         ResultSet resultSet = getStatement.executeQuery(getAgentNameForTokenQuery);
         String agentUserName = null;
         if (resultSet.next()) {
-            agentUserName = resultSet.getString(MTT_CONSTANTS.USER_NAME_COLUMN_DB_AGENT_TABLE);
+            agentUserName = resultSet.getString(MTT_CONSTANTS.TABLE_NAME_VOLUNTEER);
         }
         return agentUserName;
     }

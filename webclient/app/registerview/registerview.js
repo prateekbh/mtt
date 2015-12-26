@@ -30,7 +30,7 @@ RegisterCtrl.prototype.onValidateSuccess_ = function(scope, state, user) {
 };
 
 RegisterCtrl.prototype.onValidateFailure_ = function() {
-
+  alert("Password and confirmed password did not match. Please try again.");
 };
 
 RegisterCtrl.prototype.onRegisterSuccess_ = function(scope, state) {
@@ -44,7 +44,7 @@ RegisterCtrl.prototype.onRegisterSuccess_ = function(scope, state) {
 };
 
 RegisterCtrl.prototype.onRegisterFailure_ = function(scope) {
-  alert('Please check the login credentials.');
+  alert('Given username is already taken. Please choose a different one.');
 }
 
 angular.module('myApp.registerview', ['ui.router'])
