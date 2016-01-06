@@ -49,7 +49,7 @@ public class Utils {
         ResultSet resultSet = getStatement.executeQuery(getTokenDetailsQuery);
         long tokenTimeStamp = 0;
         if (resultSet.next()) {
-            tokenTimeStamp = resultSet.getDate(MTT_CONSTANTS.TOKEN_CREATED_ON_COLUMN_DB_AGENT_TOKEN_TABLE).getTime();
+            tokenTimeStamp = resultSet.getDate(MTT_CONSTANTS.VOLUNTEER_AUTH_TOKEN_TABLE_COLUMN_CREATED_ON).getTime();
         }
         Logger.getAnonymousLogger().log(Level.INFO, "current millis " + System.currentTimeMillis() + " tokenTimeStamp "
                 + tokenTimeStamp + " expiry time " + MTT_CONSTANTS.TOKEN_EXPIRY_TIME + " final result " + (System.currentTimeMillis() < tokenTimeStamp + MTT_CONSTANTS.TOKEN_EXPIRY_TIME));
@@ -57,13 +57,13 @@ public class Utils {
     }
 
     public static String getAgentUserNameForToken(String authToken) throws SQLException {
-        String getAgentNameForTokenQuery = String.format(MTT_CONSTANTS.GET_AGENT_NAME_FOR_TOKEN_QUERY, authToken);
+        String getAgentNameForTokenQuery = String.format(MTT_CONSTANTS.GET_VOLUNTEER_NAME_FOR_TOKEN_QUERY, authToken);
         Logger.getAnonymousLogger().log(Level.INFO, "getAgentNameQuery : " + getAgentNameForTokenQuery);
         Statement getStatement = Resources.connection.createStatement();
         ResultSet resultSet = getStatement.executeQuery(getAgentNameForTokenQuery);
         String agentUserName = null;
         if (resultSet.next()) {
-            agentUserName = resultSet.getString(MTT_CONSTANTS.TABLE_NAME_VOLUNTEER);
+            agentUserName = resultSet.getString(MTT_CONSTANTS.VOLUNTEER_AUTH_TOKEN_TABLE_COLUMN_USER_NAME);
         }
         return agentUserName;
     }
@@ -131,4 +131,33 @@ public class Utils {
         return null;
     }
 
+    public static double effective_score(int correctly_answered, int wrongly_answered, int unanswered) {
+        double result = 0.0;
+        result = MTT_CONSTANTS.MIN_SCORE + MTT_CONSTANTS.WEIGHT_FACTOR *
+                (1 - (double) correctly_answered / (double) (wrongly_answered + unanswered));
+        return result;
+    }
+
+    public static int[] numberToPermutation(int n, int size) {
+        int[] perms = new int[size];
+        for (int i = 0; i < perms.length; i++) {
+            perms[i] = i + 1;
+        }
+
+        for (int i = 0; i < size; i++) {
+            int f = factorial(size - i - 1);
+
+        }
+
+        return perms;
+    }
+
+    // no overflow checks
+    public static int factorial(int n) {
+        int f = 1;
+        for (int i = 2; i <= n; i++) {
+            f *= i;
+        }
+        return f;
+    }
 }

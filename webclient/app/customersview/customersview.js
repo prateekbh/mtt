@@ -1,6 +1,6 @@
 'use strict';
 
-var CustomersCtrl = function($q, $mdDialog, $scope, $state, Api) {
+var volunteersCtrl = function($q, $mdDialog, $scope, $state, Api) {
   this.q_ = $q;
   this.Api_ = Api;
 
@@ -32,7 +32,7 @@ CustomersCtrl.prototype.create = function() {
 
 CustomersCtrl.prototype.openNewCustomerModal_ = function(mdDialog, ev) {
   mdDialog.show({
-    controller: 'CreateCustomerCtrl',
+    controller: 'AddStudentCtrl',
     templateUrl: 'customersview/createcustomer.html',
     parent: angular.element(document.body),
     targetEvent: ev,

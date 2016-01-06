@@ -14,21 +14,21 @@ create table contest (
     attended integer,
     boys integer,
     girls integer,
-    govt_school integer,
-    private_school integer,
-    centers int[]
+    govt_schools integer,
+    private_schools integer,
+    centers int[] ELEMENT REFERENCES center(id)
 );
 
 create table student (
     id SERIAL PRIMARY KEY,
     name varchar(50),
     govt_or_private boolean,
-    school varchar(50),
+    school integer REFERENCES school(id),
     place varchar(50),
     mandal varchar(50),
-    center integer,
-    correctly_answered_questions int[],
-    incorrectly_answered_questions int[],
+    center integer REFERENCES center(id),
+    correctly_answered_questions int[] ELEMENT REFERENCES question(id),
+    incorrectly_answered_questions int[] ELEMENT REFERENCES,
     unanswered_questions int[],
     answered_correct integer,
     answered_wrong integer,
@@ -36,12 +36,19 @@ create table student (
     score double precision
 );
 
+create table school (
+    id SERIAL PRIMARY KEY,
+    name varchar(100),
+    village varchar(30),
+    mandal varchar(30)
+);
+
 create table volunteer (
     id SERIAL PRIMARY KEY,
     name varchar(50),
     user_name varchar(30),
     password varchar(30),
-    center integer,
+    center integer REFERENCES center(id),
     created_on timestamp without time zone,
     modified_on timestamp without time zone
 );

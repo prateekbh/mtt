@@ -4,7 +4,9 @@ package utils;
 public class MTT_CONSTANTS {
 
     public static final String DB_FIELD_SEPERATOR = ", ";
-
+    public static final double MIN_SCORE = 1.0;
+    public static final double WEIGHT_FACTOR = 4.0;
+    public static final int QUESTIONS_IN_2016 = 6;
 //    create table question (
 //            id integer PRIMARY KEY,
 //            short_desc varchar(20),
@@ -95,7 +97,12 @@ public class MTT_CONSTANTS {
 //
 
 
-
+//    create table volunteer_auth_token (
+//            user_name varchar(50) PRIMARY KEY,
+//    auth_token varchar(50),
+//    created_on timestamp without time zone
+//    );
+//
     public static final String TABLE_NAME_VOLUNTEER_AUTH_TOKEN = "volunteer_auth_token";
     public static final String VOLUNTEER_AUTH_TOKEN_TABLE_COLUMN_USER_NAME = "user_name";
     public static final String VOLUNTEER_AUTH_TOKEN_TABLE_COLUMN_AUTH_TOKEN = "auth_token";
@@ -105,11 +112,6 @@ public class MTT_CONSTANTS {
     public static final String VOLUNTEER_NAME_REQUEST_PARAM = "vname";
     public static final String VOLUNTEER_USER_NAME_REQUEST_PARAM = "vuname";
     public static final String VOLUNTEER_PASSWORD_REQUEST_PARAM = "vpwd";
-
-    public static final String AGENT_AUTH_TOKEN_TABLE = "agent_token";
-    public static final String USER_NAME_COLUMN_DB_AGENT_TOKEN_TABLE = "user_name";
-    public static final String TOKEN_COLUMN_DB_AGENT_TOKEN_TABLE = "auth_token";
-    public static final String TOKEN_CREATED_ON_COLUMN_DB_AGENT_TOKEN_TABLE = "created_on";
 
     public static final String CUSTOMER_TABLE = "customer";
     public static final String CUSTOMER_NAME_COLUMN_DB_CUSTOMER_TABLE = "name";
@@ -134,15 +136,14 @@ public class MTT_CONSTANTS {
     public static final String VEHICLE_PUT_CUSTOMER_PARAM = "vehicle";
     public static final String AGENT_NAME_PUT_CUSTOMER_PARAM = "agentname";
 
-//    public static final String WRITE_AUTH_TOKEN_DB_QUERY = "insert into " + AGENT_AUTH_TOKEN_TABLE + "(" + USER_NAME_COLUMN_DB_AGENT_TOKEN_TABLE + ", " +
-//            TOKEN_COLUMN_DB_AGENT_TOKEN_TABLE + ", " + TOKEN_CREATED_ON_COLUMN_DB_AGENT_TOKEN_TABLE + ") values('%s', '%s', now())";
-//    public static final String DELETE_AUTH_TOKEN_DB_QUERY = "delete from " + AGENT_AUTH_TOKEN_TABLE + " where " + USER_NAME_COLUMN_DB_AGENT_TOKEN_TABLE + "='%s'";
     public static final String GET_UNAME_PWD_DB_QUERY =
             "select " + VOLUNTEER_TABLE_COLUMN_PASSWORD + " from " + TABLE_NAME_VOLUNTEER + " where "
                     + VOLUNTEER_TABLE_COLUMN_USER_NAME + "='%s'";
 
-    public static final String GET_TOKEN_DETAILS_DB_QUERY = "select " + TOKEN_CREATED_ON_COLUMN_DB_AGENT_TOKEN_TABLE + " from " +
-            AGENT_AUTH_TOKEN_TABLE + " where " + TOKEN_COLUMN_DB_AGENT_TOKEN_TABLE + "='%s'";
+    public static final String GET_TOKEN_DETAILS_DB_QUERY = "select " + VOLUNTEER_AUTH_TOKEN_TABLE_COLUMN_CREATED_ON
+            + " from " + TABLE_NAME_VOLUNTEER_AUTH_TOKEN + " where "
+            + VOLUNTEER_AUTH_TOKEN_TABLE_COLUMN_AUTH_TOKEN + "='%s'";
+
     public static final String GET_USERS_FOR_AGENT_QUERY = "select name, tr_number, mobile_number, vehicle, " +
             "agent_name, status, created_on, modified_on from customer where agent_name = '%s'";
     public static final String GET_ALL_CUSTOMERS_QUERY = "select name, tr_number, mobile_number, vehicle, " +
@@ -170,18 +171,9 @@ public class MTT_CONSTANTS {
             " where " + VOLUNTEER_AUTH_TOKEN_TABLE_COLUMN_USER_NAME + "='%s'";
 
 
-//    public static final String GET_AGENT_NAME_FOR_TOKEN_QUERY = "select "
-//            + USER_NAME_COLUMN_DB_AGENT_TABLE + DB_FIELD_SEPERATOR
-//            + AGENT_NAME_COLUMN_DB_AGENT_TABLE + DB_FIELD_SEPERATOR
-//            + CREATED_ON_COLUMN_DB_AGENT_TABLE + DB_FIELD_SEPERATOR
-//            + MODIFIED_ON_COLUMN_DB_AGENT_TABLE
-//            + " from " + AGENT_TABLE + " where " + USER_NAME_COLUMN_DB_AGENT_TABLE +
-//            " = (select " + USER_NAME_COLUMN_DB_AGENT_TOKEN_TABLE + " from " + AGENT_AUTH_TOKEN_TABLE + " where "
-//            + TOKEN_COLUMN_DB_AGENT_TOKEN_TABLE + " = '%s')";
-
-    public static final String GET_AGENT_NAME_FOR_TOKEN_QUERY = "select "
-            + USER_NAME_COLUMN_DB_AGENT_TOKEN_TABLE
-            + " from " + AGENT_AUTH_TOKEN_TABLE + " where " + TOKEN_COLUMN_DB_AGENT_TOKEN_TABLE + " = '%s'";
+    public static final String GET_VOLUNTEER_NAME_FOR_TOKEN_QUERY = "select "
+            + VOLUNTEER_AUTH_TOKEN_TABLE_COLUMN_USER_NAME + " from "
+            + TABLE_NAME_VOLUNTEER_AUTH_TOKEN + " where " + VOLUNTEER_AUTH_TOKEN_TABLE_COLUMN_AUTH_TOKEN + " = '%s'";
 
     public static final String INSERT_CUSTOMER_QUERY = "insert into " + CUSTOMER_TABLE + "("
             + CUSTOMER_NAME_COLUMN_DB_CUSTOMER_TABLE + DB_FIELD_SEPERATOR
