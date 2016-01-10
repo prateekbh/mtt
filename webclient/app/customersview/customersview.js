@@ -1,6 +1,6 @@
 'use strict';
 
-var volunteersCtrl = function($q, $mdDialog, $scope, $state, Api) {
+var CustomersCtrl = function($q, $mdDialog, $scope, $state, Api) {
   this.q_ = $q;
   this.Api_ = Api;
 
