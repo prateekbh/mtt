@@ -9,6 +9,22 @@ create table question (
     modified_on timestamp without time zone
 );
 
+create table center (
+    id SERIAL PRIMARY KEY,
+    attended integer,
+    boys integer,
+    girls integer,
+    govt_school integer,
+    private_school integer
+);
+
+create table school (
+    id SERIAL PRIMARY KEY,
+    name varchar(100),
+    village varchar(30),
+    mandal varchar(30)
+);
+
 create table contest (
     _year integer PRIMARY KEY,
     attended integer,
@@ -36,13 +52,6 @@ create table student (
     score double precision
 );
 
-create table school (
-    id SERIAL PRIMARY KEY,
-    name varchar(100),
-    village varchar(30),
-    mandal varchar(30)
-);
-
 create table volunteer (
     id SERIAL PRIMARY KEY,
     name varchar(50),
@@ -51,15 +60,6 @@ create table volunteer (
     center integer REFERENCES center(id),
     created_on timestamp without time zone,
     modified_on timestamp without time zone
-);
-
-create table center (
-    id SERIAL PRIMARY KEY,
-    attended integer,
-    boys integer,
-    girls integer,
-    govt_school integer,
-    private_school integer
 );
 
 create table volunteer_auth_token (
