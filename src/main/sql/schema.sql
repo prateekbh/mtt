@@ -32,7 +32,7 @@ create table contest (
     girls integer,
     govt_schools integer,
     private_schools integer,
-    centers int[] ELEMENT REFERENCES center(id)
+    centers int[]
 );
 
 create table student (
@@ -43,8 +43,8 @@ create table student (
     place varchar(50),
     mandal varchar(50),
     center integer REFERENCES center(id),
-    correctly_answered_questions int[] ELEMENT REFERENCES question(id),
-    incorrectly_answered_questions int[] ELEMENT REFERENCES,
+    correctly_answered_questions,
+    incorrectly_answered_questions,
     unanswered_questions int[],
     answered_correct integer,
     answered_wrong integer,
