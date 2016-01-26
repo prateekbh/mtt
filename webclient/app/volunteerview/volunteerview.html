@@ -1,0 +1,34 @@
+<!--<div ng-controller="VolunteerCtrl" layout="column">-->
+  <!--<md-content layout-padding>-->
+    <!--name ... : {{ volunteer.name }} <br>-->
+    <!--id : {{ volunteer.id }}-->
+  <!--</md-content>-->
+<!--</div>-->
+
+
+<div ng-controller="VolunteerCtrl" layout="column">
+  <md-toolbar layout-padding>
+    <h2>Volunteer..</h2>
+  </md-toolbar>
+  <md-content layout-padding>
+    <md-list>
+      <md-list-item role="listitem" class="md-2-line"
+                    ng-click="openNewVolunteerModal($event)">
+        <img class="md-avatar" src="img/ic_add_black_24dp_2x.png"/>
+        <div class="md-list-item-text">
+          <h3>Create New Volunteer</h3>
+          <p></p>
+        </div>
+      </md-list-item>
+      <md-list-item role="listitem" class="md-2-line"
+                    ng-repeat="volunteer in volunteers"
+                    ng-click="show(volunteer)">
+        <img class="md-avatar" src="img/ic_person_black_24dp_2x.png" style="opacity: 0.53;"/>
+        <div class="md-list-item-text">
+          <h3>{{ volunteer.name }}</h3>
+          <p>{{ volunteer.center }}</p>
+        </div>
+      </md-list-item>
+    </md-list>
+  </md-content>
+</div>

@@ -1,0 +1,31 @@
+<md-dialog>
+<div layout="column">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>Create New Volunteer</h2>
+      <span flex></span>
+      <md-button class="md-icon-button" ng-click="close()">
+        <md-icon md-svg-src="img/ic_close_white_24px.svg" aria-label="Close dialog"></md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-content layout-padding>
+    <div layout="" layout-sm="column">
+      <md-input-container flex="">
+        <label>Name</label>
+        <input ng-model="volunteer.name">
+      </md-input-continer>
+    </div>
+    <div layout="" layout-sm="column">
+      <md-input-container flex="">
+        <label>Center</label>
+        <input ng-model="volunteer.center">
+      </md-input-continer>
+    </div>
+    <div layout="" layout-sm="column">
+      <md-button class="md-raised md-primary" ng-click="create(volunteer)">Create</md-button>
+    </div>
+  </md-content>
+</div>
+</md-dialog>
+
