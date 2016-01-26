@@ -112,6 +112,9 @@ public class MTT_CONSTANTS {
     public static final String VOLUNTEER_NAME_REQUEST_PARAM = "vname";
     public static final String VOLUNTEER_USER_NAME_REQUEST_PARAM = "vuname";
     public static final String VOLUNTEER_PASSWORD_REQUEST_PARAM = "vpwd";
+    public static final String VOLUNTEER_CENTER_ID_REQUEST_PARAM = "centerId";
+
+    public static final String STUDENT_ID_REQUEST_PARAM = "studentId";
 
     public static final String CUSTOMER_TABLE = "customer";
     public static final String CUSTOMER_NAME_COLUMN_DB_CUSTOMER_TABLE = "name";
@@ -159,8 +162,9 @@ public class MTT_CONSTANTS {
 
     public static final String INSERT_VOLUNTEER_DB_QUERY = "insert into " + TABLE_NAME_VOLUNTEER +
             "(" + VOLUNTEER_TABLE_COLUMN_NAME + ", " + VOLUNTEER_TABLE_COLUMN_USER_NAME + ", " +
-            VOLUNTEER_TABLE_COLUMN_PASSWORD + ", " + VOLUNTEER_AUTH_TOKEN_TABLE_COLUMN_CREATED_ON + ", " +
-            VOLUNTEER_TABLE_COLUMN_MODIFIED_ON + ") values('%s', '%s', '%s', now(), now())";
+            VOLUNTEER_TABLE_COLUMN_PASSWORD + ", " + VOLUNTEER_TABLE_COLUMN_CENTER + ", "
+            + VOLUNTEER_TABLE_COLUMN_CREATED_ON + ", "
+            + VOLUNTEER_TABLE_COLUMN_MODIFIED_ON + ") values('%s', '%s', '%s', '%s', now(), now())";
 
     public static final String WRITE_AUTH_TOKEN_DB_QUERY = "insert into " + TABLE_NAME_VOLUNTEER_AUTH_TOKEN +
             "(" + VOLUNTEER_AUTH_TOKEN_TABLE_COLUMN_USER_NAME + ", " + VOLUNTEER_AUTH_TOKEN_TABLE_COLUMN_AUTH_TOKEN +

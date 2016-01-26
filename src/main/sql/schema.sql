@@ -1,4 +1,4 @@
-drop table question, contest, student, volunteer, center, volunteer_auth_token;
+drop table question, contest, student, volunteer, center, volunteer_auth_token, school cascade;
 create table question (
     id SERIAL PRIMARY KEY,
     short_desc varchar(20),
@@ -11,9 +11,12 @@ create table question (
 
 create table center (
     id SERIAL PRIMARY KEY,
+    place varchar(50) not null,
+    venue varchar(100) not null,
     attended integer,
     boys integer,
     girls integer,
+    volunteers integer,
     govt_school integer,
     private_school integer
 );
@@ -38,11 +41,10 @@ create table contest (
 create table student (
     id SERIAL PRIMARY KEY,
     name varchar(50),
-    govt_or_private boolean,
+    is_govt boolean,
     school integer REFERENCES school(id),
     place varchar(50),
-    mandal varchar(50),
-    center integer REFERENCES center(id),
+    center integer REFERENCES center(id) not null,
     correctly_answered_questions int[],
     incorrectly_answered_questions int[],
     unanswered_questions int[],
@@ -57,7 +59,7 @@ create table volunteer (
     name varchar(50),
     user_name varchar(30),
     password varchar(30),
-    center integer REFERENCES center(id),
+    center integer REFERENCES center(id) not null,
     created_on timestamp without time zone,
     modified_on timestamp without time zone
 );

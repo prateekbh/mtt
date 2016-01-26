@@ -20,6 +20,9 @@ public class App {
             CustomerResource.class.getCanonicalName(),
             CustomersResource.class.getCanonicalName(),
             CorsResponseFilter.class.getCanonicalName(),
+            VolunteerResource.class.getCanonicalName(),
+            VolunteersResource.class.getCanonicalName(),
+
             AuthenticationFilter.class.getCanonicalName()
     };
 

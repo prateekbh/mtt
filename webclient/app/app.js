@@ -1,5 +1,11 @@
 'use strict';
 
+var lh = "http://127.0.0.1:8080";
+var loc1="http://192.168.0.5:8080";
+var loc2 = 'http://192.168.2.4:8080';
+var loc3 = "http://192.168.43.94:8080";
+var vm = 'http://188.166.254.184:8080'
+
 // Declare app level module which depends on views, and components
 angular.module('myApp', [
   'ui.router',
@@ -11,10 +17,12 @@ angular.module('myApp', [
   'myApp.registerview',
   'myApp.customersview',
   'myApp.customerview',
+  'myApp.volunteersview',
+  'myApp.volunteerview',
   'myApp.version'
 ])
 // localhost should be replaced with backend's ip
-.constant('API_BASE_URL', 'http://188.166.254.184:8080')
+.constant('API_BASE_URL', lh)
 
 .config(['$urlRouterProvider', '$mdThemingProvider', '$httpProvider', 
     function($urlRouterProvider, $mdThemingProvider, $httpProvider) {

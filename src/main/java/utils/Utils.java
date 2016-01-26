@@ -2,6 +2,7 @@ package utils;
 
 import servlet.Customer;
 import servlet.StatusRefresherScript;
+import servlet.Student;
 import servlet.VehicleRegistrationStatus;
 
 import java.sql.ResultSet;
@@ -99,6 +100,13 @@ public class Utils {
     public static List<Customer> getCustomerList(String agentUserName) throws Exception {
         String getUsersForAgentQuery = String.format(MTT_CONSTANTS.GET_USERS_FOR_AGENT_QUERY, agentUserName);
         return readCustomersFromQuery(getUsersForAgentQuery);
+    }
+
+    public static List<Student> getStudentList() throws Exception {
+//        String getUsersForAgentQuery = String.format(MTT_CONSTANTS.GET_USERS_FOR_AGENT_QUERY, agentUserName);
+//        return readCustomersFromQuery(getUsersForAgentQuery);
+        // TODO:
+        return new ArrayList<Student>();
     }
 
     public static List<Customer> readCustomersFromQuery(String query) throws Exception {

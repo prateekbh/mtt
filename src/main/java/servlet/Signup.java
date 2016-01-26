@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-@Path("/signup")
+@Path(ResourcesPath.SIGNUP)
 public class Signup {
 
     @GET
@@ -34,19 +34,23 @@ public class Signup {
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(jsonRequest);
         String volunteerName = jsonNode.get(MTT_CONSTANTS.VOLUNTEER_NAME_REQUEST_PARAM).asText();
-        String uname = jsonNode.get(MTT_CONSTANTS.VOLUNTEER_USER_NAME_REQUEST_PARAM).asText();
+        String vuname = jsonNode.get(MTT_CONSTANTS.VOLUNTEER_USER_NAME_REQUEST_PARAM).asText();
         String pwd = jsonNode.get(MTT_CONSTANTS.VOLUNTEER_PASSWORD_REQUEST_PARAM).asText();
+        System.out.println("centerid : " + MTT_CONSTANTS.VOLUNTEER_CENTER_ID_REQUEST_PARAM);
+        String volunteerCenterId = jsonNode.get(MTT_CONSTANTS.VOLUNTEER_CENTER_ID_REQUEST_PARAM).asText();
         //store the uname and pwd in DB. Also call login to get auth_token and return the same.
-        System.out.println("uname: " + uname + " pwd " + pwd + " volunteerName " + volunteerName);
-        Response.ResponseBuilder responseBuilder = Response.ok();
-        if (userAlreadyExists(uname)) {
-            System.out.println("Volunteer already exists ####");
+        System.out.println("uname: " + vuname + " pwd " + pwd
+                + " volunteerName " + volunteerName + " center: " + volunteerCenterId);
+        Response.ResponseBuilder responseBuilder =
+                Response.ok("{\"message\" : \"Thank you for being a volunteer.\"}");
+        if (userAlreadyExists(vuname)) {
+            System.out.println("Volunteer already exists.");
             responseBuilder.status(MTT_CONSTANTS.HTTP_CONFLICT_CODE);
             return responseBuilder.build();
         }
-        insertNewVolunteerIntoDB(uname, pwd, volunteerName);
+        insertNewVolunteerIntoDB(vuname, pwd, volunteerName, volunteerCenterId);
         responseBuilder.status(MTT_CONSTANTS.HTTP_OK_CODE);
-        responseBuilder.cookie(new Login().getUserCookie(uname));
+        responseBuilder.cookie(new Login().getUserCookie(vuname));
         return responseBuilder.build();
     }
 
@@ -64,10 +68,11 @@ public class Signup {
         return userAlreadyExists;
     }
 
-    private void insertNewVolunteerIntoDB(String uname, String pwd, String volunteerName) throws Exception {
+    private void insertNewVolunteerIntoDB(String uname, String pwd, String volunteerName, String centerId)
+            throws Exception {
         String hashedPassword = getHashedPassword(pwd);
         String insertVolunteerQuery =
-                String.format(MTT_CONSTANTS.INSERT_VOLUNTEER_DB_QUERY, uname, hashedPassword, volunteerName);
+                String.format(MTT_CONSTANTS.INSERT_VOLUNTEER_DB_QUERY, uname, hashedPassword, volunteerName, centerId);
         Statement query = Resources.connection.createStatement();
         query.execute(insertVolunteerQuery);
         query.close();

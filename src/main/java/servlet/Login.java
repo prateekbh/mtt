@@ -16,7 +16,7 @@ import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-@Path("/login")
+@Path(ResourcesPath.LOGIN)
 public class Login {
 
     public Login() {
@@ -45,11 +45,12 @@ public class Login {
         String pwd = jsonNode.get(MTT_CONSTANTS.VOLUNTEER_PASSWORD_REQUEST_PARAM).asText();
 
         Logger logger = Logger.getAnonymousLogger();
-        logger.log(Level.SEVERE, "#### Login.handleRequest method uname " + uname + " pwd " + pwd);
+        logger.log(Level.INFO, "#### Login.handleRequest method uname " + uname + " pwd " + pwd);
 
         Response.ResponseBuilder responseBuilder = Response.ok();
         if (isValid(uname, pwd)) {
             responseBuilder.cookie(getUserCookie(uname));
+            
         } else {
             responseBuilder.status(MTT_CONSTANTS.HTTP_UNAUTH_CODE);
         }

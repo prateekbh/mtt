@@ -17,7 +17,7 @@ LoginCtrl.prototype.register_ = function(state) {
 };
 
 LoginCtrl.prototype.onLoginSuccess_ = function(scope, state) {
-  state.go('customers');
+  state.go('volunteer');
   console.log('Login Success.');
 };
 
