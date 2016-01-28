@@ -1,0 +1,1 @@
+insert into school(name, village, mandal) values('Zilla Parishat High School Choppadandi', 'Choppadandi', 'Choppadandi');

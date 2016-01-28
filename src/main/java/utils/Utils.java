@@ -30,10 +30,23 @@ public class Utils {
         customer.setRegistrationNumber(status.getRegistrationNumber());
     }
 
+    public static int getMaxOfTable(String tableName, String columnName) throws SQLException {
+        String getMaxQuery = "select max(" + columnName + ") from " + tableName;
+        System.out.println("getMaxQuery: " + getMaxQuery);
+        Statement getMaxQueryStatement = Resources.connection.createStatement();
+        ResultSet resultSet = getMaxQueryStatement.executeQuery(getMaxQuery);
+        if (resultSet.next()) {
+            System.out.println("Returning max: " + resultSet.getInt("max"));
+            return resultSet.getInt("max");
+        }
+        System.out.println("Returning max -- default 1");
+        return 1;   // for the first entry
+    }
+
     public static void informCustomer(Customer customer, VehicleRegistrationStatus status) {
-        String smsToCustomer = String.format(MTT_CONSTANTS.INFORM_CUSTOMER_SMS, customer.getName(), status.getMakerClass(),
-                customer.getTrNumber(), status.getRegistrationNumber(), customer.getAgentName(), "9966422211");
-        String strUrl =  "http://api.mVaayoo.com/mvaayooapi/MessageCompose?user=reddy6sigma@gmail.com:iloveiit&senderID=TEST SMS&receipientno=9492215903&msgtxt=This is a test from mVaayoo API&state=4";
+//        String smsToCustomer = String.format(MTT_CONSTANTS.INFORM_CUSTOMER_SMS, customer.getName(), status.getMakerClass(),
+//                customer.getTrNumber(), status.getRegistrationNumber(), customer.getAgentName(), "9966422211");
+//        String strUrl =  "http://api.mVaayoo.com/mvaayooapi/MessageCompose?user=reddy6sigma@gmail.com:iloveiit&senderID=TEST SMS&receipientno=9492215903&msgtxt=This is a test from mVaayoo API&state=4";
     }
 
 //    public static String getAgentMo

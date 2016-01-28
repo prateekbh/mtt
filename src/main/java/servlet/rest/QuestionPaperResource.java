@@ -9,19 +9,21 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 
-@Path(ResourcesPath.STUDENT)
-public class StudentResource {
+@Path(ResourcesPath.QUESTION_PAPER)
+public class QuestionPaperResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getStudent(@PathParam(MTT_CONSTANTS.STUDENT_ID_REQUEST_PARAM) String studentId,
-                                @HeaderParam(MTT_CONSTANTS.HTTP_COOKIE_HEADER_NAME) String cookie) throws Exception {
+    public Response getQuestionPaper(@PathParam(MTT_CONSTANTS.QUESTION_PAPER_CODE_REQUEST_PARAM) String paperCode,
+                               @HeaderParam(MTT_CONSTANTS.HTTP_COOKIE_HEADER_NAME) String cookie) throws Exception {
         String authToken = Utils.getAuthToken(cookie);
         if (!Utils.isValidAuthToken(authToken)) {
             Response.ResponseBuilder builder = Response.serverError();
             builder.status(MTT_CONSTANTS.HTTP_UNAUTH_CODE);
             return builder.build();
         }
+
+        int code = Integer.parseInt(paperCode);
 
         return Response.ok().build();
     }

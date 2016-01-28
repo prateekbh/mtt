@@ -36,19 +36,19 @@ public class MTT_CONSTANTS {
 //            centers int[]
 //    );
 //
-
     public static final String TABLE_NAME_STUDENT = "student";
     public static final String STUDENT_TABLE_COLUMN_ID = "id";
     public static final String STUDENT_TABLE_COLUMN_NAME = "name";
-    public static final String STUDENT_TABLE_COLUMN_GOVT_OR_PVT = "govt_or_private";
+    public static final String STUDENT_TABLE_COLUMN_QUESTION_PAPER_CODE = "question_paper_code";
     public static final String STUDENT_TABLE_COLUMN_SCHOOL = "school";
     public static final String STUDENT_TABLE_COLUMN_PLACE = "place";
-    public static final String STUDENT_TABLE_COLUMN_MANDAL = "mandal";
     public static final String STUDENT_TABLE_COLUMN_CENTER = "center";
-    public static final String STUDENT_TABLE_COLUMN_CORRECTLY_ANSWERED_QUESTIONS = "correctly_answered_questions";
-    public static final String STUDENT_TABLE_COLUMN_INCORRECTLY_ANSWERED_QUESTIONS = "incorrectly_answered_questions";
-    public static final String STUDENT_TABLE_COLUMN_UNANSWERED_QUESTIONS = "unanswered_questions";
-    public static final String STUDENT_TABLE_COLUMN_SCORE = "score";
+    public static final String STUDENT_TABLE_COLUMN_CREATED_ON = "created_on";
+    public static final String STUDENT_TABLE_COLUMN_MODIFIED_ON = "modified_on";
+//    public static final String STUDENT_TABLE_COLUMN_CORRECTLY_ANSWERED_QUESTIONS = "correctly_answered_questions";
+//    public static final String STUDENT_TABLE_COLUMN_INCORRECTLY_ANSWERED_QUESTIONS = "incorrectly_answered_questions";
+//    public static final String STUDENT_TABLE_COLUMN_UNANSWERED_QUESTIONS = "unanswered_questions";
+//    public static final String STUDENT_TABLE_COLUMN_SCORE = "score";
 
 
     //    create table student (
@@ -109,12 +109,19 @@ public class MTT_CONSTANTS {
     public static final String VOLUNTEER_AUTH_TOKEN_TABLE_COLUMN_CREATED_ON = "created_on";
 
     // request param names
+
+    // common request params
+    public static final String CENTER_ID_REQUEST_PARAM = "centerId";
+
     public static final String VOLUNTEER_NAME_REQUEST_PARAM = "vname";
     public static final String VOLUNTEER_USER_NAME_REQUEST_PARAM = "vuname";
     public static final String VOLUNTEER_PASSWORD_REQUEST_PARAM = "vpwd";
-    public static final String VOLUNTEER_CENTER_ID_REQUEST_PARAM = "centerId";
 
     public static final String STUDENT_ID_REQUEST_PARAM = "studentId";
+    public static final String STUDENT_NAME_REQUEST_PARAM = "studentName";
+    public static final String SCHOOL_ID_REQUEST_PARAM = "schoolId";
+    public static final String STUDENT_PLACE_REQUEST_PARAM = "studentPlace";
+    public static final String QUESTION_PAPER_CODE_REQUEST_PARAM = "questionPaperCode";
 
     public static final String CUSTOMER_TABLE = "customer";
     public static final String CUSTOMER_NAME_COLUMN_DB_CUSTOMER_TABLE = "name";
@@ -179,16 +186,11 @@ public class MTT_CONSTANTS {
             + VOLUNTEER_AUTH_TOKEN_TABLE_COLUMN_USER_NAME + " from "
             + TABLE_NAME_VOLUNTEER_AUTH_TOKEN + " where " + VOLUNTEER_AUTH_TOKEN_TABLE_COLUMN_AUTH_TOKEN + " = '%s'";
 
-    public static final String INSERT_CUSTOMER_QUERY = "insert into " + CUSTOMER_TABLE + "("
-            + CUSTOMER_NAME_COLUMN_DB_CUSTOMER_TABLE + DB_FIELD_SEPERATOR
-            + TR_NUMBER_COLUMN_DB_CUSTOMER_TABLE + DB_FIELD_SEPERATOR
-            + MOBILE_NUMBER_COLUMN_DB_CUSTOMER_TABLE + DB_FIELD_SEPERATOR
-            + VEHICLE_COLUMN_DB_CUSTOMER_TABLE + DB_FIELD_SEPERATOR
-            + AGENT_NAME_COLUMN_DB_CUSTOMER_TABLE + DB_FIELD_SEPERATOR
-            + STATUS_COLUMN_DB_CUSTOMER_TABLE + DB_FIELD_SEPERATOR
-            + CREATED_ON_COLUMN_DB_CUSTOMER_TABLE + DB_FIELD_SEPERATOR
-            + MODIFIED_ON_COLUMN_DB_CUSTOMER_TABLE + ") values('%s', '%s', '%s', '%s', '%s', '%s', now(), now())";
-
+    public static final String INSERT_STUDENT_QUERY = "insert into " + TABLE_NAME_STUDENT + "("
+     + STUDENT_TABLE_COLUMN_ID + ", " + STUDENT_TABLE_COLUMN_QUESTION_PAPER_CODE + ", " + STUDENT_TABLE_COLUMN_NAME
+            + ", " + STUDENT_TABLE_COLUMN_SCHOOL + ", " + STUDENT_TABLE_COLUMN_PLACE + ", "
+            + STUDENT_TABLE_COLUMN_CENTER + ", " + STUDENT_TABLE_COLUMN_CREATED_ON + ", "
+            + STUDENT_TABLE_COLUMN_MODIFIED_ON + ") values('%s', '%s', '%s', '%s', '%s', '%s', now(), now())" ;
     public static final String READ_CUSTOMER_DB_QUERY = "select * from " + CUSTOMER_TABLE + " where "
             + TR_NUMBER_COLUMN_DB_CUSTOMER_TABLE + " = '%s'";
 
@@ -213,15 +215,4 @@ public class MTT_CONSTANTS {
     public static final String MAKER_CLASS_RESPONSE_TSRTA_SITE = "ctl00_OnlineContent_tdMkrClass";
     public static final String VEHICLE_COLOR_RESPONSE_TSRTA_SITE = "ctl00_OnlineContent_tdColor";
 
-    //phone information todo: read the values from config
-    public static final String USER_EMAIL_SMS_API = "reddy6sigma@gmail.com";
-    public static final String PASSWORD_SMS_API = "iloveiit";
-    public static final String SENDER_ID_SMS_API = "TEST SMS";
-    public static final String INFORM_CUSTOMER_SMS = "Dear %s, your vehicle %s with TR Number %s got registered with reg.no %s. " +
-            "Please come to the RTO office on next working day around 10 AM to collect the documents. " +
-            "Call %s at %s for more details.\nThank you.";
-
-    public static final String SMS_API_URL = "http://api.mVaayoo.com/mvaayooapi/MessageCompose?user="+
-            USER_EMAIL_SMS_API + ":" + PASSWORD_SMS_API + "&senderID=" + SENDER_ID_SMS_API +
-            "&receipientno=%s&msgtxt=" + INFORM_CUSTOMER_SMS + "&state=4";
 }

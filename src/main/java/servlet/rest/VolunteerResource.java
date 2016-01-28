@@ -28,6 +28,7 @@ public class VolunteerResource {
             return builder.build();
         }
         System.out.println(" Volunteer: note the singular");
+        // TODO: Volunteer ... not customer
         Customer customer = readCustomerFromDB(trNumber);
         return Response.ok(new Gson().toJson(customer)).build();
     }

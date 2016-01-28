@@ -17,12 +17,11 @@ public class App {
     private static final String[] entryPoints = new String[] {
             Login.class.getCanonicalName(),
             Signup.class.getCanonicalName(),
-            CustomerResource.class.getCanonicalName(),
-            CustomersResource.class.getCanonicalName(),
             CorsResponseFilter.class.getCanonicalName(),
             VolunteerResource.class.getCanonicalName(),
             VolunteersResource.class.getCanonicalName(),
-
+            StudentResource.class.getCanonicalName(),
+            StudentsResource.class.getCanonicalName(),
             AuthenticationFilter.class.getCanonicalName()
     };
 

@@ -67,10 +67,10 @@ public class VolunteersResource {
     private void insertCustomerIntoDB(String customerName, String trNumber, String mobileNumber, String vehicleDetails,
                                       String agentName) throws Exception {
 
-        String insertCustomerQuery = String.format(MTT_CONSTANTS.INSERT_CUSTOMER_QUERY, customerName, trNumber,
-                mobileNumber, vehicleDetails, agentName, Customer.Status.NEW);
-        Statement getStatement = Resources.connection.createStatement();
-        getStatement.execute(insertCustomerQuery);
+//        String insertCustomerQuery = String.format(MTT_CONSTANTS.INSERT_CUSTOMER_QUERY, customerName, trNumber,
+//                mobileNumber, vehicleDetails, agentName, Customer.Status.NEW);
+//        Statement getStatement = Resources.connection.createStatement();
+//        getStatement.execute(insertCustomerQuery);
     }
 
     public Response getCustomer(String trNumber, String cookie) throws Exception {

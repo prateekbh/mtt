@@ -23,15 +23,19 @@ public class Student {
     // Student Data
 
     String name;
+
     int id;
-    boolean isGovt;
+    String place;
     int schoolId;
     int center;
-    int[] correctlyAnsweredQuestions;
-    int[] wronglyAnsweredQuestions;
-    int[] unansweredQuestions;
-    long createdOn;
-    long modifiedOn;
+
+    public Student(String name, int id, String place, int schoolId, int center) {
+        this.name = name;
+        this.id = id;
+        this.place = place;
+        this.schoolId = schoolId;
+        this.center = center;
+    }
 
     public String getName() {
         return name;
@@ -47,14 +51,6 @@ public class Student {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public boolean isGovt() {
-        return isGovt;
-    }
-
-    public void setIsGovt(boolean isGovt) {
-        this.isGovt = isGovt;
     }
 
     public int getSchoolId() {
@@ -73,46 +69,6 @@ public class Student {
         this.center = center;
     }
 
-    public int[] getCorrectlyAnsweredQuestions() {
-        return correctlyAnsweredQuestions;
-    }
-
-    public void setCorrectlyAnsweredQuestions(int[] correctlyAnsweredQuestions) {
-        this.correctlyAnsweredQuestions = correctlyAnsweredQuestions;
-    }
-
-    public int[] getWronglyAnsweredQuestions() {
-        return wronglyAnsweredQuestions;
-    }
-
-    public void setWronglyAnsweredQuestions(int[] wronglyAnsweredQuestions) {
-        this.wronglyAnsweredQuestions = wronglyAnsweredQuestions;
-    }
-
-    public int[] getUnansweredQuestions() {
-        return unansweredQuestions;
-    }
-
-    public void setUnansweredQuestions(int[] unansweredQuestions) {
-        this.unansweredQuestions = unansweredQuestions;
-    }
-
-    public long getCreatedOn() {
-        return createdOn;
-    }
-
-    public void setCreatedOn(long createdOn) {
-        this.createdOn = createdOn;
-    }
-
-    public long getModifiedOn() {
-        return modifiedOn;
-    }
-
-    public void setModifiedOn(long modifiedOn) {
-        this.modifiedOn = modifiedOn;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -126,14 +82,17 @@ public class Student {
         return "Student{" +
                 "name='" + name + '\'' +
                 ", id=" + id +
-                ", isGovt=" + isGovt +
+                ", place='" + place + '\'' +
                 ", schoolId=" + schoolId +
                 ", center=" + center +
-                ", correctlyAnsweredQuestions=" + Arrays.toString(correctlyAnsweredQuestions) +
-                ", wronglyAnsweredQuestions=" + Arrays.toString(wronglyAnsweredQuestions) +
-                ", unansweredQuestions=" + Arrays.toString(unansweredQuestions) +
-                ", createdOn=" + createdOn +
-                ", modifiedOn=" + modifiedOn +
                 '}';
+    }
+
+    public String getPlace() {
+        return place;
+    }
+
+    public void setPlace(String place) {
+        this.place = place;
     }
 }
