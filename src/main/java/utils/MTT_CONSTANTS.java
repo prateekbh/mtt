@@ -6,7 +6,7 @@ public class MTT_CONSTANTS {
     public static final String DB_FIELD_SEPERATOR = ", ";
     public static final double MIN_SCORE = 1.0;
     public static final double WEIGHT_FACTOR = 4.0;
-    public static final int QUESTIONS_IN_2016 = 6;
+    public static final int NUMBER_OF_QUESTIONS_IN_2016 = 6;
 //    create table question (
 //            id integer PRIMARY KEY,
 //            short_desc varchar(20),
@@ -123,28 +123,9 @@ public class MTT_CONSTANTS {
     public static final String STUDENT_PLACE_REQUEST_PARAM = "studentPlace";
     public static final String QUESTION_PAPER_CODE_REQUEST_PARAM = "questionPaperCode";
 
-    public static final String CUSTOMER_TABLE = "customer";
-    public static final String CUSTOMER_NAME_COLUMN_DB_CUSTOMER_TABLE = "name";
-    public static final String TR_NUMBER_COLUMN_DB_CUSTOMER_TABLE = "tr_number";
-    public static final String MOBILE_NUMBER_COLUMN_DB_CUSTOMER_TABLE = "mobile_number";
-    public static final String VEHICLE_COLUMN_DB_CUSTOMER_TABLE = "vehicle";
-    public static final String AGENT_NAME_COLUMN_DB_CUSTOMER_TABLE = "agent_name";
-    public static final String STATUS_COLUMN_DB_CUSTOMER_TABLE = "status";
-    public static final String CREATED_ON_COLUMN_DB_CUSTOMER_TABLE = "created_on";
-    public static final String MODIFIED_ON_COLUMN_DB_CUSTOMER_TABLE = "modified_on";
-
-
-
     public static final long TOKEN_EXPIRY_TIME = 30L * 24 * 60 * 60 * 1000L;  // 30 days * 24 hrs * 60 min * 60 sec * 1000 millis
 
     public static final String AUTH_TOKEN_COOKIE_NAME = "auth_token";
-
-    //Insert customer params
-    public static final String NAME_PUT_CUSTOMER_PARAM = "name";
-    public static final String TR_NUMBER_PUT_CUSTOMER_PARAM = "trNumber";
-    public static final String MOBILE_NUMBER_PUT_CUSTOMER_PARAM = "mobile";
-    public static final String VEHICLE_PUT_CUSTOMER_PARAM = "vehicle";
-    public static final String AGENT_NAME_PUT_CUSTOMER_PARAM = "agentname";
 
     public static final String GET_UNAME_PWD_DB_QUERY =
             "select " + VOLUNTEER_TABLE_COLUMN_PASSWORD + " from " + TABLE_NAME_VOLUNTEER + " where "
@@ -153,12 +134,6 @@ public class MTT_CONSTANTS {
     public static final String GET_TOKEN_DETAILS_DB_QUERY = "select " + VOLUNTEER_AUTH_TOKEN_TABLE_COLUMN_CREATED_ON
             + " from " + TABLE_NAME_VOLUNTEER_AUTH_TOKEN + " where "
             + VOLUNTEER_AUTH_TOKEN_TABLE_COLUMN_AUTH_TOKEN + "='%s'";
-
-    public static final String GET_USERS_FOR_AGENT_QUERY = "select name, tr_number, mobile_number, vehicle, " +
-            "agent_name, status, created_on, modified_on from customer where agent_name = '%s'";
-    public static final String GET_ALL_CUSTOMERS_QUERY = "select name, tr_number, mobile_number, vehicle, " +
-            "agent_name, status, created_on, modified_on from customer";
-
 
     /*
     For MTT *******************
@@ -191,8 +166,6 @@ public class MTT_CONSTANTS {
             + ", " + STUDENT_TABLE_COLUMN_SCHOOL + ", " + STUDENT_TABLE_COLUMN_PLACE + ", "
             + STUDENT_TABLE_COLUMN_CENTER + ", " + STUDENT_TABLE_COLUMN_CREATED_ON + ", "
             + STUDENT_TABLE_COLUMN_MODIFIED_ON + ") values('%s', '%s', '%s', '%s', '%s', '%s', now(), now())" ;
-    public static final String READ_CUSTOMER_DB_QUERY = "select * from " + CUSTOMER_TABLE + " where "
-            + TR_NUMBER_COLUMN_DB_CUSTOMER_TABLE + " = '%s'";
 
     public static final int HTTP_UNAUTH_CODE = 401;
     public static final int HTTP_CONFLICT_CODE = 409;

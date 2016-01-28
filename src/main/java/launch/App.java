@@ -18,8 +18,6 @@ public class App {
             Login.class.getCanonicalName(),
             Signup.class.getCanonicalName(),
             CorsResponseFilter.class.getCanonicalName(),
-            VolunteerResource.class.getCanonicalName(),
-            VolunteersResource.class.getCanonicalName(),
             StudentResource.class.getCanonicalName(),
             StudentsResource.class.getCanonicalName(),
             AuthenticationFilter.class.getCanonicalName()

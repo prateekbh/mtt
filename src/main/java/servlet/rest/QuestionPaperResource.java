@@ -24,6 +24,7 @@ public class QuestionPaperResource {
         }
 
         int code = Integer.parseInt(paperCode);
+        int[] order = Utils.numberToPermutation(code);
 
         return Response.ok().build();
     }
