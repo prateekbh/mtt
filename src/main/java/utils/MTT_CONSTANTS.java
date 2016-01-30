@@ -176,18 +176,4 @@ public class MTT_CONSTANTS {
     public static final String COOKIE_SEPARATOR = ";";      // not sure
     public static final String NAME_VALUE_SEPARATOR = "=";
     public static final String HTTP_COOKIE_HEADER_NAME = "cookie";
-    public static final String ACTIVE_REGISTRATION_STATUS = "ACTIVE";
-
-    //TSRTA form data : page https://aptransport.in/TGCFSTONLINE/Reports/VehicleRegistrationSearch.aspx
-    public static final String TSRTA_URL = "https://aptransport.in/TGCFSTONLINE/Reports/VehicleRegistrationSearch.aspx";
-    public static final String STATUS_ID_TSRTA_SITE = "ctl00_OnlineContent_tdStatus";
-    public static final String TR_NUMBER_INPUT_FORM_ID = "T";
-    public static final String NO_DATA_FOUND_TSRTA_SITE = "No Data Found";
-    public static final String TR_NUMBER_RESPONSE_FORM_ID_TSRTA_SITE = "ctl00_OnlineContent_txtInput";
-    public static final String GET_DATA_BUTTON_INPUT_FORM_TSRTA_SITE = "ctl00_OnlineContent_btnGetData";
-    public static final String FORM_ID_TSRTA_SITE = "aspnetForm";
-    public static final String REGISTRATION_NUMBER_RESPONSE_TSRTA_SITE = "ctl00_OnlineContent_tdRegnNo";
-    public static final String MAKER_CLASS_RESPONSE_TSRTA_SITE = "ctl00_OnlineContent_tdMkrClass";
-    public static final String VEHICLE_COLOR_RESPONSE_TSRTA_SITE = "ctl00_OnlineContent_tdColor";
-
 }
