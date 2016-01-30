@@ -43,6 +43,7 @@ public class MTT_CONSTANTS {
     public static final String STUDENT_TABLE_COLUMN_SCHOOL = "school";
     public static final String STUDENT_TABLE_COLUMN_PLACE = "place";
     public static final String STUDENT_TABLE_COLUMN_CENTER = "center";
+    public static final String STUDENT_TABLE_COLUMN_SEX = "sex";
     public static final String STUDENT_TABLE_COLUMN_CREATED_ON = "created_on";
     public static final String STUDENT_TABLE_COLUMN_MODIFIED_ON = "modified_on";
 //    public static final String STUDENT_TABLE_COLUMN_CORRECTLY_ANSWERED_QUESTIONS = "correctly_answered_questions";
@@ -122,6 +123,7 @@ public class MTT_CONSTANTS {
     public static final String SCHOOL_ID_REQUEST_PARAM = "schoolId";
     public static final String STUDENT_PLACE_REQUEST_PARAM = "studentPlace";
     public static final String QUESTION_PAPER_CODE_REQUEST_PARAM = "questionPaperCode";
+    public static final String STUDENT_SEX_REQUEST_PARAM = "sex";
 
     public static final long TOKEN_EXPIRY_TIME = 30L * 24 * 60 * 60 * 1000L;  // 30 days * 24 hrs * 60 min * 60 sec * 1000 millis
 
@@ -164,8 +166,8 @@ public class MTT_CONSTANTS {
     public static final String INSERT_STUDENT_QUERY = "insert into " + TABLE_NAME_STUDENT + "("
      + STUDENT_TABLE_COLUMN_ID + ", " + STUDENT_TABLE_COLUMN_QUESTION_PAPER_CODE + ", " + STUDENT_TABLE_COLUMN_NAME
             + ", " + STUDENT_TABLE_COLUMN_SCHOOL + ", " + STUDENT_TABLE_COLUMN_PLACE + ", "
-            + STUDENT_TABLE_COLUMN_CENTER + ", " + STUDENT_TABLE_COLUMN_CREATED_ON + ", "
-            + STUDENT_TABLE_COLUMN_MODIFIED_ON + ") values('%s', '%s', '%s', '%s', '%s', '%s', now(), now())" ;
+            + STUDENT_TABLE_COLUMN_CENTER + ", " + STUDENT_TABLE_COLUMN_SEX + ", " + STUDENT_TABLE_COLUMN_CREATED_ON + ", "
+            + STUDENT_TABLE_COLUMN_MODIFIED_ON + ") values('%s', '%s', '%s', '%s', '%s', '%s', '%s', now(), now())" ;
 
     public static final int HTTP_UNAUTH_CODE = 401;
     public static final int HTTP_CONFLICT_CODE = 409;

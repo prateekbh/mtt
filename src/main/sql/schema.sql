@@ -49,6 +49,7 @@ create table student (
     school integer REFERENCES school(id) not null,
     place varchar(50),
     center integer REFERENCES center(id) not null,
+    sex varchar(10),
     created_on timestamp without time zone,
     modified_on timestamp without time zone
 );

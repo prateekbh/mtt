@@ -51,6 +51,7 @@ public class StudentsResource {
         String schoolId = jsonNode.get(MTT_CONSTANTS.SCHOOL_ID_REQUEST_PARAM).asText();
         String studentPlace = jsonNode.get(MTT_CONSTANTS.STUDENT_PLACE_REQUEST_PARAM).asText();
         String studentCenter = jsonNode.get(MTT_CONSTANTS.CENTER_ID_REQUEST_PARAM).asText();
+        String sex = jsonNode.get(MTT_CONSTANTS.STUDENT_SEX_REQUEST_PARAM).asText();
 
         Logger logger = Logger.getAnonymousLogger();
         logger.log(Level.SEVERE, "\n\n #### insertStudent form json : " + jsonRequest);
@@ -59,17 +60,17 @@ public class StudentsResource {
         synchronized (this) {
             id = Utils.getMaxOfTable(MTT_CONSTANTS.TABLE_NAME_STUDENT, MTT_CONSTANTS.STUDENT_TABLE_COLUMN_ID) + 1;
             System.out.println("student id : " + id);
-            insertStudentIntoDB(id, questionPaperCode, studentName, schoolId, studentPlace, studentCenter);
+            insertStudentIntoDB(id, questionPaperCode, studentName, schoolId, studentPlace, studentCenter, sex);
         }
         System.out.println("\n\nInserted student successfully.\n\n");
         return Response.ok(new Gson().toJson("Student ID: " + id)).build();
     }
 
     private void insertStudentIntoDB(int id, String questionPaperCode, String studentName, String schoolId,
-                                     String place, String center) throws Exception {
+                                     String place, String center, String sex) throws Exception {
 
         String insertStudentQuery = String.format(MTT_CONSTANTS.INSERT_STUDENT_QUERY, String.valueOf(id),
-                questionPaperCode, studentName, schoolId, place, center);
+                questionPaperCode, studentName, schoolId, place, center, sex);
         System.out.println("insertStudentQuery : " + insertStudentQuery);
         Statement getStatement = Resources.connection.createStatement();
         getStatement.execute(insertStudentQuery);
