@@ -6,7 +6,8 @@ public class MTT_CONSTANTS {
     public static final String DB_FIELD_SEPERATOR = ", ";
     public static final double MIN_SCORE = 1.0;
     public static final double WEIGHT_FACTOR = 4.0;
-    public static final int NUMBER_OF_QUESTIONS_IN_2016 = 6;
+    public static final int NUMBER_OF_QUESTIONS_IN_2016 = 12;
+    public static final int NUMBER_OF_SETS = 50;
 //    create table question (
 //            id integer PRIMARY KEY,
 //            short_desc varchar(20),
@@ -169,7 +170,11 @@ public class MTT_CONSTANTS {
             + STUDENT_TABLE_COLUMN_CENTER + ", " + STUDENT_TABLE_COLUMN_SEX + ", " + STUDENT_TABLE_COLUMN_CREATED_ON + ", "
             + STUDENT_TABLE_COLUMN_MODIFIED_ON + ") values('%s', '%s', '%s', '%s', '%s', '%s', '%s', now(), now())" ;
 
+    public static final String GET_STUDENT_RECORD_QUERY = "select * from student where " + STUDENT_TABLE_COLUMN_ID
+            + " = %s";
+
     public static final int HTTP_UNAUTH_CODE = 401;
+    public static final int HTTP_NOT_FOUND_CODE = 404;
     public static final int HTTP_CONFLICT_CODE = 409;
     public static final int HTTP_OK_CODE = 200;
     public static final int HTTP_INTERNAL_SERVER_ERROR= 500;

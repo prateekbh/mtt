@@ -14,7 +14,7 @@ public class QuestionPaperResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getQuestionPaper(@PathParam(MTT_CONSTANTS.QUESTION_PAPER_CODE_REQUEST_PARAM) String paperCode,
+    public Response getQuestionPaper(@PathParam(MTT_CONSTANTS.STUDENT_ID_REQUEST_PARAM) String studentId,
                                @HeaderParam(MTT_CONSTANTS.HTTP_COOKIE_HEADER_NAME) String cookie) throws Exception {
         String authToken = Utils.getAuthToken(cookie);
         if (!Utils.isValidAuthToken(authToken)) {
@@ -23,9 +23,11 @@ public class QuestionPaperResource {
             return builder.build();
         }
 
-        int code = Integer.parseInt(paperCode);
+        System.out.println("studentId: " + studentId);
+        int id = Integer.parseInt(studentId);
+        int code = Utils.getPaperCodeForStudent(id);
         int[] order = Utils.numberToPermutation(code);
-
-        return Response.ok().build();
+        QuestionPaperSet paperSet = new QuestionPaperSet(code, order);
+        return Response.ok(paperSet).build();
     }
 }

@@ -36,11 +36,10 @@ public class Signup {
         String volunteerName = jsonNode.get(MTT_CONSTANTS.VOLUNTEER_NAME_REQUEST_PARAM).asText();
         String vuname = jsonNode.get(MTT_CONSTANTS.VOLUNTEER_USER_NAME_REQUEST_PARAM).asText();
         String pwd = jsonNode.get(MTT_CONSTANTS.VOLUNTEER_PASSWORD_REQUEST_PARAM).asText();
-        System.out.println("centerid : " + MTT_CONSTANTS.CENTER_ID_REQUEST_PARAM);
         String volunteerCenterId = jsonNode.get(MTT_CONSTANTS.CENTER_ID_REQUEST_PARAM).asText();
         //store the uname and pwd in DB. Also call login to get auth_token and return the same.
-        System.out.println("uname: " + vuname + " pwd " + pwd
-                + " volunteerName " + volunteerName + " center: " + volunteerCenterId);
+//        System.out.println("uname: " + vuname + " pwd " + pwd
+//                + " volunteerName " + volunteerName + " center: " + volunteerCenterId);
         Response.ResponseBuilder responseBuilder =
                 Response.ok("{\"message\" : \"Thank you for being a volunteer.\"}");
         if (userAlreadyExists(vuname)) {

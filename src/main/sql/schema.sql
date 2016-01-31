@@ -85,3 +85,10 @@ create table config (
     created_on timestamp without time zone,
     modified_on timestamp without time zone
 );
+
+create table answer_sheet (
+  studentId integer,
+  answers varchar(100),
+  created_on timestamp without time zone,
+  modified_on timestamp without time zone
+);
