@@ -12,18 +12,36 @@
   <link rel="stylesheet" href="lib/html5-boilerplate/dist/css/normalize.css">
   <link rel="stylesheet" href="lib/html5-boilerplate/dist/css/main.css">
   <link rel="stylesheet" href="lib/angular-material/angular-material.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet">
   <link rel="stylesheet" href="app.css">
   <script src="lib/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
 </head>
-<body>
+<body ng-app="app" layout="row" >
   <!--[if lt IE 7]>
   <h1>blah</h1>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
 
-  <section>
-    <div ui-view style="max-width: 720px; margin: auto;"></div>
-  </section>
+
+  <!-- header md-page-header>
+    <div ng-include="'layout/topbar.html'"></div>
+  </header>
+  <div layout="column">
+    <div ui-view></div>
+  </div -->
+  <div layout="column" id="content-container" role="main" tabindex="-1" flex>
+    <md-toolbar id="topbar">
+      <div class="md-toolbar-tools">
+      <h1><span>Maths Talent Test</span></h1>
+      </div>
+    </md-toolbar>
+    <md-content id="content" ui-view></md-content>
+  </div>
+
+
+  
+  
 
   <!-- div>Angular seed app: v<span app-version></span></div -->
 
@@ -36,6 +54,7 @@
   <script src="lib/angular-material/angular-material.js"></script>
   <script src="lib/angular-resource/angular-resource.min.js"></script>
   <script src="lib/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script src="lib/angular-mocks/angular-mocks.js"></script>
 
   <script src="commons/resources.js"></script>
   <script src="commons/authservice.js"></script>
@@ -47,6 +66,12 @@
   <script src="volunteersview/volunteersview.js"></script>
   <script src="volunteerview/volunteerview.js"></script>
   <script src="volunteersview/createvolunteer.js"></script>
+  <script src="studentsview/studentsview.js"></script>
+  <script src="studentsview/createstudent.js"></script>
+  <script src="studentview/studentview.js"></script>
+  <script src="questionpaperview/questionpaperview.js"></script>
+
+  <!-- script src="commons/mockbackend.js"></script -->
 
 
   <script src="components/version/version.js"></script>

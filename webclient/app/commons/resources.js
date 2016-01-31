@@ -15,10 +15,16 @@ function Api($resource, API_BASE_URL) {
     Customers: $resource(API_BASE_URL + '/customers/:customerId',
                    { customerId: '@id'}, {
                       'post' : {'method': 'POST'}
-                   }),
+                      }),
+
+    Students: $resource(API_BASE_URL + '/students/:studentId',
+                   { studentId: '@id'}, {
+                      'query' : {'method': 'GET'},
+                      'post' : {'method': 'POST'}
+                   }),            
     Volunteers: $resource(API_BASE_URL + '/volunteers/:volunteerId',
                        { volunteerId: '@id'}, {
                           'post' : {'method': 'POST'}
                        })
-  }
+  };
 }

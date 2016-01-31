@@ -1,0 +1,19 @@
+<md-content layout="column">
+  <md-list>
+  <md-list-item class="md-2-line"
+                ng-repeat="question in questionPaper.questions track by $index">
+    <div class="md-list-item-text">
+      <h3>Q{{$index+1}}. {{question}}</h3>
+      <p>
+        <md-radio-group ng-model="answers[$index]" layout="row">
+        <md-radio-button ng-repeat="option in ['Correct', 'Wrong', 'Unanswered']"
+                         ng-value="option" aria-label="{{ option }}">
+               {{ option }}
+        </md-radio-button>
+        </md-radio-group> 
+      </p>
+    </div>
+  </md-list-item>
+  </md-list>
+  <md-button class="md-raised md-primary" ng-click="submit(answers)">Submit</md-button>
+</md-content>

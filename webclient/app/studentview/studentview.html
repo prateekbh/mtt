@@ -1,0 +1,14 @@
+<md-card layout="row">
+  <img ng-src="img/ic_person_black_24dp_2x.png" class="md-avatar-big" alt="{{student.name}}">
+  <md-card-content>
+    <h2 class="md-title">{{student.name}}</h2>
+    <p class="md-user-details">Question Paper: {{student.question_paper_code}}</p>
+    <p class="md-user-details" ng-if="student.paper_corrected">
+      Number of correct answers: {{student.number_of_correct_answers}}
+    </p>
+  </md-card-content>
+</md-card>
+<md-button class="md-raised md-primary" ng-click="correctQuestionPaper(student)"
+           ng-if="!student.paper_corrected">
+  Enter Student Answers
+</md-button>

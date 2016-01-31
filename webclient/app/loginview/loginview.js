@@ -1,14 +1,14 @@
 'use strict';
 
-var LoginCtrl = function($scope, $state, AuthService) {
-  this.AuthService_ = AuthService;
+var LoginCtrl = function($scope, $state, Api) {
+  this.Api_ = Api;
 
   $scope.login = this.login_.bind(this, $scope, $state);
   $scope.register = this.register_.bind(this, $state);
 }
 
 LoginCtrl.prototype.login_ = function(scope, state, user) {
-  this.AuthService_.login(user).then(this.onLoginSuccess_.bind(this, scope, state), 
+  this.Api_.Login.login(user, this.onLoginSuccess_.bind(this, scope, state), 
       this.onLoginFailure_.bind(this, scope));
 };
 
@@ -17,7 +17,7 @@ LoginCtrl.prototype.register_ = function(state) {
 };
 
 LoginCtrl.prototype.onLoginSuccess_ = function(scope, state) {
-  state.go('volunteer');
+  state.go('students');
   console.log('Login Success.');
 };
 

@@ -19,15 +19,20 @@ angular.module('myApp', [
   'myApp.customerview',
   'myApp.volunteersview',
   'myApp.volunteerview',
-  'myApp.version'
+  'myApp.studentsview',
+  'myApp.studentview',
+  'myApp.questionpaperview',
+  'myApp.version',
+
+  // 'myApp.mockbackend'
 ])
 // localhost should be replaced with backend's ip
-.constant('API_BASE_URL', lh)
+.constant('API_BASE_URL', vm)
 
 .config(['$urlRouterProvider', '$mdThemingProvider', '$httpProvider', 
     function($urlRouterProvider, $mdThemingProvider, $httpProvider) {
       // $routeProvider.otherwise({redirectTo: '/login'});
-      $urlRouterProvider.otherwise('login');
+      $urlRouterProvider.otherwise('students');
 
       $mdThemingProvider.theme('docs-dark', 'default')
         .primaryPalette('yellow')
