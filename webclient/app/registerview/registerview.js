@@ -25,8 +25,9 @@ RegisterCtrl.prototype.validate_ = function(user) {
 };
 
 RegisterCtrl.prototype.onValidateSuccess_ = function(scope, state, user) {
-  this.Api_.Register.register(user, this.onRegisterSuccess_.bind(this, scope, state), 
-      this.onRegisterFailure_.bind(this, scope));
+  state.go('students');
+  //this.Api_.Register.register(user, this.onRegisterSuccess_.bind(this, scope, state), 
+    //  this.onRegisterFailure_.bind(this, scope));
 };
 
 RegisterCtrl.prototype.onValidateFailure_ = function() {

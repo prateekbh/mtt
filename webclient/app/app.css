@@ -37,3 +37,19 @@
   display: none;
 }
 
+.mtt-add-button {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+.md-avatar-big {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    margin-left: 16px;
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    box-sizing: content-box;
+}
+

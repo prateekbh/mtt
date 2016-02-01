@@ -1,0 +1,25 @@
+  <md-subheader class="md-primary">Students</md-subheader>
+  <md-content md-scroll-y>
+    <md-list>
+      <md-list-item role="listitem" class="md-2-line"
+                  ng-click="openNewStudentModal($event)">
+        <img class="md-avatar" src="img/ic_add_black_24dp_2x.png"/>
+        <div class="md-list-item-text">
+          <h3>Create New Student</h3>
+          <p></p>
+        </div>
+      </md-list-item>
+      <md-list-item role="listitem" class="md-2-line"
+                    ng-repeat="student in students"
+                    ng-click="show(student)">
+          <img class="md-avatar" src="img/ic_person_black_24dp_2x.png" style="opacity: 0.53;"/>
+          <div class="md-list-item-text">
+            <h3>{{ student.name }}</h3>
+            <p>{{ student.tr_number }}</p>
+          </div>
+          <md-icon class="material-icons md-light md-48" ng-if="student.paper_corrected">
+            done
+          </md-icon>
+      </md-list-item>
+    </md-list>
+  </md-content>

@@ -1,0 +1,63 @@
+<md-dialog>
+<div layout="column">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h3>Add New Student</h3>
+      <span flex></span>
+      <md-button class="md-icon-button" ng-click="close()">
+        <md-icon md-svg-src="img/ic_close_white_24px.svg" aria-label="Close dialog"></md-icon>
+      </md-button>
+    </div>
+  </md-toolbar>
+  <md-content layout-padding>
+    <div layout="" layout-sm="column">
+      <md-input-container flex="">
+        <label>Name</label>
+        <input ng-model="student.name">
+      </md-input-continer>
+    </div>
+    <div layout="" layout-sm="column">
+      <md-input-container flex="">
+        <label>Place</label>
+        <input ng-model="student.place">
+      </md-input-continer>
+    </div>
+    <div layout="" layout-sm="column">
+      <md-input-container flex="">
+        <label>School Name</label>
+        <md-select ng-model="student.school_id">
+          <md-option ng-repeat="school in schools" value="{{school.id}}">
+            {{school.name}}
+          </md-option>
+        </md-select>
+      </md-input-continer>
+    </div>
+    <div layout="" layout-sm="column">
+      <md-input-container flex="">
+        <label>Talent Test Center</label>
+        <md-select ng-model="student.test_center_id">
+            <md-option ng-repeat="test_center in test_centers" value="{{test_center.id}}">
+              {{test_center.name}}
+            </md-option>
+        </md-select>
+      </md-input-continer>
+    </div>
+    <div layout="" layout-sm="column">
+      <md-input-container flex="">
+        <label>Question Paper Code</label>
+        <input ng-model="student.question_paper_code">
+      </md-input-continer>
+    </div>
+    <div layout="" layout-sm="column">
+      <md-input-container flex="">
+        <label>Mobile</label>
+        <input ng-model="student.mobile">
+      </md-input-continer>
+    </div>
+    <div layout="" layout-sm="column">
+      <md-button class="md-raised md-primary" ng-click="create(student)">Create</md-button>
+    </div>
+  </md-content>
+</div>
+</md-dialog>
+
