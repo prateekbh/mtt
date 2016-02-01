@@ -1,0 +1,10 @@
+<div layout="row" flex style="overflow: hidden;" layout-fill>
+    <!-- div ng-include="'app/layout/left-side-nav.html'"></div -->
+    <md-content flex layout="column" role="main"  class="fondo" style="height: inherit">
+        <div ng-include="'layout/topbar.html'"></div>
+        <md-content flex  style="background-color: transparent; flex-direction: column;">
+            <div ui-view style="background-color: transparent"></div>
+        </md-content>
+    </md-content>
+    <!-- div ng-include="'app/layout/right-side-nav.html'"></div -->
+</div>

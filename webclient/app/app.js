@@ -24,15 +24,15 @@ angular.module('myApp', [
   'myApp.questionpaperview',
   'myApp.version',
 
-  // 'myApp.mockbackend'
+  'myApp.mockbackend'
 ])
 // localhost should be replaced with backend's ip
-.constant('API_BASE_URL', vm)
+.constant('API_BASE_URL', 'www.mtt.com')
 
 .config(['$urlRouterProvider', '$mdThemingProvider', '$httpProvider', 
     function($urlRouterProvider, $mdThemingProvider, $httpProvider) {
       // $routeProvider.otherwise({redirectTo: '/login'});
-      $urlRouterProvider.otherwise('students');
+      $urlRouterProvider.otherwise('login');
 
       $mdThemingProvider.theme('docs-dark', 'default')
         .primaryPalette('yellow')

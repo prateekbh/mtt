@@ -8,8 +8,8 @@ var StudentsCtrl = function($q, $mdDialog, $scope, $state, Api) {
 
   $scope.show = this.show_.bind(this, $state);
   $scope.openNewStudentModal = this.openNewStudentModal_.bind(this, $scope, $mdDialog);
-  $scope.students = this.sample();
-  // this.refresh_($scope);
+  // $scope.students = this.sample();
+  this.refresh_($scope);
 }
 
 StudentsCtrl.prototype.refresh_ = function(scope) {
@@ -17,7 +17,7 @@ StudentsCtrl.prototype.refresh_ = function(scope) {
 };
 
 StudentsCtrl.prototype.load_ = function(scope) {
-  setTimeout(this.onLoadSuccess_.bind(this, scope), 2000);
+  // setTimeout(this.onLoadSuccess_.bind(this, scope), 2000);
   this.Api_.Students.query(this.onLoadSuccess_.bind(this, scope), 
       this.onLoadFailure_.bind(this));
 };
@@ -96,12 +96,12 @@ return [{
 
 StudentsCtrl.prototype.onLoadSuccess_ = function(scope, students) {
   // console.log(students); 
-  scope.students = this.sample();
+  scope.students = students;
 };
 
 StudentsCtrl.prototype.onLoadFailure_ = function(scope) {
   alert('Please check the login credentials.');
-  scope.students = this.sample();
+  // scope.students = this.sample();
 }
 
 angular.module('myApp.studentsview', ['ui.router'])
