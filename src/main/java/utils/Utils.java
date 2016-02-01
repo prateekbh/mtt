@@ -82,6 +82,21 @@ public class Utils {
         System.out.println("studentId: " + studentId + " paperCode: " + paperCode);
         return paperCode;
     }
+
+    public static String[] getAnswersForSet0() {
+//        String getAnswersQuery = String.format(MTT_CONSTANTS.GET_STUDENT_RECORD_QUERY, studentId);
+//        System.out.println("getStudentDetailsQuery : " + getAnswersQuery);
+//        Statement statement = Resources.connection.createStatement();
+//        ResultSet resultSet = statement.executeQuery(getAnswersQuery);
+//        int paperCode = 0;
+//        if (resultSet.next()) {
+//            paperCode = resultSet.getInt(MTT_CONSTANTS.STUDENT_TABLE_COLUMN_QUESTION_PAPER_CODE);
+//        }
+//        System.out.println("studentId: " + studentId + " paperCode: " + paperCode);
+//        return paperCode;
+        return null;
+    }
+
     public static List<Student> getStudentList() throws Exception {
         // TODO:
         return new ArrayList<Student>();

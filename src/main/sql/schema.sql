@@ -1,7 +1,7 @@
 --drop table question, contest, student, volunteer, center, volunteer_auth_token, school, config cascade;
 drop table question, contest, student, center, school cascade;
 
-create table question (
+create table if not exists question (
     id SERIAL PRIMARY KEY,
     short_desc varchar(20),
     answered_correct integer,
@@ -11,7 +11,14 @@ create table question (
     modified_on timestamp without time zone
 );
 
-create table center (
+create table if not exists answers (
+    id SERIAL PRIMARY KEY,
+    varchar(30) answer,
+    created_on timestamp without time zone,
+    modified_on timestamp without time zone
+);
+
+create table if not exists center (
     id SERIAL PRIMARY KEY,
     place varchar(50) not null,
     venue varchar(100) not null,
@@ -23,7 +30,7 @@ create table center (
     private_school integer
 );
 
-create table school (
+create table if not exists school (
     id SERIAL PRIMARY KEY,
     name varchar(100),
     village varchar(30),
@@ -31,7 +38,7 @@ create table school (
     is_govt boolean default true
 );
 
-create table contest (
+create table if not exists contest (
     _year integer PRIMARY KEY,
     attended integer,
     boys integer,
@@ -42,7 +49,7 @@ create table contest (
 );
 
 -- TODO: Restructure the tables.
-create table student (
+create table if not exists student (
     id integer PRIMARY KEY,
     name varchar(50),
     question_paper_code integer not null,
@@ -62,7 +69,7 @@ create table student (
 --       not_attempted integer,
 --       score double precision
 
-create table volunteer (
+create table if not exists volunteer (
     id SERIAL PRIMARY KEY,
     name varchar(50),
     user_name varchar(30),
@@ -73,20 +80,20 @@ create table volunteer (
     modified_on timestamp without time zone
 );
 
-create table volunteer_auth_token (
+create table if not exists volunteer_auth_token (
     user_name varchar(50) PRIMARY KEY,
     auth_token varchar(50),
     created_on timestamp without time zone
 );
 
-create table config (
+create table if not exists config (
     lhs varchar(500) PRIMARY KEY,
     rhs varchar(500),
     created_on timestamp without time zone,
     modified_on timestamp without time zone
 );
 
-create table answer_sheet (
+create table if not exists answer_sheet (
   studentId integer,
   answers varchar(100),
   created_on timestamp without time zone,

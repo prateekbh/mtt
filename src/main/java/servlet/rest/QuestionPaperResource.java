@@ -1,5 +1,6 @@
 package servlet.rest;
 
+import com.google.gson.Gson;
 import servlet.ResourcesPath;
 import utils.MTT_CONSTANTS;
 import utils.Utils;
@@ -28,6 +29,7 @@ public class QuestionPaperResource {
         int code = Utils.getPaperCodeForStudent(id);
         int[] order = Utils.numberToPermutation(code);
         QuestionPaperSet paperSet = new QuestionPaperSet(code, order);
-        return Response.ok(paperSet).build();
+        System.out.println(" returning in json object : paperSet : " + paperSet);
+        return Response.ok(new Gson().toJson(paperSet)).build();
     }
 }

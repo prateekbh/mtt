@@ -7,7 +7,7 @@ public class MTT_CONSTANTS {
     public static final double MIN_SCORE = 1.0;
     public static final double WEIGHT_FACTOR = 4.0;
     public static final int NUMBER_OF_QUESTIONS_IN_2016 = 12;
-    public static final int NUMBER_OF_SETS = 50;
+    public static final int NUMBER_OF_SETS = 10;
 //    create table question (
 //            id integer PRIMARY KEY,
 //            short_desc varchar(20),
@@ -172,6 +172,7 @@ public class MTT_CONSTANTS {
 
     public static final String GET_STUDENT_RECORD_QUERY = "select * from student where " + STUDENT_TABLE_COLUMN_ID
             + " = %s";
+    public static final String GET_ANSWERS_QUERY = "select * from answers";
 
     public static final int HTTP_UNAUTH_CODE = 401;
     public static final int HTTP_NOT_FOUND_CODE = 404;

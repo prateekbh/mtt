@@ -10,8 +10,14 @@ import java.util.List;
  */
 public class CreateRandomOrders {
 
-    private static String declarationLine = "    private static List<Integer> order%s = new ArrayList<Integer>() {{";
+    private static String declarationLine = "    private static ArrayList<Integer> order%s = new ArrayList<Integer>() {{";
     private static String closingLine = "    }};\n";
+    private static String separateLine =
+            "    /*******************************************************************************************/";
+
+    private static String hashMapDeclarationLine =
+            "    private static HashMap<Integer, ArrayList<Integer>> codeToOrderMap = new HashMap<Integer, ArrayList<Integer>>() {{";
+
 
     public static void main(String[] args) {
         for (int i = 0; i < MTT_CONSTANTS.NUMBER_OF_SETS; i++) {
@@ -25,6 +31,14 @@ public class CreateRandomOrders {
             System.out.println(midLine);
             System.out.println(closingLine);
         }
+
+        // hashmap construction
+        System.out.println(separateLine);
+        System.out.println(hashMapDeclarationLine);
+        for (int i = 0; i < MTT_CONSTANTS.NUMBER_OF_SETS; i++) {
+            System.out.println("        put(" + (i + 1) + ", order" + (i + 1) + ");");
+        }
+        System.out.println(closingLine);
     }
 
     private static List<Integer> generateRandomOrder(int n) {

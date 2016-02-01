@@ -8,5 +8,5 @@ public interface ResourcesPath {
   String ANSWER_SHEETS = "answerSheets";
   String ANSWER_SHEET = "answerSheet/{studentId}"; // answer sheet of the given student
   String QUESTION_PAPERS = "questionPapers";
-  String QUESTION_PAPER = "questionPaper/{questionPaperCode}";
+  String QUESTION_PAPER = "questionPaper/{studentId}";
 }

@@ -8,22 +8,12 @@ import java.util.Arrays;
  * Created by govardhanreddy on 1/31/16.
  */
 public class QuestionPaperSet {
-    private final int id;
-    private final int[] order;
+    private final int paperCode;
     private final String[] questions;
 
-    QuestionPaperSet(int id, int[] order) {
-        this.id = id;
-        this.order = order;
-        questions = Sets.getQuestionsForCode(id);
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public int[] getOrder() {
-        return order;
+    QuestionPaperSet(int paperCode, int[] order) {
+        this.paperCode = paperCode;
+        questions = Sets.getQuestionAnswersForCode(paperCode);
     }
 
     public String[] getQuestions() {
@@ -33,8 +23,7 @@ public class QuestionPaperSet {
     @Override
     public String toString() {
         return "QuestionPaperSet{" +
-                "id=" + id +
-                ", order=" + Arrays.toString(order) +
+                "paperCode=" + paperCode +
                 ", questions=" + Arrays.toString(questions) +
                 '}';
     }
