@@ -22,23 +22,37 @@ angular.module('myApp.mockbackend', ['ngMockE2E'])
     ]
   };
 
-  $httpBackend.whenPOST('www.mtt.com/signup').respond(200);
+  $httpBackend.whenPOST('http://www.mtt.com/signup').respond(200);
 
-  $httpBackend.whenPOST('www.mtt.com/login').respond({
+  $httpBackend.whenPOST('http://www.mtt.com/login').respond({
     id: 1,
     name: 'Chaitanya'
   });
 
-  $httpBackend.whenPOST('www.mtt.com/answers').respond(200);
+  $httpBackend.whenPOST('http://www.mtt.com/answers').respond(200);
 
 
-  $httpBackend.whenGET('www.mtt.com/questionpapers/2334').respond(questionpaper);
+  $httpBackend.whenGET('http://www.mtt.com/questionpapers/234').respond(questionpaper);
 
-  $httpBackend.whenGET('www.mtt.com/students/1').respond(students[0]);
+  $httpBackend.whenPOST('http://www.mtt.com/students').respond({
+    id: 1,
+    question_paper_code: 234
+  });
 
-  $httpBackend.whenGET('www.mtt.com/students').respond(students);
+  $httpBackend.whenGET('http://www.mtt.com/schools?q=H').respond([
+    'YRS High School',
+    'Vignan Residential High School',
+    'ZPH School',
+    'Bhashyam Public School',
+    'Nalanda High School'
+  ]);
 
-  $httpBackend.whenPOST('www.mtt.com/students').respond(200);
+  $httpBackend.whenGET('http://www.mtt.com/places?q=H').respond([
+    'Hyderabad',
+    'Delhi',
+    'Mumbai',
+    'Kolkata'
+  ]);
 
   $httpBackend.whenGET(/.*/).passThrough();
 });

@@ -49,7 +49,15 @@ function Api($resource, API_BASE_URL) {
         questionPaperCode: '@id'
       }, {
         'submit': {'method': 'POST'}
-      }),
+    }),
+
+    Schools: $resource(API_BASE_URL + '/schools?q=:q', {id: '@id'}, {
+      'query': {'method': 'GET', 'isArray': true, 'params': {'q': ''}}
+    }),
+  
+    Places: $resource(API_BASE_URL + '/places?q=:q', {id: '@id'}, {
+      'query': {'method': 'GET', 'isArray': true, 'params': {'q': ''}}
+    }),
 
     Volunteers: $resource(
       API_BASE_URL + '/volunteers/:volunteerId', {

@@ -43,7 +43,7 @@ QuestionPaperCtrl.prototype.submitAnswers_ = function(scope, state, answers) {
 };
 
 QuestionPaperCtrl.prototype.onAnswersSubmitSuccess_ = function(scope, state) {
-  state.go('students');
+  state.go('createstudent');
 };
 
 QuestionPaperCtrl.prototype.onAnswersSubmitFailure_ = function() {
