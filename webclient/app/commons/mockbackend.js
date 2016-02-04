@@ -35,8 +35,8 @@ angular.module('myApp.mockbackend', ['ngMockE2E'])
   $httpBackend.whenGET('http://www.mtt.com/questionpapers/234').respond(questionpaper);
 
   $httpBackend.whenPOST('http://www.mtt.com/students').respond({
-    id: 1,
-    question_paper_code: 234
+    studentId: 1,
+    questionPaperCode: 2
   });
 
   $httpBackend.whenGET('http://www.mtt.com/schools?q=H').respond([
