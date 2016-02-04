@@ -15,7 +15,7 @@ public class QuestionPaperResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getQuestionPaper(@PathParam(MTT_CONSTANTS.STUDENT_ID_REQUEST_PARAM) String studentId,
+    public Response getQuestionPaper(@PathParam(MTT_CONSTANTS.STUDENT_TABLE_COLUMN_QUESTION_PAPER_CODE) String qpId,
                                @HeaderParam(MTT_CONSTANTS.HTTP_COOKIE_HEADER_NAME) String cookie) throws Exception {
         String authToken = Utils.getAuthToken(cookie);
         if (!Utils.isValidAuthToken(authToken)) {
@@ -24,9 +24,9 @@ public class QuestionPaperResource {
             return builder.build();
         }
 
-        System.out.println("studentId: " + studentId);
-        int id = Integer.parseInt(studentId);
-        int code = Utils.getPaperCodeForStudent(id);
+        System.out.println("qpId: " + qpId);
+        int id = Integer.parseInt(qpId);
+        int code = id;
         if (-1 == code) {
             return Response.ok().status(MTT_CONSTANTS.HTTP_NOT_FOUND_CODE).build();
         }

@@ -7,6 +7,7 @@ import utils.MTT_CONSTANTS;
 import utils.Resources;
 import utils.Utils;
 
+import javax.rmi.CORBA.Util;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -48,9 +49,9 @@ public class StudentsResource {
         JsonNode jsonNode = objectMapper.readTree(jsonRequest);
         String studentName = jsonNode.get(MTT_CONSTANTS.STUDENT_NAME_REQUEST_PARAM).textValue();
         String questionPaperCode = jsonNode.get(MTT_CONSTANTS.QUESTION_PAPER_CODE_REQUEST_PARAM).textValue();
-        String schoolId = jsonNode.get(MTT_CONSTANTS.SCHOOL_ID_REQUEST_PARAM).asText();
+        String schoolId = Utils.getSchoolIdForName(jsonNode.get(MTT_CONSTANTS.SCHOOL_ID_REQUEST_PARAM).asText());
         String studentPlace = jsonNode.get(MTT_CONSTANTS.STUDENT_PLACE_REQUEST_PARAM).asText();
-        String studentCenter = jsonNode.get(MTT_CONSTANTS.CENTER_ID_REQUEST_PARAM).asText();
+        String studentCenter = Utils.getCenterIdForName(jsonNode.get(MTT_CONSTANTS.CENTER_ID_REQUEST_PARAM).asText());
         String sex = jsonNode.get(MTT_CONSTANTS.STUDENT_SEX_REQUEST_PARAM).asText();
 
         Logger logger = Logger.getAnonymousLogger();

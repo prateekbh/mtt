@@ -83,6 +83,14 @@ public class Utils {
         return paperCode;
     }
 
+    public static String getSchoolIdForName(String name) {
+        return "1";
+    }
+
+    public static String getCenterIdForName(String name) {
+        return "1";
+    }
+
     public static final String[] getQuestionsForSet0() {
         // TODO
         String[] set0 = new String[] {
