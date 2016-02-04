@@ -13,10 +13,11 @@ public class QuestionPaperCreator {
             ArrayList<Integer> order = Sets.getOrderForCode(i + 1);
             String systemCommand = "touch set" + (i + 1) + " ";
 //            System.out.println("order: " + order);
+            int serialNum = 1;
             for (Integer q : order) {
-                systemCommand += " && cat " + q + " >> set" + (i + 1);
+                systemCommand += " && echo -n " + serialNum + ". && cat " + q + " >> set" + (i + 1);
             }
-            System.out.println(" " + systemCommand);
+            System.out.println(systemCommand);
         }
     }
 
