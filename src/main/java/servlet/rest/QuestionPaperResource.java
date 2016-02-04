@@ -27,6 +27,9 @@ public class QuestionPaperResource {
         System.out.println("studentId: " + studentId);
         int id = Integer.parseInt(studentId);
         int code = Utils.getPaperCodeForStudent(id);
+        if (-1 == code) {
+            return Response.ok().status(MTT_CONSTANTS.HTTP_NOT_FOUND_CODE).build();
+        }
         int[] order = Utils.numberToPermutation(code);
         QuestionPaperSet paperSet = new QuestionPaperSet(code, order);
         System.out.println(" returning in json object : paperSet : " + paperSet);

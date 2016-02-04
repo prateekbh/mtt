@@ -1,6 +1,7 @@
 package servlet;
 
 import utils.MTT_CONSTANTS;
+import utils.Utils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -52,6 +53,7 @@ public class Sets {
     }};
 
     /*******************************************************************************************/
+
     private static HashMap<Integer, ArrayList<Integer>> codeToOrderMap = new HashMap<Integer, ArrayList<Integer>>() {{
         put(1, order1);
         put(2, order2);
@@ -70,28 +72,20 @@ public class Sets {
         return codeToOrderMap.get(code);
     }
 
-    public static final String[] set0 = new String[] {
-            "Question 1",
-            "Question 2",
-            "Question 3",
-            "Question 4",
-            "Question 5",
-            "Question 6",
-            "Question 7",
-            "Question 8",
-            "Question 9",
-            "Question 10",
-            "Question 11",
-            "Question 12",
-    };
     public static String[] getQuestionAnswersForCode(int code) {
-        String questions[] = new String[MTT_CONSTANTS.NUMBER_OF_QUESTIONS_IN_2016];
+        String questionAnswers[] = new String[MTT_CONSTANTS.NUMBER_OF_QUESTIONS_IN_2016];
         ArrayList<Integer> order = getOrderForCode(code);
         System.out.println("code :  " + code + " order: " + order);
-        for (int i = 0; i < MTT_CONSTANTS.NUMBER_OF_QUESTIONS_IN_2016; i++) {
-            System.out.println("order get i " + order.get(i));
-            questions[i] = set0[order.get(i) - 1];  // since it is 1 based index
+        try {
+            String[] questions = Utils.getQuestionsForSet0();
+            String[] answers = Utils.getAnswersForSet0();
+            for (int i = 0; i < MTT_CONSTANTS.NUMBER_OF_QUESTIONS_IN_2016; i++) {
+                System.out.println("order get i " + order.get(i));
+                questionAnswers[i] = questions[order.get(i) - 1] + " Correct Answer: " + answers[order.get(i) - 1];  // since it is 1 based index
+            }
+        } catch (Exception ex) {
+            System.out.println("Exception while retrieving answers: " + ex);
         }
-        return questions;
+        return questionAnswers;
     }
 }

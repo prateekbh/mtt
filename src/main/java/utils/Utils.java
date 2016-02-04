@@ -75,7 +75,7 @@ public class Utils {
         System.out.println("getStudentDetailsQuery : " + getStudentDetailsQuery);
         Statement statement = Resources.connection.createStatement();
         ResultSet resultSet = statement.executeQuery(getStudentDetailsQuery);
-        int paperCode = 0;
+        int paperCode = -1;
         if (resultSet.next()) {
             paperCode = resultSet.getInt(MTT_CONSTANTS.STUDENT_TABLE_COLUMN_QUESTION_PAPER_CODE);
         }
@@ -83,18 +83,38 @@ public class Utils {
         return paperCode;
     }
 
-    public static String[] getAnswersForSet0() {
-//        String getAnswersQuery = String.format(MTT_CONSTANTS.GET_STUDENT_RECORD_QUERY, studentId);
-//        System.out.println("getStudentDetailsQuery : " + getAnswersQuery);
-//        Statement statement = Resources.connection.createStatement();
-//        ResultSet resultSet = statement.executeQuery(getAnswersQuery);
-//        int paperCode = 0;
-//        if (resultSet.next()) {
-//            paperCode = resultSet.getInt(MTT_CONSTANTS.STUDENT_TABLE_COLUMN_QUESTION_PAPER_CODE);
-//        }
-//        System.out.println("studentId: " + studentId + " paperCode: " + paperCode);
-//        return paperCode;
-        return null;
+    public static final String[] getQuestionsForSet0() {
+        // TODO
+        String[] set0 = new String[] {
+                "Question 1 ?",
+                "Question 2 ?",
+                "Question 3 ?",
+                "Question 4 ?",
+                "Question 5 ?",
+                "Question 6 ?",
+                "Question 7 ?",
+                "Question 8 ?",
+                "Question 9 ?",
+                "Question 10 ?",
+                "Question 11 ?",
+                "Question 12 ?"
+        };
+        return set0;
+    }
+
+    public static String[] getAnswersForSet0() throws Exception {
+        String getAnswersQuery = String.format(MTT_CONSTANTS.GET_ANSWERS_QUERY);
+        System.out.println("getStudentDetailsQuery : " + getAnswersQuery);
+        Statement statement = Resources.connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(getAnswersQuery);
+        String[] result = new String[MTT_CONSTANTS.NUMBER_OF_QUESTIONS_IN_2016];
+        while (resultSet.next()) {
+            int serial_number = resultSet.getInt(MTT_CONSTANTS.ANSWERS_TABLE_COLUMN_SERIAL_NUMBER);
+            String answer = resultSet.getString(MTT_CONSTANTS.ANSWERS_TABLE_COLUMN_ANSWER);
+            System.out.println("num " + serial_number + " answer: " + answer);
+            result[serial_number - 1] = answer;
+        }
+        return result;
     }
 
     public static List<Student> getStudentList() throws Exception {

@@ -67,10 +67,9 @@ public class Login {
         Statement getStatement = Resources.connection.createStatement();
         ResultSet resultSet = getStatement.executeQuery(getUnamePwdQuery);
         String readPwd = null;
-        while (resultSet.next()) {
+        if (resultSet.next()) {
             readPwd = resultSet.getString(MTT_CONSTANTS.VOLUNTEER_TABLE_COLUMN_PASSWORD);
         }
-        System.out.println("uname and pwd are VALID ####");
         return isValidPassword(readPwd, password);
     }
 

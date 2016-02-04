@@ -3,7 +3,6 @@ package utils;
 
 public class MTT_CONSTANTS {
 
-    public static final String DB_FIELD_SEPERATOR = ", ";
     public static final double MIN_SCORE = 1.0;
     public static final double WEIGHT_FACTOR = 4.0;
     public static final int NUMBER_OF_QUESTIONS_IN_2016 = 12;
@@ -19,7 +18,7 @@ public class MTT_CONSTANTS {
 //    );
 
     public static final String TABLE_NAME_QUESTION = "question";
-    public static final String QUESTION_TABLE_COLUMN__ID = "id";
+    public static final String QUESTION_TABLE_COLUMN__SERIAL_NUMBER = "serial_number";
     public static final String QUESTION_TABLE_COLUMN_SHORT_DESC = "short_desc";
     public static final String QUESTION_TABLE_COLUMN_ANSWERED_CORRECT = "answered_correct";
     public static final String QUESTION_TABLE_COLUMN_ANSWERED_WRONG = "answered_wrong";
@@ -110,6 +109,11 @@ public class MTT_CONSTANTS {
     public static final String VOLUNTEER_AUTH_TOKEN_TABLE_COLUMN_AUTH_TOKEN = "auth_token";
     public static final String VOLUNTEER_AUTH_TOKEN_TABLE_COLUMN_CREATED_ON = "created_on";
 
+    // answers
+    public static final String TABLE_NAME_ANSWERS = "answers";
+    public static final String ANSWERS_TABLE_COLUMN_ANSWER = "answer";
+    public static final String ANSWERS_TABLE_COLUMN_SERIAL_NUMBER = "serial_number";
+
     // request param names
 
     // common request params
@@ -172,7 +176,7 @@ public class MTT_CONSTANTS {
 
     public static final String GET_STUDENT_RECORD_QUERY = "select * from student where " + STUDENT_TABLE_COLUMN_ID
             + " = %s";
-    public static final String GET_ANSWERS_QUERY = "select * from answers";
+    public static final String GET_ANSWERS_QUERY = "select * from " + TABLE_NAME_ANSWERS;
 
     public static final int HTTP_UNAUTH_CODE = 401;
     public static final int HTTP_NOT_FOUND_CODE = 404;
