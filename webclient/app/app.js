@@ -19,7 +19,7 @@ angular.module('myApp', [
   'myApp.customerview',
   'myApp.volunteersview',
   'myApp.volunteerview',
-  'myApp.studentsview',
+  'myApp.createstudent',
   'myApp.studentview',
   'myApp.questionpaperview',
   'myApp.version',
@@ -27,8 +27,8 @@ angular.module('myApp', [
   'myApp.mockbackend'
 ])
 // localhost should be replaced with backend's ip
-.constant('API_BASE_URL', 'www.mtt.com')
 //.constant('API_BASE_URL', lh)
+.constant('API_BASE_URL', 'http://www.mtt.com')
 
 .config(['$urlRouterProvider', '$mdThemingProvider', '$httpProvider', 
     function($urlRouterProvider, $mdThemingProvider, $httpProvider) {

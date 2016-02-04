@@ -1,15 +1,5 @@
-<md-dialog>
-<div layout="column">
-  <md-toolbar>
-    <div class="md-toolbar-tools">
-      <h3>Add New Student</h3>
-      <span flex></span>
-      <md-button class="md-icon-button" ng-click="close()">
-        <md-icon md-svg-src="img/ic_close_white_24px.svg" aria-label="Close dialog"></md-icon>
-      </md-button>
-    </div>
-  </md-toolbar>
   <md-content layout-padding>
+    <h3>Add New Student</h3>
     <div layout="" layout-sm="column">
       <md-input-container flex="">
         <label>Name</label>
@@ -19,25 +9,49 @@
     <div layout="" layout-sm="column">
       <md-input-container flex="">
         <label>Place</label>
-        <input ng-model="student.place">
+        <md-autocomplete
+            ng-disabled="false"
+            md-no-cache="true"
+            md-selected-item="student.place"
+            md-search-text-change="searchPlaceChange(searchPlace)"
+            md-search-text="searchPlace"
+            md-selected-item-change="selectedPlaceItemChange(item)"
+            md-items="item in querySearchPlace(searchPlace)"
+            md-item-text="item"
+            md-min-length="0"
+            placeholder="Place">
+          <span md-highlight-text="searchPlace" md-highlight-flags="^i">
+            {{item}}
+          </span>
+        </md-autocomplete>
       </md-input-continer>
     </div>
     <div layout="" layout-sm="column">
       <md-input-container flex="">
         <label>School Name</label>
-        <md-select ng-model="student.school_id">
-          <md-option ng-repeat="school in schools" value="{{school.id}}">
-            {{school.name}}
-          </md-option>
-        </md-select>
+        <md-autocomplete
+            ng-disabled="false"
+            md-no-cache="true"
+            md-selected-item="student.school_name"
+            md-search-text-change="searchSchoolNameChange(searchSchoolName)"
+            md-search-text="searchSchoolName"
+            md-selected-item-change="selectedSchoolNameItemChange(item)"
+            md-items="item in querySearchSchoolName(searchSchoolName)"
+            md-item-text="item"
+            md-min-length="0"
+            placeholder="School Name">
+          <span md-highlight-text="searchSchoolName" md-highlight-flags="^i">
+            {{item}}
+          </span>
+        </md-autocomplete>
       </md-input-continer>
     </div>
     <div layout="" layout-sm="column">
       <md-input-container flex="">
         <label>Talent Test Center</label>
-        <md-select ng-model="student.test_center_id">
-            <md-option ng-repeat="test_center in test_centers" value="{{test_center.id}}">
-              {{test_center.name}}
+        <md-select ng-model="student.test_center_name">
+            <md-option ng-repeat="test_center in test_centers" value="{{test_center}}">
+              {{test_center}}
             </md-option>
         </md-select>
       </md-input-continer>
@@ -58,6 +72,4 @@
       <md-button class="md-raised md-primary" ng-click="create(student)">Create</md-button>
     </div>
   </md-content>
-</div>
-</md-dialog>
 
