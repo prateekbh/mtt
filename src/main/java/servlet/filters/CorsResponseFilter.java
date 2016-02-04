@@ -22,10 +22,9 @@ public class CorsResponseFilter implements ContainerResponseFilter {
 				"Origin, X-Requested-With, Content-Type, Accept, "
 						+ "Access-Control-Allow-Origin, Access-Control-Request-Method, " 
 						+ "Access-Control-Allow-Methods, AuthToken, Cookies");
-		responseContext.getHeaders().add("Access-Control-Allow-Origin", "*");
+		responseContext.getHeaders().add("Access-Control-Allow-Origin", origin);
 		responseContext.getHeaders().add("Access-Control-Allow-Methods",
-				"GET, POST, DELETE, PUT");
-		responseContext.getHeaders().add("Access-Control-Allow-Credentials", "true");
-
+				"GET, POST, DELETE, PUT, OPTIONS");
+//		responseContext.getHeaders().add("Access-Control-Allow-Credentials", "true");
 	}
 }
