@@ -30,13 +30,15 @@ public class Signup {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     public Response handleRequest(String jsonRequest) throws Exception{
-        System.out.println("POST method of singup");
+        System.out.println("POST method of signup");
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(jsonRequest);
+        System.out.println("Signup jsonRequest: " + jsonRequest);
         String volunteerName = jsonNode.get(MTT_CONSTANTS.VOLUNTEER_NAME_REQUEST_PARAM).asText();
         String vuname = jsonNode.get(MTT_CONSTANTS.VOLUNTEER_USER_NAME_REQUEST_PARAM).asText().toLowerCase();
         String pwd = jsonNode.get(MTT_CONSTANTS.VOLUNTEER_PASSWORD_REQUEST_PARAM).asText().toLowerCase();
-        String volunteerCenterId = jsonNode.get(MTT_CONSTANTS.CENTER_ID_REQUEST_PARAM).asText();
+        String volunteerCenterId = "1";     // no center id for now
+
         //store the uname and pwd in DB. Also call login to get auth_token and return the same.
 //        System.out.println("uname: " + vuname + " pwd " + pwd
 //                + " volunteerName " + volunteerName + " center: " + volunteerCenterId);
