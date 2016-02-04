@@ -25,9 +25,8 @@ RegisterCtrl.prototype.validate_ = function(user) {
 };
 
 RegisterCtrl.prototype.onValidateSuccess_ = function(scope, state, user) {
-  state.go('students');
-  //this.Api_.Register.register(user, this.onRegisterSuccess_.bind(this, scope, state), 
-    //  this.onRegisterFailure_.bind(this, scope));
+  this.Api_.Register.register(user, this.onRegisterSuccess_.bind(this, scope, state), 
+      this.onRegisterFailure_.bind(this, scope));
 };
 
 RegisterCtrl.prototype.onValidateFailure_ = function() {
@@ -44,7 +43,7 @@ RegisterCtrl.prototype.onRegisterSuccess_ = function(scope, state) {
   state.go('login');
 };
 
-RegisterCtrl.prototype.onRegisterFailure_ = function(scope) {
+RegisterCtrl.prototype.onRegisterFailure_ = function(scope, error) {
   alert('Given username is already taken. Please choose a different one.');
 }
 
