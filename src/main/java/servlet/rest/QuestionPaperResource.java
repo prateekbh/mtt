@@ -30,6 +30,9 @@ public class QuestionPaperResource {
         if (-1 == code) {
             return Response.ok().status(MTT_CONSTANTS.HTTP_NOT_FOUND_CODE).build();
         }
+        if (code > MTT_CONSTANTS.NUMBER_OF_SETS) {
+            return Response.ok().status(MTT_CONSTANTS.HTTP_NOT_FOUND_CODE).build();
+        }
         int[] order = Utils.numberToPermutation(code);
         QuestionPaperSet paperSet = new QuestionPaperSet(code, order);
         System.out.println(" returning in json object : paperSet : " + paperSet);
