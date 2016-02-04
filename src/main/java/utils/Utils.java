@@ -100,6 +100,24 @@ public class Utils {
         System.out.println("place result: " + result);
         return result;
     }
+
+    public static ArrayList<String> getSchoolNamesWithPrefix(String prefix) throws SQLException {
+        System.out.println("getPlaces: " + MTT_CONSTANTS.GET_PLACES_QUERY);
+        String getPlaceQuery = String.format(MTT_CONSTANTS.GET_PLACES_QUERY, prefix);
+        System.out.println("getPlacesQuery: " + getPlaceQuery);
+
+        Statement statement = Resources.connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(getPlaceQuery);
+        ArrayList<String> result = new ArrayList<String>();
+        int i = 0;
+        while (resultSet.next()) {
+            String place = resultSet.getString("name");
+            result.add(place);
+        }
+        System.out.println("place result: " + result);
+        return result;
+    }
+
     public static String getSchoolIdForName(String name) {
         return "1";
     }

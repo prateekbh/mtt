@@ -35,7 +35,7 @@ create table if not exists school (
     name varchar(100),
     village varchar(30),
     mandal varchar(30),
-    is_govt boolean default true
+    is_govt boolean default true not null
 );
 
 create table if not exists contest (
@@ -53,8 +53,8 @@ create table if not exists student (
     id integer PRIMARY KEY,
     name varchar(50),
     question_paper_code integer not null,
-    school integer REFERENCES school(id) not null,
-    place varchar(50) REFERENCES place(name) not null,
+    school varchar(100),
+    place varchar(50),
     center integer REFERENCES center(id) not null,
     sex varchar(10),
     created_on timestamp without time zone,

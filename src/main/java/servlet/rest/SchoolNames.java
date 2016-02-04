@@ -16,7 +16,7 @@ public class SchoolNames {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getStudent(@PathParam("q") String q,
+    public Response getSchoolNamesWithPrefix(@PathParam("q") String q,
                                @HeaderParam(MTT_CONSTANTS.HTTP_COOKIE_HEADER_NAME) String cookie) throws Exception {
 //        String authToken = Utils.getAuthToken(cookie);
 //        if (!Utils.isValidAuthToken(authToken)) {
