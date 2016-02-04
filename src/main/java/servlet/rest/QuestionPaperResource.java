@@ -15,7 +15,7 @@ public class QuestionPaperResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getQuestionPaper(@PathParam(MTT_CONSTANTS.STUDENT_TABLE_COLUMN_QUESTION_PAPER_CODE) String qpId,
+    public Response getQuestionPaper(@PathParam(MTT_CONSTANTS.QUESTION_PAPER_CODE_REQUEST_PARAM) String qpId,
                                @HeaderParam(MTT_CONSTANTS.HTTP_COOKIE_HEADER_NAME) String cookie) throws Exception {
         String authToken = Utils.getAuthToken(cookie);
         if (!Utils.isValidAuthToken(authToken)) {
@@ -33,6 +33,7 @@ public class QuestionPaperResource {
         if (code > MTT_CONSTANTS.NUMBER_OF_SETS) {
             return Response.ok().status(MTT_CONSTANTS.HTTP_NOT_FOUND_CODE).build();
         }
+        System.out.println("Valid question paper code");
         int[] order = Utils.numberToPermutation(code);
         QuestionPaperSet paperSet = new QuestionPaperSet(code, order);
         System.out.println(" returning in json object : paperSet : " + paperSet);

@@ -12,6 +12,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.sql.Statement;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -64,7 +65,10 @@ public class StudentsResource {
             insertStudentIntoDB(id, questionPaperCode, studentName, schoolId, studentPlace, studentCenter, sex);
         }
         System.out.println("\n\nInserted student successfully.\n\n");
-        return Response.ok(new Gson().toJson("Student ID: " + id)).build();
+        HashMap<String, String> resp = new HashMap<String, String>(2);
+        resp.put(MTT_CONSTANTS.STUDENT_ID_REQUEST_PARAM, String.valueOf(id));
+        resp.put(MTT_CONSTANTS.QUESTION_PAPER_CODE_REQUEST_PARAM, String.valueOf(questionPaperCode));
+        return Response.ok(new Gson().toJson(resp)).build();
     }
 
     private void insertStudentIntoDB(int id, String questionPaperCode, String studentName, String schoolId,
