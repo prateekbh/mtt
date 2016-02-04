@@ -5,11 +5,9 @@
     <div class="md-list-item-text">
       <h3>Q{{$index+1}}. {{question}}</h3>
       <p>
-        <md-radio-group ng-model="answers[$index]" layout="row">
-        <md-radio-button ng-repeat="option in ['Correct', 'Wrong', 'Unanswered']"
-                         ng-value="option" aria-label="{{ option }}">
-               {{ option }}
-        </md-radio-button>
+        <md-radio-group ng-model="answers[$index + 1]" layout="row">
+          <md-radio-button value="Correct" aria-label="Correct">Correct</md-radio-button>
+          <md-radio-button value="Wrong" aria-label="Wrong">Wrong</md-radio-button>
         </md-radio-group> 
       </p>
     </div>

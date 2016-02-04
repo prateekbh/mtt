@@ -7,7 +7,7 @@ var QuestionPaperCtrl = function($q, $scope, $stateParams, $state, Api) {
   this.questionPaperCode_ = $stateParams.questionPaperCode;
 
   $scope.submit = this.submitAnswers_.bind(this, $scope, $state);
-  $scope.answers = [];
+  $scope.answers = {};
 
   this.refresh_($scope);
 }

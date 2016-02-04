@@ -64,8 +64,8 @@ AddStudentCtrl.prototype.onAddSuccess_ = function(mdToast, state, student) {
       .hideDelay(3000)
    );
   state.go('questionpaper', {
-    studentId: student.studentId,
-    questionPaperCode: student.questionPaperCode
+    'studentId': student.studentId,
+    'questionPaperCode': student.questionPaperCode
   });
 };
 
@@ -95,7 +95,7 @@ AddStudentCtrl.prototype.querySearchSchoolName_ = function(state, scope, query) 
   var d = this.q_.defer();
   this.Api_.Schools.query({'q': query}, function(results) {
     d.resolve(results);
-  }, function(error) {
+  }, function(state, error) {
     console.log(error);
     if(this.isAuthFailure_(error)) {
       state.go('login');
@@ -119,7 +119,7 @@ AddStudentCtrl.prototype.querySearchPlace_ = function(state, scope, query) {
   this.Api_.Places.query({'q': query}, function(results) {
     d.resolve(results);
   }, function(error) {
-    console.log(error);
+    console.log(state, error);
     if(this.isAuthFailure_(error)) {
       state.go('login');
     }
