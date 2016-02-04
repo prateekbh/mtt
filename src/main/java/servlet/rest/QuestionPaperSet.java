@@ -11,7 +11,7 @@ public class QuestionPaperSet {
     private final int paperCode;
     private final String[] questions;
 
-    QuestionPaperSet(int paperCode, int[] order) {
+    QuestionPaperSet(int paperCode) {
         this.paperCode = paperCode;
         questions = Sets.getQuestionAnswersForCode(paperCode);
     }

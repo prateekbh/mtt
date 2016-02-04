@@ -34,8 +34,7 @@ public class QuestionPaperResource {
             return Response.ok().status(MTT_CONSTANTS.HTTP_NOT_FOUND_CODE).build();
         }
         System.out.println("Valid question paper code");
-        int[] order = Utils.numberToPermutation(code);
-        QuestionPaperSet paperSet = new QuestionPaperSet(code, order);
+        QuestionPaperSet paperSet = new QuestionPaperSet(code);
         System.out.println(" returning in json object : paperSet : " + paperSet);
         return Response.ok(new Gson().toJson(paperSet)).build();
     }
