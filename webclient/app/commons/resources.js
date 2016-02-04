@@ -38,7 +38,7 @@ function Api($resource, API_BASE_URL) {
     //}),
 
     QuestionPapers: $resource(
-      API_BASE_URL + '/questionpapers/:questionPaperCode', {
+      API_BASE_URL + '/questionPapers/:questionPaperCode', {
         questionPaperCode: '@id'
       }, {
         'get': {'method': 'GET'},
