@@ -118,7 +118,7 @@ AddStudentCtrl.prototype.querySearchPlace_ = function(state, scope, query) {
   var d = this.q_.defer();
   this.Api_.Places.query({'q': query}, function(results) {
     d.resolve(results);
-  }, function(error) {
+  }, function(state, error) {
     console.log(state, error);
     if(this.isAuthFailure_(error)) {
       state.go('login');
