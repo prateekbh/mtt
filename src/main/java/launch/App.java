@@ -24,6 +24,7 @@ public class App {
             AnswerSheetsResource.class.getCanonicalName(),
             QuestionPaperResource.class.getCanonicalName(),
             QuestionPapersResource.class.getCanonicalName(),
+            Places.class.getCanonicalName(),
             AuthenticationFilter.class.getCanonicalName()
     };
 
