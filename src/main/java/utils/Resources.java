@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  */
 
 public class Resources {
-    private static final String USER_HOME = "$HOME";
+    private static final String USER_HOME = System.getProperty("user.home");
     private static final String CONFIG_FILE = USER_HOME + "/.config/mtt/main.properties";
 
     private static final String DB_URL_ = "url";
