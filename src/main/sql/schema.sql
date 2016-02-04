@@ -1,5 +1,5 @@
 --drop table question, contest, student, volunteer, center, volunteer_auth_token, school, config cascade;
-drop table question, contest, student, center, school, answers cascade;
+drop table question, contest, student, center, school, answers, place cascade;
 
 create table if not exists question (
     serial_number SERIAL PRIMARY KEY,
@@ -54,7 +54,7 @@ create table if not exists student (
     name varchar(50),
     question_paper_code integer not null,
     school varchar(100),
-    place varchar(50),
+    place varchar(50) REFERENCES school(name) not null,
     center integer REFERENCES center(id) not null,
     sex varchar(10),
     created_on timestamp without time zone,

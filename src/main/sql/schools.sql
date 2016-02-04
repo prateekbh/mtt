@@ -1,3 +1,4 @@
+delete from school;
 insert into school(name, village, mandal, is_govt) values('Zilla Parishat High School Choppadandi', 'Choppadandi', 'Choppadandi', true);
 insert into school(name, village, mandal, is_govt) values('Zilla Parishat High School Ragampet', 'Ragampet', 'Choppadandi', true);
 insert into school(name, village, mandal, is_govt) values('Zilla Parishat High School Arnakonda', 'Arnakonda', 'Choppadandi', true);

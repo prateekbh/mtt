@@ -16,7 +16,7 @@ public class Places {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getPlacesWithPrefix(@PathParam("q") String prefix,
+    public Response getPlacesWithPrefix(@QueryParam("q") String prefix,
                                @HeaderParam(MTT_CONSTANTS.HTTP_COOKIE_HEADER_NAME) String cookie) throws Exception {
 //        String authToken = Utils.getAuthToken(cookie);
 //        if (!Utils.isValidAuthToken(authToken)) {

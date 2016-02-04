@@ -181,7 +181,7 @@ public class MTT_CONSTANTS {
     public static final String GET_ANSWERS_QUERY = "select * from " + TABLE_NAME_ANSWERS;
 
     public static final String GET_PLACES_QUERY = "select * from " + TABLE_NAME_PLACE + " where name ilike '%s%%'";
-    public static final String GET_SCHOOLS_QUERY = "select * from " + TABLE_NAME_PLACE + " where name ilike '%s%%'";
+    public static final String GET_SCHOOLS_QUERY = "select * from " + TABLE_NAME_SCHOOL + " where name ilike '%s%%'";
 
     public static final int HTTP_UNAUTH_CODE = 401;
     public static final int HTTP_NOT_FOUND_CODE = 404;

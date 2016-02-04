@@ -16,7 +16,7 @@ public class SchoolNames {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getSchoolNamesWithPrefix(@PathParam("q") String q,
+    public Response getSchoolNamesWithPrefix(@QueryParam("q") String prefix,
                                @HeaderParam(MTT_CONSTANTS.HTTP_COOKIE_HEADER_NAME) String cookie) throws Exception {
 //        String authToken = Utils.getAuthToken(cookie);
 //        if (!Utils.isValidAuthToken(authToken)) {
@@ -24,9 +24,8 @@ public class SchoolNames {
 //            builder.status(MTT_CONSTANTS.HTTP_UNAUTH_CODE);
 //            return builder.build();
 //        }
-        System.out.println("\n\nprefix: " + q);
         System.out.println("cookie: " + cookie);
-        List<String> resp = Utils.getPlacesWithPrefix(q);
+        List<String> resp = Utils.getPlacesWithPrefix(prefix);
         return Response.ok(new Gson().toJson(resp)).build();
     }
 }
