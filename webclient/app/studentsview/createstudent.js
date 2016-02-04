@@ -64,8 +64,8 @@ AddStudentCtrl.prototype.onAddSuccess_ = function(mdToast, state, student) {
       .hideDelay(3000)
    );
   state.go('questionpaper', {
-    studentId: student.id,
-    questionPaperCode: student.question_paper_code
+    studentId: student.studentId,
+    questionPaperCode: student.questionPaperPode
   });
 };
 
