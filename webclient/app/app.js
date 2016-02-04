@@ -24,7 +24,6 @@ angular.module('myApp', [
   'myApp.questionpaperview',
   'myApp.version'
 
-//  'myApp.mockbackend'
 ])
 // localhost should be replaced with backend's ip
 .constant('API_BASE_URL', lh)
