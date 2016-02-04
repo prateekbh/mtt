@@ -16,7 +16,8 @@ public class QuestionPaperCreator {
 //            System.out.println("order: " + order);
             int serialNum = 1;
             for (Integer q : order) {
-                systemCommand += " && echo -n " + serialNum + ". >> " + set + " && cat " + q + " >> " + set;
+                systemCommand += " && echo -n '" + serialNum + ". '>> " + set + " && cat " + q + " >> " + set;
+                serialNum++;
             }
             System.out.println(systemCommand);
         }
