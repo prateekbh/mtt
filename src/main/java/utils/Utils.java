@@ -130,72 +130,10 @@ public class Utils {
         return new ArrayList<Student>();
     }
 
-    public static double effective_score(int correctly_answered, int wrongly_answered, int unanswered) {
+    public static double effectiveScore(int correctly_answered, int wrongly_answered, int unanswered) {
         double result = 0.0;
         result = MTT_CONSTANTS.MIN_SCORE + MTT_CONSTANTS.WEIGHT_FACTOR *
                 (1 - (double) correctly_answered / (double) (wrongly_answered + unanswered));
         return result;
-    }
-
-    private static List<Integer> order1 = new ArrayList<Integer>() {{
-        add(1);add(2);add(3);add(4);add(5);add(6);add(7);add(8);add(9);add(10);add(11);add(12);
-    }};
-
-    private static List<Integer> order2 = new ArrayList<Integer>() {{
-        add(10);add(12);add(9);add(3);add(7);add(5);add(8);add(11);add(2);add(1);add(6);add(4);
-    }};
-
-    private static List<Integer> order3 = new ArrayList<Integer>() {{
-        add(3);add(5);add(7);add(9);add(11);add(2);add(4);add(6);add(8);add(10);add(12);add(1);
-    }};
-
-    private static List<Integer> order4 = new ArrayList<Integer>() {{
-        add(2);add(6);add(4);add(10);add(8);add(2);add(4);add(6);add(8);add(10);add(12);add(1);
-    }};
-
-    private static HashMap<Integer, List<Integer>> codeToOrder = new HashMap<Integer, List<Integer>>();
-
-    public static List<Integer> codeToOrderMapping(int code) {
-        if (!codeToOrder.containsKey(code)) {
-            System.out.println("Invalid code: " + code);
-            return null;
-        }
-        return codeToOrder.get(code);
-    }
-
-    public static int[] numberToPermutation(int n) {
-        int size = MTT_CONSTANTS.NUMBER_OF_QUESTIONS_IN_2016;
-
-        return new int[]{2, 3, 1, 5, 4};
-        // TODO
-//
-//        int[] perms = new int[size];
-//        for (int i = 0; i < perms.length; i++) {
-//            perms[i] = i + 1;
-//        }
-//
-//        for (int i = 0; i < size; i++) {
-//            int f = factorial(size - i - 1);
-//
-//        }
-//
-//        return perms;
-    }
-
-    // no overflow checks
-    public static int factorial(int n) {
-        int f = 1;
-        for (int i = 2; i <= n; i++) {
-            f *= i;
-        }
-        return f;
-    }
-
-    public static boolean isPrime(int n) {
-        if (n < 10 || n > 100) return false;
-        for (int i = 2; i * i <= n; i++) {
-            if (n % i == 0) return false;
-        }
-        return true;
     }
 }
