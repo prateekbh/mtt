@@ -10,8 +10,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 
-@Path(ResourcesPath.PLACES)
-public class Places {
+@Path(ResourcesPath.SCHOOLS)
+public class SchoolNames {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -23,7 +23,7 @@ public class Places {
             builder.status(MTT_CONSTANTS.HTTP_UNAUTH_CODE);
             return builder.build();
         }
-        String[] resp = new String[] {"place1", "place2"};
+        String[] resp = new String[] {"school1", "school2"};
         return Response.ok(new Gson().toJson(resp)).build();
     }
 }
