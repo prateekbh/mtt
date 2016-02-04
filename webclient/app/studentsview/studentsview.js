@@ -50,46 +50,7 @@ return [{
     id: 1,
     name: 'Govardhan Reddy',
     tr_number: 'TS15TR1234'
-  },{
-    id: 2,
-    name: 'Santosh',
-    tr_number: 'TS20TR1234',
-    paper_corrected: true,
-  },{
-    id: 3,
-    name: 'Chaitanya Reddy',
-    tr_number: 'TS19TR1234'
-  },{
-    id: 4,
-    name: 'Gopal',
-    tr_number: 'TS19TR1234'
-  },{
-    id: 5,
-    name: 'Suresh B',
-    tr_number: 'TS81TR1234'
-  },{
-    id: 1,
-    name: 'Govardhan Reddy',
-    tr_number: 'TS15TR1234',
-    paper_corrected: true,
-  },{
-    id: 2,
-    name: 'Santosh',
-    tr_number: 'TS20TR1234'
-  },{
-    id: 3,
-    name: 'Chaitanya Reddy',
-    tr_number: 'TS19TR1234'
-  },{
-    id: 4,
-    name: 'Gopal',
-    tr_number: 'TS19TR1234'
-  },{
-    id: 5,
-    name: 'Suresh B',
-    tr_number: 'TS81TR1234'
   },
-  
   ];
 
 };

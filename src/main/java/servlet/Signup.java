@@ -34,8 +34,8 @@ public class Signup {
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(jsonRequest);
         String volunteerName = jsonNode.get(MTT_CONSTANTS.VOLUNTEER_NAME_REQUEST_PARAM).asText();
-        String vuname = jsonNode.get(MTT_CONSTANTS.VOLUNTEER_USER_NAME_REQUEST_PARAM).asText();
-        String pwd = jsonNode.get(MTT_CONSTANTS.VOLUNTEER_PASSWORD_REQUEST_PARAM).asText();
+        String vuname = jsonNode.get(MTT_CONSTANTS.VOLUNTEER_USER_NAME_REQUEST_PARAM).asText().toLowerCase();
+        String pwd = jsonNode.get(MTT_CONSTANTS.VOLUNTEER_PASSWORD_REQUEST_PARAM).asText().toLowerCase();
         String volunteerCenterId = jsonNode.get(MTT_CONSTANTS.CENTER_ID_REQUEST_PARAM).asText();
         //store the uname and pwd in DB. Also call login to get auth_token and return the same.
 //        System.out.println("uname: " + vuname + " pwd " + pwd
