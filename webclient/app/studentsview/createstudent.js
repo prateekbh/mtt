@@ -8,13 +8,13 @@ var AddStudentCtrl = function($scope, $q, $mdToast, $state, Api) {
   $scope.searchSchoolName = null;
   $scope.searchSchoolNameChange = this.searchSchoolNameChange_.bind(this);
   $scope.selectedSchoolNameItemChange = this.selectedSchoolNameItemChange_.bind(this);
-  $scope.querySearchSchoolName = this.querySearchSchoolName_.bind(this, $scope);
+  $scope.querySearchSchoolName = this.querySearchSchoolName_.bind(this, $state, $scope);
   
   // Auto complete of places.
   $scope.searchPlace = null;
   $scope.searchPlaceChange = this.searchPlaceChange_.bind(this);
   $scope.selectedPlaceItemChange = this.selectedPlaceItemChange_.bind(this);
-  $scope.querySearchPlace = this.querySearchPlace_.bind(this, $scope);
+  $scope.querySearchPlace = this.querySearchPlace_.bind(this, $state, $scope);
   
   $scope.create = this.create_.bind(this, $mdToast, $state);
   
@@ -49,7 +49,7 @@ AddStudentCtrl.prototype.validate_ = function(c) {
 
 AddStudentCtrl.prototype.onValidateSuccess_ = function(mdToast, state, student) {
   this.Api_.Students.post(student, this.onAddSuccess_.bind(this, mdToast, state),
-      this.onAddFailure_.bind(this));
+      this.onAddFailure_.bind(this, state));
 };
 
 AddStudentCtrl.prototype.onValidateFailure_ = function(notPresentField) {
@@ -69,8 +69,17 @@ AddStudentCtrl.prototype.onAddSuccess_ = function(mdToast, state, student) {
   });
 };
 
-AddStudentCtrl.prototype.onAddFailure_ = function() {
-  
+AddStudentCtrl.prototype.onAddFailure_ = function(state, error) {
+  if (this.isAuthFailure_(error)) {
+    state.go('login');
+  }
+};
+
+AddStudentCtrl.prototype.isAuthFailure_ = function(error) {
+  if (error.status >= 400 && error.status < 500) {
+    return true;
+  }
+  return false;
 };
 
 AddStudentCtrl.prototype.selectedSchoolNameItemChange_ = function(schoolNameItem) {
@@ -81,15 +90,18 @@ AddStudentCtrl.prototype.searchSchoolNameChange_ = function(schoolName) {
   console.log('schoolName: ' + schoolName);
 };
 
-AddStudentCtrl.prototype.querySearchSchoolName_ = function(scope, query) {
+AddStudentCtrl.prototype.querySearchSchoolName_ = function(state, scope, query) {
   if (!query) return [];
   var d = this.q_.defer();
   this.Api_.Schools.query({'q': query}, function(results) {
     d.resolve(results);
   }, function(error) {
     console.log(error);
+    if(this.isAuthFailure_(error)) {
+      state.go('login');
+    }
     d.reject();
-  });
+  }.bind(this, state));
   return d.promise;
 };
 
@@ -101,15 +113,18 @@ AddStudentCtrl.prototype.searchPlaceChange_ = function(schoolName) {
   console.log('Place: ' + schoolName);
 };
 
-AddStudentCtrl.prototype.querySearchPlace_ = function(scope, query) {
+AddStudentCtrl.prototype.querySearchPlace_ = function(state, scope, query) {
   if (!query) return [];
   var d = this.q_.defer();
   this.Api_.Places.query({'q': query}, function(results) {
     d.resolve(results);
   }, function(error) {
     console.log(error);
+    if(this.isAuthFailure_(error)) {
+      state.go('login');
+    }
     d.reject();
-  });
+  }.bind(this, state));
   return d.promise;
 };
 
