@@ -33,7 +33,7 @@ AddStudentCtrl.prototype.create_ = function(mdToast, state, student) {
 
 AddStudentCtrl.prototype.validate_ = function(c) {
   var d = this.q_.defer();
-  var compulsoryFields = ['name', 'school_name', 'test_center_name', 'question_paper_code']
+  var compulsoryFields = ['studentName', 'schoolId', 'centerId', 'questionPaperCode']
   var validateCount = 0;
   for (var i = 0; i < compulsoryFields.length; i++) {
     if (!c[compulsoryFields[i]]) {

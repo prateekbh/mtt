@@ -3,7 +3,17 @@
     <div layout="" layout-sm="column">
       <md-input-container flex="">
         <label>Name</label>
-        <input ng-model="student.name">
+        <input ng-model="student.studentName">
+      </md-input-continer>
+    </div>
+    <div layout="" layout-sm="column">
+      <md-input-container flex="">
+        <label>Gender</label>
+        <md-select ng-model="student.sex">
+            <md-option ng-repeat="gender in ['Male', 'Female', 'Other']" value="{{gender}}">
+              {{gender}}
+            </md-option>
+        </md-select>
       </md-input-continer>
     </div>
     <div layout="" layout-sm="column">
@@ -12,7 +22,7 @@
         <md-autocomplete
             ng-disabled="false"
             md-no-cache="true"
-            md-selected-item="student.place"
+            md-selected-item="student.studentPlace"
             md-search-text-change="searchPlaceChange(searchPlace)"
             md-search-text="searchPlace"
             md-selected-item-change="selectedPlaceItemChange(item)"
@@ -32,7 +42,7 @@
         <md-autocomplete
             ng-disabled="false"
             md-no-cache="true"
-            md-selected-item="student.school_name"
+            md-selected-item="student.schoolId"
             md-search-text-change="searchSchoolNameChange(searchSchoolName)"
             md-search-text="searchSchoolName"
             md-selected-item-change="selectedSchoolNameItemChange(item)"
@@ -49,7 +59,7 @@
     <div layout="" layout-sm="column">
       <md-input-container flex="">
         <label>Talent Test Center</label>
-        <md-select ng-model="student.test_center_name">
+        <md-select ng-model="student.centerId">
             <md-option ng-repeat="test_center in test_centers" value="{{test_center}}">
               {{test_center}}
             </md-option>
@@ -59,7 +69,7 @@
     <div layout="" layout-sm="column">
       <md-input-container flex="">
         <label>Question Paper Code</label>
-        <input ng-model="student.question_paper_code">
+        <input ng-model="student.questionPaperCode">
       </md-input-continer>
     </div>
     <div layout="" layout-sm="column">
