@@ -1,5 +1,5 @@
 --drop table question, contest, student, volunteer, center, volunteer_auth_token, school, config cascade;
-drop table question, contest, student, center, school, answers, place cascade;
+drop table question, contest, student, school, answers, place cascade;
 
 create table if not exists question (
     serial_number SERIAL PRIMARY KEY,
@@ -17,18 +17,18 @@ create table if not exists answers (
     created_on timestamp without time zone,
     modified_on timestamp without time zone
 );
-
-create table if not exists center (
-    id SERIAL PRIMARY KEY,
-    place varchar(50) not null,
-    venue varchar(100) not null,
-    attended integer,
-    boys integer,
-    girls integer,
-    volunteers integer,
-    govt_school integer,
-    private_school integer
-);
+--
+--create table if not exists center (
+--    id SERIAL PRIMARY KEY,
+--    place varchar(50) not null,
+--    venue varchar(100) not null,
+--    attended integer,
+--    boys integer,
+--    girls integer,
+--    volunteers integer,
+--    govt_school integer,
+--    private_school integer
+--);
 
 create table if not exists school (
     id SERIAL PRIMARY KEY,
@@ -54,8 +54,8 @@ create table if not exists student (
     name varchar(50),
     question_paper_code integer not null,
     school varchar(100),
-    place varchar(50) REFERENCES school(name) not null,
-    center integer REFERENCES center(id) not null,
+    place varchar(50),
+    center varchar(50),
     sex varchar(10),
     created_on timestamp without time zone,
     modified_on timestamp without time zone
@@ -74,7 +74,7 @@ create table if not exists volunteer (
     name varchar(50),
     user_name varchar(30),
     password varchar(30),
-    center integer REFERENCES center(id) not null,
+--    center integer REFERENCES center(id) not null,
     place varchar(50),
     created_on timestamp without time zone,
     modified_on timestamp without time zone
@@ -82,7 +82,8 @@ create table if not exists volunteer (
 
 create table place (
   id SERIAL PRIMARY KEY,
-  name varchar(50)
+  name varchar(50),
+  mandal varchar(50)
 );
 create table if not exists volunteer_auth_token (
     user_name varchar(50) PRIMARY KEY,

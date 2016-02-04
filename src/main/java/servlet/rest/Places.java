@@ -25,7 +25,6 @@ public class Places {
 //            return builder.build();
 //        }
 
-        System.out.println("\n\nprefix: " + prefix);
         List<String> resp = Utils.getPlacesWithPrefix(prefix);
         return Response.ok(new Gson().toJson(resp)).build();
     }

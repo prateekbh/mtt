@@ -13,47 +13,46 @@ import java.util.List;
 public class Sets {
 
     private static ArrayList<Integer> order1 = new ArrayList<Integer>() {{
-        add(4);add(11);add(8);add(6);add(5);add(1);add(7);add(3);add(12);add(10);add(2);add(9);
+        add(10);add(2);add(8);add(6);add(5);add(9);add(4);add(7);add(1);add(3);
     }};
 
     private static ArrayList<Integer> order2 = new ArrayList<Integer>() {{
-        add(4);add(2);add(5);add(9);add(8);add(6);add(10);add(11);add(12);add(3);add(1);add(7);
+        add(6);add(7);add(4);add(3);add(1);add(8);add(2);add(5);add(10);add(9);
     }};
 
     private static ArrayList<Integer> order3 = new ArrayList<Integer>() {{
-        add(1);add(7);add(2);add(6);add(5);add(8);add(3);add(9);add(10);add(11);add(4);add(12);
+        add(5);add(7);add(2);add(8);add(4);add(3);add(6);add(9);add(10);add(1);
     }};
 
     private static ArrayList<Integer> order4 = new ArrayList<Integer>() {{
-        add(6);add(8);add(11);add(7);add(2);add(3);add(1);add(12);add(5);add(9);add(4);add(10);
+        add(3);add(1);add(5);add(2);add(6);add(8);add(4);add(7);add(9);add(10);
     }};
 
     private static ArrayList<Integer> order5 = new ArrayList<Integer>() {{
-        add(5);add(6);add(1);add(9);add(3);add(8);add(2);add(10);add(7);add(11);add(4);add(12);
+        add(4);add(8);add(7);add(1);add(2);add(6);add(10);add(3);add(5);add(9);
     }};
 
     private static ArrayList<Integer> order6 = new ArrayList<Integer>() {{
-        add(8);add(5);add(2);add(7);add(3);add(11);add(9);add(6);add(4);add(10);add(1);add(12);
+        add(1);add(7);add(6);add(8);add(5);add(9);add(4);add(3);add(10);add(2);
     }};
 
     private static ArrayList<Integer> order7 = new ArrayList<Integer>() {{
-        add(5);add(8);add(3);add(9);add(6);add(1);add(10);add(2);add(12);add(4);add(7);add(11);
+        add(3);add(8);add(10);add(7);add(2);add(4);add(1);add(5);add(9);add(6);
     }};
 
     private static ArrayList<Integer> order8 = new ArrayList<Integer>() {{
-        add(11);add(5);add(7);add(10);add(8);add(6);add(1);add(12);add(4);add(2);add(9);add(3);
+        add(9);add(10);add(4);add(7);add(3);add(1);add(6);add(5);add(8);add(2);
     }};
 
     private static ArrayList<Integer> order9 = new ArrayList<Integer>() {{
-        add(9);add(4);add(1);add(12);add(2);add(5);add(10);add(11);add(3);add(7);add(6);add(8);
+        add(6);add(7);add(10);add(4);add(9);add(2);add(3);add(1);add(5);add(8);
     }};
 
     private static ArrayList<Integer> order10 = new ArrayList<Integer>() {{
-        add(6);add(9);add(8);add(10);add(2);add(3);add(11);add(12);add(7);add(1);add(4);add(5);
+        add(3);add(4);add(5);add(2);add(1);add(7);add(9);add(6);add(10);add(8);
     }};
 
     /*******************************************************************************************/
-
     private static HashMap<Integer, ArrayList<Integer>> codeToOrderMap = new HashMap<Integer, ArrayList<Integer>>() {{
         put(1, order1);
         put(2, order2);
@@ -66,6 +65,7 @@ public class Sets {
         put(9, order9);
         put(10, order10);
     }};
+
 
 
     public static ArrayList<Integer> getOrderForCode(int code) {

@@ -17,14 +17,14 @@ public class Utils {
 
     public static int getMaxOfTable(String tableName, String columnName) throws SQLException {
         String getMaxQuery = "select max(" + columnName + ") from " + tableName;
-        System.out.println("getMaxQuery: " + getMaxQuery);
+//        System.out.println("getMaxQuery: " + getMaxQuery);
         Statement getMaxQueryStatement = Resources.connection.createStatement();
         ResultSet resultSet = getMaxQueryStatement.executeQuery(getMaxQuery);
         if (resultSet.next()) {
-            System.out.println("Returning max: " + resultSet.getInt("max"));
+//            System.out.println("Returning max: " + resultSet.getInt("max"));
             return resultSet.getInt("max");
         }
-        System.out.println("Returning max -- default 1");
+//        System.out.println("Returning max -- default 1");
         return 1;   // for the first entry
     }
 
@@ -33,17 +33,17 @@ public class Utils {
             Logger.getAnonymousLogger().log(Level.SEVERE, "authToken is null.\n");
             return false;
         }
-        Logger.getAnonymousLogger().log(Level.INFO, "authToken for validation : " + authToken);
+//        Logger.getAnonymousLogger().log(Level.INFO, "authToken for validation : " + authToken);
         String getTokenDetailsQuery = String.format(MTT_CONSTANTS.GET_TOKEN_DETAILS_DB_QUERY, authToken);
-        Logger.getAnonymousLogger().log(Level.INFO, "getTokenQuery : " + getTokenDetailsQuery);
+//        Logger.getAnonymousLogger().log(Level.INFO, "getTokenQuery : " + getTokenDetailsQuery);
         Statement getStatement = Resources.connection.createStatement();
         ResultSet resultSet = getStatement.executeQuery(getTokenDetailsQuery);
         long tokenTimeStamp = 0;
         if (resultSet.next()) {
             tokenTimeStamp = resultSet.getDate(MTT_CONSTANTS.VOLUNTEER_AUTH_TOKEN_TABLE_COLUMN_CREATED_ON).getTime();
         }
-        Logger.getAnonymousLogger().log(Level.INFO, "current millis " + System.currentTimeMillis() + " tokenTimeStamp "
-                + tokenTimeStamp + " expiry time " + MTT_CONSTANTS.TOKEN_EXPIRY_TIME + " final result " + (System.currentTimeMillis() < tokenTimeStamp + MTT_CONSTANTS.TOKEN_EXPIRY_TIME));
+//        Logger.getAnonymousLogger().log(Level.INFO, "current millis " + System.currentTimeMillis() + " tokenTimeStamp "
+//                + tokenTimeStamp + " expiry time " + MTT_CONSTANTS.TOKEN_EXPIRY_TIME + " final result " + (System.currentTimeMillis() < tokenTimeStamp + MTT_CONSTANTS.TOKEN_EXPIRY_TIME));
         return System.currentTimeMillis() < tokenTimeStamp + MTT_CONSTANTS.TOKEN_EXPIRY_TIME;
     }
 
@@ -73,21 +73,21 @@ public class Utils {
 
     public static int getPaperCodeForStudent(int studentId) throws Exception {
         String getStudentDetailsQuery = String.format(MTT_CONSTANTS.GET_STUDENT_RECORD_QUERY, studentId);
-        System.out.println("getStudentDetailsQuery : " + getStudentDetailsQuery);
+//        System.out.println("getStudentDetailsQuery : " + getStudentDetailsQuery);
         Statement statement = Resources.connection.createStatement();
         ResultSet resultSet = statement.executeQuery(getStudentDetailsQuery);
         int paperCode = -1;
         if (resultSet.next()) {
             paperCode = resultSet.getInt(MTT_CONSTANTS.STUDENT_TABLE_COLUMN_QUESTION_PAPER_CODE);
         }
-        System.out.println("studentId: " + studentId + " paperCode: " + paperCode);
+//        System.out.println("studentId: " + studentId + " paperCode: " + paperCode);
         return paperCode;
     }
 
     public static ArrayList<String> getPlacesWithPrefix(String prefix) throws SQLException {
-        System.out.println("getPlaces: " + MTT_CONSTANTS.GET_PLACES_QUERY);
-        String getPlaceQuery = String.format(MTT_CONSTANTS.GET_PLACES_QUERY, prefix);
-        System.out.println("getPlacesQuery: " + getPlaceQuery);
+//        System.out.println("getPlaces: " + MTT_CONSTANTS.GET_PLACES_QUERY);
+        String getPlaceQuery = String.format(MTT_CONSTANTS.GET_PLACES_QUERY, prefix, prefix);
+//        System.out.println("getPlacesQuery: " + getPlaceQuery);
 
         Statement statement = Resources.connection.createStatement();
         ResultSet resultSet = statement.executeQuery(getPlaceQuery);
@@ -95,26 +95,28 @@ public class Utils {
         int i = 0;
         while (resultSet.next()) {
             String place = resultSet.getString("name");
-            result.add(place);
+            String mandal = resultSet.getString("mandal");
+            result.add(place + ", " + mandal);
         }
-        System.out.println("place result: " + result);
+//        System.out.println("place result: " + result);
         return result;
     }
 
     public static ArrayList<String> getSchoolNamesWithPrefix(String prefix) throws SQLException {
-        System.out.println("getPlaces: " + MTT_CONSTANTS.GET_PLACES_QUERY);
-        String getPlaceQuery = String.format(MTT_CONSTANTS.GET_PLACES_QUERY, prefix);
-        System.out.println("getPlacesQuery: " + getPlaceQuery);
+        String getSchoolsQuery = String.format(MTT_CONSTANTS.GET_SCHOOLS_QUERY, prefix, prefix, prefix);
+//        System.out.println("getSchoolsQuery: " + getSchoolsQuery);
 
         Statement statement = Resources.connection.createStatement();
-        ResultSet resultSet = statement.executeQuery(getPlaceQuery);
+        ResultSet resultSet = statement.executeQuery(getSchoolsQuery);
         ArrayList<String> result = new ArrayList<String>();
         int i = 0;
         while (resultSet.next()) {
-            String place = resultSet.getString("name");
-            result.add(place);
+            String schoolName = resultSet.getString("name");
+            String village = resultSet.getString("village");
+            String mandal = resultSet.getString("mandal");
+            result.add(schoolName + ", " + village + ", " + mandal);
         }
-        System.out.println("place result: " + result);
+//        System.out.println("School result: " + result);
         return result;
     }
 

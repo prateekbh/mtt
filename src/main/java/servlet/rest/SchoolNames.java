@@ -24,8 +24,7 @@ public class SchoolNames {
 //            builder.status(MTT_CONSTANTS.HTTP_UNAUTH_CODE);
 //            return builder.build();
 //        }
-        System.out.println("cookie: " + cookie);
-        List<String> resp = Utils.getPlacesWithPrefix(prefix);
+        List<String> resp = Utils.getSchoolNamesWithPrefix(prefix);
         return Response.ok(new Gson().toJson(resp)).build();
     }
 }
