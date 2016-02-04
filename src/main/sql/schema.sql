@@ -54,7 +54,7 @@ create table if not exists student (
     name varchar(50),
     question_paper_code integer not null,
     school integer REFERENCES school(id) not null,
-    place varchar(50),
+    place varchar(50) REFERENCES place(name) not null,
     center integer REFERENCES center(id) not null,
     sex varchar(10),
     created_on timestamp without time zone,
@@ -80,6 +80,10 @@ create table if not exists volunteer (
     modified_on timestamp without time zone
 );
 
+create table place (
+  id SERIAL PRIMARY KEY,
+  name varchar(50)
+);
 create table if not exists volunteer_auth_token (
     user_name varchar(50) PRIMARY KEY,
     auth_token varchar(50),
