@@ -131,18 +131,16 @@ public class Utils {
     public static final String[] getQuestionsForSet0() {
         // TODO
         String[] set0 = new String[] {
-                "Question 1 changed a bit ?",
-                "Question 2 modified ?",
-                "Question 3 ?",
-                "Question 4 four only ?",
-                "Question 5 ?",
-                "Question 6 ?",
-                "Question 7 seven ?",
-                "Question 8 exactly eight ?",
-                "Question 9 ?",
-                "Question 10 ?",
-                "Question 11 ?",
-                "Question 12 ?"
+                " 1 12233445 ?",
+                "2 f(n)g(n) ?",
+                "3 2D ?",
+                "4 Vidya ?",
+                "5 Ram Sam ?",
+                "6 How many ?",
+                "7 p and q ?",
+                "8 5 men ?",
+                "9 fast runner ?",
+                "10 ABC?"
         };
         return set0;
     }

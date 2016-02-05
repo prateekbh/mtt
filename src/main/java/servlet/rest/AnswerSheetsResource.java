@@ -55,7 +55,7 @@ public class AnswerSheetsResource {
         JsonNode jsonNode = objectMapper.readTree(jsonRequest);
         String studentId = jsonNode.get("student_id").textValue();
         String questionPaperCode = jsonNode.get("question_paper_code").textValue();
-        
+
 
         Logger logger = Logger.getAnonymousLogger();
         logger.log(Level.SEVERE, "\n\n #### insertStudent form json : " + jsonRequest);

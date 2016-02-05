@@ -81,7 +81,7 @@ public class Sets {
             String[] answers = Utils.getAnswersForSet0();
             for (int i = 0; i < MTT_CONSTANTS.NUMBER_OF_QUESTIONS_IN_2016; i++) {
                 System.out.println("order get i " + order.get(i));
-                questionAnswers[i] = questions[order.get(i) - 1] + " Correct Answer: " + answers[order.get(i) - 1];  // since it is 1 based index
+                questionAnswers[i] = " Correct Answer: " + answers[order.get(i) - 1] + questions[order.get(i) - 1];  // since it is 1 based index
             }
         } catch (Exception ex) {
             System.out.println("Exception while retrieving answers: " + ex);
