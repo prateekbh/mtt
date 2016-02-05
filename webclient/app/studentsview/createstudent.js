@@ -19,10 +19,11 @@ var AddStudentCtrl = function($scope, $q, $mdToast, $state, Api) {
   $scope.create = this.create_.bind(this, $mdToast, $state);
   
   $scope.test_centers = [
-    'Test Center 1',
-    'Test Center 2',
-    'Test Center 3',
-    'Test Center 4',
+    'Choppadandi',
+    'Gangadhara',
+    'GopalRaoPet',
+    'Kottapalli (H)',
+    'Manakondur',
   ];
 }
 
