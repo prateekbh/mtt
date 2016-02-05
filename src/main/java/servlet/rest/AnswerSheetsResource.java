@@ -53,12 +53,9 @@ public class AnswerSheetsResource {
         }
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(jsonRequest);
-        String studentName = jsonNode.get(MTT_CONSTANTS.STUDENT_NAME_REQUEST_PARAM).textValue();
-        String questionPaperCode = jsonNode.get(MTT_CONSTANTS.QUESTION_PAPER_CODE_REQUEST_PARAM).textValue();
-        String schoolId = Utils.getSchoolIdForName(jsonNode.get(MTT_CONSTANTS.SCHOOL_ID_REQUEST_PARAM).asText());
-        String studentPlace = jsonNode.get(MTT_CONSTANTS.STUDENT_PLACE_REQUEST_PARAM).asText();
-        String studentCenter = Utils.getCenterIdForName(jsonNode.get(MTT_CONSTANTS.CENTER_ID_REQUEST_PARAM).asText());
-        String sex = jsonNode.get(MTT_CONSTANTS.STUDENT_SEX_REQUEST_PARAM).asText();
+        String studentId = jsonNode.get("student_id").textValue();
+        String questionPaperCode = jsonNode.get("question_paper_code").textValue();
+        
 
         Logger logger = Logger.getAnonymousLogger();
         logger.log(Level.SEVERE, "\n\n #### insertStudent form json : " + jsonRequest);
