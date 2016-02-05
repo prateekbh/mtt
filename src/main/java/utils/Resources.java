@@ -75,6 +75,13 @@ public class Resources {
         connection.close();
     }
 
+    public static Connection getConnection() throws Exception {
+        if (null == connection) {
+            loadResources();
+        }
+        return connection;
+    }
+
     public static String readFile(String path) throws IOException {
         byte[] encoded = Files.readAllBytes(Paths.get(path));
         return new String(encoded, Charset.defaultCharset());

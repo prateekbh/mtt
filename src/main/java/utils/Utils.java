@@ -164,15 +164,71 @@ public class Utils {
     public static void populateQuestionStats() throws Exception {
         String getAnswerSheetQuery = String.format(MTT_CONSTANTS.GET_ANSWER_SHEET_QUERY);
         System.out.println("getAnsSheetQuery : " + getAnswerSheetQuery);
-        Statement statement = Resources.connection.createStatement();
+        Statement statement = Resources.getConnection().createStatement();
         ResultSet resultSet = statement.executeQuery(getAnswerSheetQuery);
-        StringBuffer answerSheets = new StringBuffer();
+        List<String> summary = new ArrayList<String>();
         while (resultSet.next()) {
-            int paperCode = resultSet.getInt("set_number");
-            String answers = resultSet.getString("answers");
-            String set0Answers = convertToSet0Answers(answers, paperCode);
-
+            String answers = resultSet.getString("set0_equivalent_answers");
+            summary.add(answers);
         }
+
+        // index
+        int[] correct = new int[MTT_CONSTANTS.NUMBER_OF_QUESTIONS_IN_2016];
+        int[] wrong = new int[MTT_CONSTANTS.NUMBER_OF_QUESTIONS_IN_2016];
+        int[] unanswered = new int[MTT_CONSTANTS.NUMBER_OF_QUESTIONS_IN_2016];
+
+        for (String answer : summary) {
+            System.out.println("answer: " + answer);
+            for (int i = 0; i < MTT_CONSTANTS.NUMBER_OF_QUESTIONS_IN_2016; i++) {
+                char ch = answer.charAt(i);
+                if (ch == 'C') {
+                    correct[i]++;
+                } else if (ch == 'W') {
+                    wrong[i]++;
+                } else if (ch == 'U') {
+                    unanswered[i]++;
+                } else {
+                    System.out.println("SOMETHING WENT WRONG ... ILLEGAL CHAR as ANSWER : " + ch);
+                    throw new RuntimeException("ch : " + ch);
+                }
+            }
+        }
+
+        // compute effective scores
+        double score[] = new double[MTT_CONSTANTS.NUMBER_OF_QUESTIONS_IN_2016];
+        for (int i = 0; i < MTT_CONSTANTS.NUMBER_OF_QUESTIONS_IN_2016; i++) {
+            score[i] = effectiveScore(correct[i], wrong[i], unanswered[i]);
+        }
+
+        double negative[] = new double[MTT_CONSTANTS.NUMBER_OF_QUESTIONS_IN_2016];
+        for (int i = 0; i < MTT_CONSTANTS.NUMBER_OF_QUESTIONS_IN_2016; i++) {
+            negative[i] = negativeScore(correct[i], wrong[i], unanswered[i]);
+        }
+
+        System.out.println("Computed: ");
+        for (int i = 0; i < MTT_CONSTANTS.NUMBER_OF_QUESTIONS_IN_2016; i++) {
+            System.out.println("Question " + (i + 1) + " Correct: " + correct[i] + " Wrong: " + wrong[i] +
+                    " Unanswered: " + unanswered[i] + " score " + score[i] + " negative " + negative[i]);
+        }
+
+
+        // compute individual ranks
+
+
+        // Open
+
+        // Govt Open
+
+        // Govt Girls
+
+
+
+        // compute school ranks
+
+        // Open
+
+        // Govt
+
         return ;
     }
 
@@ -187,9 +243,13 @@ public class Utils {
     }
 
     public static double effectiveScore(int correctly_answered, int wrongly_answered, int unanswered) {
-        double result = 0.0;
-        result = MTT_CONSTANTS.MIN_SCORE + MTT_CONSTANTS.WEIGHT_FACTOR *
-                (1 - (double) correctly_answered / (double) (wrongly_answered + unanswered));
-        return result;
+        return MTT_CONSTANTS.MIN_SCORE + MTT_CONSTANTS.WEIGHT_FACTOR *
+                (1 - (double) correctly_answered / (double) (wrongly_answered + unanswered)); // 1 + 4 * (1 - solved/unsolved)
+    }
+
+    public static double negativeScore(int corrects, int wrongs, int unanswered) {
+        double result =   ((double)corrects)/wrongs;
+        result = Math.max(0.1, result);     // at least 0.1
+        return Math.min(2.0, result);       // at most 2.0
     }
 }
