@@ -49,7 +49,9 @@ public class Signup {
             responseBuilder.status(MTT_CONSTANTS.HTTP_CONFLICT_CODE);
             return responseBuilder.build();
         }
-        insertNewVolunteerIntoDB(vuname, pwd, volunteerName, volunteerCenterId);
+        synchronized (this) {
+            insertNewVolunteerIntoDB(vuname, pwd, volunteerName, volunteerCenterId);
+        }
         responseBuilder.status(MTT_CONSTANTS.HTTP_OK_CODE);
         responseBuilder.cookie(new Login().getUserCookie(vuname));
         return responseBuilder.build();

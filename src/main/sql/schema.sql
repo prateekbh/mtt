@@ -61,6 +61,7 @@ create table if not exists student (
     modified_on timestamp without time zone
 );
 
+
 --     correctly_answered_questions int[],
 --       incorrectly_answered_questions int[],
 --       unanswered_questions int[],
@@ -99,7 +100,8 @@ create table if not exists config (
 );
 
 create table if not exists answer_sheet (
-  studentId integer,
+  student_id integer,
+  set_number integer,
   answers varchar(100),
   created_on timestamp without time zone,
   modified_on timestamp without time zone

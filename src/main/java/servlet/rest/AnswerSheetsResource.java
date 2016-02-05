@@ -7,7 +7,6 @@ import utils.MTT_CONSTANTS;
 import utils.Resources;
 import utils.Utils;
 
-import javax.rmi.CORBA.Util;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -41,45 +40,52 @@ public class AnswerSheetsResource {
                                @HeaderParam(MTT_CONSTANTS.HTTP_COOKIE_HEADER_NAME) String cookie) throws Exception {
         String authToken = Utils.getAuthToken(cookie);
         if (!Utils.isValidAuthToken(authToken)) {
-            Response.ResponseBuilder builder = Response.serverError();
-            builder.status(MTT_CONSTANTS.HTTP_UNAUTH_CODE);
-            return builder.build();
+//            Response.ResponseBuilder builder = Response.serverError();
+//            builder.status(MTT_CONSTANTS.HTTP_UNAUTH_CODE);
+//            return builder.build();
         }
 
         System.out.println("Received answers :) jsonRequest: " + jsonRequest);
-        boolean testing = true;
-        if (testing) {
-            return Response.ok().status(MTT_CONSTANTS.HTTP_OK_CODE).build();
-        }
+
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(jsonRequest);
         String studentId = jsonNode.get("student_id").textValue();
         String questionPaperCode = jsonNode.get("question_paper_code").textValue();
+        JsonNode answers = jsonNode.get("answers");
+        System.out.println("extracted studentId: " + studentId + " qp code " + questionPaperCode + " answers " + answers);
+        // TODO: shit hacky way. Gotta cleanup.
+        String marksCard = "";
+        for (int i = 1; i <= MTT_CONSTANTS.NUMBER_OF_QUESTIONS_IN_2016; i++) {
+            System.out.println("i: " + i + " resp " + answers.get(String.valueOf(i)));
+            JsonNode answer = answers.get(String.valueOf(i));
+            if (null == answer) {
+                marksCard += 'U';   // unanswered
+            } else {
+                if (answer.asText().equalsIgnoreCase("Correct")) {
+                    marksCard += 'C';
+                } else if(answer.asText().equalsIgnoreCase("Wrong")) {
+                    marksCard += 'W';
+                } else {
+                    System.out.println("************************ SOMETHING WRONG ************************");
+                    throw new RuntimeException("Improper string as answer: " + answer);
+                }
+            }
+        }
 
+        Logger logger = Logger.getAnonymousLogger();
+        logger.log(Level.SEVERE, "\n\n #### inserting answers of student " + studentId + " answers: " + marksCard);
 
-//        Logger logger = Logger.getAnonymousLogger();
-//        logger.log(Level.SEVERE, "\n\n #### insertStudent form json : " + jsonRequest);
-//
-        int id = 1;
-//        synchronized (this) {
-//            id = Utils.getMaxOfTable(MTT_CONSTANTS.TABLE_NAME_STUDENT, MTT_CONSTANTS.STUDENT_TABLE_COLUMN_ID) + 1;
-//            System.out.println("student id : " + id);
-//            insertStudentIntoDB(id, questionPaperCode, studentName, schoolId, studentPlace, studentCenter, sex);
-//        }
-//        System.out.println("\n\nInserted student successfully.\n\n");
-        HashMap<String, String> resp = new HashMap<String, String>(2);
-        resp.put(MTT_CONSTANTS.STUDENT_ID_REQUEST_PARAM, String.valueOf(id));
-        resp.put(MTT_CONSTANTS.QUESTION_PAPER_CODE_REQUEST_PARAM, String.valueOf(questionPaperCode));
-        return Response.ok(new Gson().toJson(resp)).build();
+        insertAnswersIntoDB(studentId, questionPaperCode, marksCard);
+        System.out.println("\n\nInserted answers successfully.\n\n");
+        return Response.ok().build();
     }
 
-    private void insertStudentIntoDB(int id, String questionPaperCode, String studentName, String schoolId,
-                                     String place, String center, String sex) throws Exception {
+    private void insertAnswersIntoDB(String studentId, String questionPaperCode, String answers) throws Exception {
 
-        String insertStudentQuery = String.format(MTT_CONSTANTS.INSERT_STUDENT_QUERY, String.valueOf(id),
-                questionPaperCode, studentName, schoolId, place, center, sex);
-        System.out.println("insertStudentQuery : " + insertStudentQuery);
+        String insertAnswersQuery = String.format(MTT_CONSTANTS.INSERT_ANSWERS_QUERY, studentId, questionPaperCode,
+                answers);
+        System.out.println("insertAnsQuery: " + insertAnswersQuery);
         Statement getStatement = Resources.connection.createStatement();
-        getStatement.execute(insertStudentQuery);
+        getStatement.execute(insertAnswersQuery);
     }
 }
