@@ -57,16 +57,16 @@ public class AnswerSheetsResource {
         String questionPaperCode = jsonNode.get("question_paper_code").textValue();
 
 
-        Logger logger = Logger.getAnonymousLogger();
-        logger.log(Level.SEVERE, "\n\n #### insertStudent form json : " + jsonRequest);
-
+//        Logger logger = Logger.getAnonymousLogger();
+//        logger.log(Level.SEVERE, "\n\n #### insertStudent form json : " + jsonRequest);
+//
         int id = 1;
-        synchronized (this) {
-            id = Utils.getMaxOfTable(MTT_CONSTANTS.TABLE_NAME_STUDENT, MTT_CONSTANTS.STUDENT_TABLE_COLUMN_ID) + 1;
-            System.out.println("student id : " + id);
-            insertStudentIntoDB(id, questionPaperCode, studentName, schoolId, studentPlace, studentCenter, sex);
-        }
-        System.out.println("\n\nInserted student successfully.\n\n");
+//        synchronized (this) {
+//            id = Utils.getMaxOfTable(MTT_CONSTANTS.TABLE_NAME_STUDENT, MTT_CONSTANTS.STUDENT_TABLE_COLUMN_ID) + 1;
+//            System.out.println("student id : " + id);
+//            insertStudentIntoDB(id, questionPaperCode, studentName, schoolId, studentPlace, studentCenter, sex);
+//        }
+//        System.out.println("\n\nInserted student successfully.\n\n");
         HashMap<String, String> resp = new HashMap<String, String>(2);
         resp.put(MTT_CONSTANTS.STUDENT_ID_REQUEST_PARAM, String.valueOf(id));
         resp.put(MTT_CONSTANTS.QUESTION_PAPER_CODE_REQUEST_PARAM, String.valueOf(questionPaperCode));
