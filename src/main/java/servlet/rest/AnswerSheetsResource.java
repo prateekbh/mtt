@@ -11,6 +11,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,7 +23,8 @@ public class AnswerSheetsResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getStudents(@HeaderParam(MTT_CONSTANTS.HTTP_COOKIE_HEADER_NAME) String cookie) throws Exception {
+    // todo
+    public Response getAnswerSheets(@HeaderParam(MTT_CONSTANTS.HTTP_COOKIE_HEADER_NAME) String cookie) throws Exception {
         String authToken = Utils.getAuthToken(cookie);
         if (!Utils.isValidAuthToken(authToken)) {
             Response.ResponseBuilder builder = Response.serverError();
@@ -30,7 +32,7 @@ public class AnswerSheetsResource {
             return builder.build();
         }
 
-        String json = new Gson().toJson(Utils.getStudentList());
+        String json = new Gson().toJson(new ArrayList<String>());
         return Response.ok(json, MediaType.APPLICATION_JSON).build();
     }
 
@@ -72,18 +74,19 @@ public class AnswerSheetsResource {
             }
         }
 
+        String set0MarksCard = Utils.convertToSet0Answers(marksCard, Integer.parseInt(questionPaperCode));
         Logger logger = Logger.getAnonymousLogger();
-        logger.log(Level.SEVERE, "\n\n #### inserting answers of student " + studentId + " answers: " + marksCard);
+        logger.log(Level.SEVERE, "\n\n #### inserting answers of student " + studentId + " answers: " + marksCard + " set0MarksCard " + set0MarksCard);
 
-        insertAnswersIntoDB(studentId, questionPaperCode, marksCard);
+        insertAnswersIntoDB(studentId, questionPaperCode, marksCard, set0MarksCard);
         System.out.println("\n\nInserted answers successfully.\n\n");
         return Response.ok().build();
     }
 
-    private void insertAnswersIntoDB(String studentId, String questionPaperCode, String answers) throws Exception {
+    private void insertAnswersIntoDB(String studentId, String questionPaperCode, String answers, String set0Answers) throws Exception {
 
         String insertAnswersQuery = String.format(MTT_CONSTANTS.INSERT_ANSWERS_QUERY, studentId, questionPaperCode,
-                answers);
+                answers, set0Answers);
         System.out.println("insertAnsQuery: " + insertAnswersQuery);
         Statement getStatement = Resources.connection.createStatement();
         getStatement.execute(insertAnswersQuery);

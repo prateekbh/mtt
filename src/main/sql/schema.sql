@@ -1,5 +1,5 @@
 --drop table question, contest, student, volunteer, center, volunteer_auth_token, school, config cascade;
-drop table question, contest, student, school, answers, place cascade;
+drop table question, contest, student, school, answers, place, answer_sheet cascade;
 
 create table if not exists question (
     serial_number SERIAL PRIMARY KEY,
@@ -103,6 +103,7 @@ create table if not exists answer_sheet (
   student_id integer,
   set_number integer,
   answers varchar(100),
+  set0_equivalent_answers varchar(100),
   created_on timestamp without time zone,
   modified_on timestamp without time zone
 );

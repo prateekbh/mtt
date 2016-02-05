@@ -116,6 +116,7 @@ public class MTT_CONSTANTS {
 
     public static final String TABLE_NAME_PLACE = "place";
     public static final String TABLE_NAME_SCHOOL = "school";
+    public static final String TABLE_NAME_ANSWER_SHEET = "answer_sheet";
     // request param names
 
     // common request params
@@ -178,7 +179,7 @@ public class MTT_CONSTANTS {
 
     // TODO: clean this shit
     public static final String INSERT_ANSWERS_QUERY = "insert into answer_sheet(student_id, set_number, " +
-            "answers, created_on, modified_on) values(%s, %s, '%s', now(), now())";
+            "answers, set0_equivalent_answers, created_on, modified_on) values(%s, %s, '%s', '%s', now(), now())";
 
     public static final String GET_STUDENT_RECORD_QUERY = "select * from student where " + STUDENT_TABLE_COLUMN_ID
             + " = %s";
@@ -186,8 +187,11 @@ public class MTT_CONSTANTS {
 
     public static final String GET_PLACES_QUERY = "select * from " + TABLE_NAME_PLACE +
             " where name ilike '%%%s%%' or mandal ilike '%%%s%%'";
+
     public static final String GET_SCHOOLS_QUERY = "select * from " + TABLE_NAME_SCHOOL +
             " where name ilike '%%%s%%' or village ilike '%%%s%%' or mandal ilike '%%%s%%'";
+
+    public static final String GET_ANSWER_SHEET_QUERY = "select * from " + TABLE_NAME_ANSWER_SHEET;
 
     public static final int HTTP_UNAUTH_CODE = 401;
     public static final int HTTP_NOT_FOUND_CODE = 404;

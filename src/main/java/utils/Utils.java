@@ -1,5 +1,6 @@
 package utils;
 
+import servlet.Sets;
 import servlet.Student;
 
 import java.lang.reflect.Array;
@@ -132,15 +133,15 @@ public class Utils {
         // TODO
         String[] set0 = new String[] {
                 " 1 12233445 ?",
-                "2 f(n)g(n) ?",
-                "3 2D ?",
-                "4 Vidya ?",
-                "5 Ram Sam ?",
-                "6 How many ?",
-                "7 p and q ?",
-                "8 5 men ?",
-                "9 fast runner ?",
-                "10 ABC?"
+                " 2 f(n)g(n) ?",
+                " 3 2D ?",
+                " 4 Lata was ?",
+                " 5 Ram Sam ?",
+                " 6 How many ?",
+                " 7 p and q ?",
+                " 8 5 men ?",
+                " 9 fast runner ?",
+                " 10 ABC?"
         };
         return set0;
     }
@@ -160,9 +161,29 @@ public class Utils {
         return result;
     }
 
-    public static List<Student> getStudentList() throws Exception {
-        // TODO:
-        return new ArrayList<Student>();
+    public static void populateQuestionStats() throws Exception {
+        String getAnswerSheetQuery = String.format(MTT_CONSTANTS.GET_ANSWER_SHEET_QUERY);
+        System.out.println("getAnsSheetQuery : " + getAnswerSheetQuery);
+        Statement statement = Resources.connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(getAnswerSheetQuery);
+        StringBuffer answerSheets = new StringBuffer();
+        while (resultSet.next()) {
+            int paperCode = resultSet.getInt("set_number");
+            String answers = resultSet.getString("answers");
+            String set0Answers = convertToSet0Answers(answers, paperCode);
+
+        }
+        return ;
+    }
+
+    public static String convertToSet0Answers(String answers, int code) {
+        char[] set0Answers = new char[MTT_CONSTANTS.NUMBER_OF_QUESTIONS_IN_2016];
+        ArrayList<Integer> order = Sets.getOrderForCode(code);
+
+        for (int i = 0; i < MTT_CONSTANTS.NUMBER_OF_QUESTIONS_IN_2016; i++) {
+            set0Answers[order.get(i) - 1] = answers.charAt(i);
+        }
+        return new String(set0Answers);
     }
 
     public static double effectiveScore(int correctly_answered, int wrongly_answered, int unanswered) {

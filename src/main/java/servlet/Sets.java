@@ -88,4 +88,9 @@ public class Sets {
         }
         return questionAnswers;
     }
+
+    public static int getSet0OrderOfQuestion(int code, Integer index) {
+        ArrayList<Integer> order = getOrderForCode(code);
+        return order.indexOf(code);
+    }
 }

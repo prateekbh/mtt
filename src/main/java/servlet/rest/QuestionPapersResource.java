@@ -11,6 +11,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,7 +22,7 @@ public class QuestionPapersResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Response getStudents(@HeaderParam(MTT_CONSTANTS.HTTP_COOKIE_HEADER_NAME) String cookie) throws Exception {
+    public Response getQuestionsList(@HeaderParam(MTT_CONSTANTS.HTTP_COOKIE_HEADER_NAME) String cookie) throws Exception {
         String authToken = Utils.getAuthToken(cookie);
         if (!Utils.isValidAuthToken(authToken)) {
             Response.ResponseBuilder builder = Response.serverError();
@@ -29,7 +30,7 @@ public class QuestionPapersResource {
             return builder.build();
         }
         // TODO:
-        String json = new Gson().toJson(Utils.getStudentList());
+        String json = new Gson().toJson(new ArrayList<String>());
         return Response.ok(json, MediaType.APPLICATION_JSON).build();
     }
 }

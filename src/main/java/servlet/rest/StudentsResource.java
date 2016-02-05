@@ -12,6 +12,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,7 +32,7 @@ public class StudentsResource {
             return builder.build();
         }
 
-        String json = new Gson().toJson(Utils.getStudentList());
+        String json = new Gson().toJson(new ArrayList<String>());
         return Response.ok(json, MediaType.APPLICATION_JSON).build();
     }
 
