@@ -258,7 +258,9 @@ public class Utils {
                 continue;
             }
             double studentScore = 0.0;
+            student.setScore(0.0);
             for (int i = 0; i < MTT_CONSTANTS.NUMBER_OF_QUESTIONS_IN_2016; i++) {
+                System.out.println("studentScore: " + studentScore);
                 char ch = correctedAnswers.charAt(i);
                 if (ch == 'C' || i == 2) {
                     studentScore += correct[i];
@@ -269,7 +271,7 @@ public class Utils {
                 }
             }
             student.setScore(studentScore);
-            if (studentScore > 100) {
+            if (studentScore < 20) {
                 System.out.println(" ********** student: " + student);
             }
 //            System.out.println("Student result: " + student);
