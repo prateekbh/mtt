@@ -268,6 +268,9 @@ public class Utils {
                     throw new Exception("Illegal response in answer sheet.");
                 }
             }
+            if (studentScore > 100) {
+                System.out.println(" ********** student: " + student);
+            }
             student.setScore(studentScore);
 //            System.out.println("Student result: " + student);
         }
