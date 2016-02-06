@@ -130,16 +130,16 @@ public class Utils {
     public static final String[] getQuestionsForSet0() {
         // TODO
         String[] set0 = new String[] {
-                " 1 12233445 ?",
-                " 2 f(n)g(n) ?",
-                " 3 2D ?",
+                " 1 1.2 + 2.3 + 3.4 + 4.5 ?",
+                " 2 f(n)g(n) find g(50) ?",
+                " 3 Wrong question..",
                 " 4 Lata was ?",
-                " 5 Ram Sam ?",
-                " 6 How many ?",
-                " 7 p and q ?",
-                " 8 5 men ?",
-                " 9 fast runner ?",
-                " 10 ABC?"
+                " 5 Ram Sam 20% discount ?",
+                " 6 How many numbers under 1000 divisible 8 or 6?",
+                " 7 p and q ... p/q + q/p = ?",
+                " 8 5 men 24 days, 2 women 60 days?",
+                " 9 fast runner, slow walker ?",
+                " 10 ABC right angle triangle "
         };
         return set0;
     }
