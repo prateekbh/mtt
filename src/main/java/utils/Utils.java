@@ -355,7 +355,7 @@ public class Utils {
 
     public static double effectiveScore(int correctly_answered, int wrongly_answered, int unanswered) {
         return MTT_CONSTANTS.MIN_SCORE + MTT_CONSTANTS.WEIGHT_FACTOR *
-                (1 - (double) correctly_answered / (double) (wrongly_answered + unanswered + correctly_answered)); // 1 + 4 * (1 - solved/unsolved)
+                (1 - ((double) correctly_answered / (double) (wrongly_answered + unanswered + correctly_answered))); // 1 + 4 * (1 - solved/total)
     }
 
 //    public static double negativeScore(int corrects, int wrongs, int unanswered) {
