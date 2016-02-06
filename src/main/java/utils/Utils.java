@@ -6,9 +6,7 @@ import servlet.Student;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.UUID;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -254,7 +252,10 @@ public class Utils {
         for (Student student : allStudents) {
             String correctedAnswers = summary.get(student.getId());
             if (null == correctedAnswers) {
-                throw new RuntimeException("This student does not have answers entry." + student);
+                // todo:
+//                throw new RuntimeException("This student does not have answers entry." + student);
+                System.out.println("does not have answers entry: " + student);
+                continue;
             }
             double studentScore = 0.0;
             for (int i = 0; i < MTT_CONSTANTS.NUMBER_OF_QUESTIONS_IN_2016; i++) {
@@ -272,8 +273,14 @@ public class Utils {
         }
 
         // Open top 25
-        ArrayList<Student> openTop25 = getTopNStudents(allStudents, 25);
+//        ArrayList<Student> openTop25 = getTopNStudents(allStudents, 25);
 
+        ArrayList<Student> sorted = sort(allStudents);
+
+        System.out.println("********************** ################################## ******************************");
+        for (Student st : sorted) {
+            System.out.println(st);
+        }
 
 
         // Govt Open
@@ -291,13 +298,46 @@ public class Utils {
         return ;
     }
 
+    public static ArrayList<Student> sort(ArrayList<Student> all) {
+        ArrayList<Student> result = new ArrayList<Student>(all.size());
+        for (int i = 0; i < all.size(); i++) {
+            for (int j = i + 1; j < all.size(); j++) {
+                Student target = all.get(i);
+                Student source = all.get(j);
+                if (target.getScore() < source.getScore()) {
+                    all.set(i, source);
+                    all.set(j, target);
+                }
+            }
+        }
+        return all;
+    }
+
     public static ArrayList<Student> getTopNStudents(ArrayList<Student> studentsList, int number) {
         ArrayList<Student> result = new ArrayList<Student>(number);
-        double leastScoreInToppers = -1.0;
-        for (int i = 0; i < studentsList.size(); i++) {
-
+        double leastScoreInToppers = 0.0;
+        Set<Integer> visited = new HashSet<Integer>();
+        for (int i = 0; i < number; i++) {
+            double max = -1;
+            Student maxStudent = null;
+            for (Student student : studentsList) {
+                if (visited.contains(Integer.valueOf(student.getId()))) continue;
+                if (max <= student.getScore()) {
+                    max = student.getScore();
+                    maxStudent = student;
+                }
+            }
+            result.add(maxStudent);
         }
         return result;
+    }
+
+    public static double getMin(ArrayList<Student> list) {
+        double min = 10000.0;
+        for (int i = 0; i <list.size(); i++) {
+            min = Math.min(min, list.get(i).getScore());
+        }
+        return min;
     }
 
     public static String convertToSet0Answers(String answers, int code) {
