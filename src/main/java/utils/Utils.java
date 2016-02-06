@@ -269,7 +269,7 @@ public class Utils {
                 }
             }
             student.setScore(studentScore);
-            System.out.println("Student result: " + student);
+//            System.out.println("Student result: " + student);
         }
 
         // Open top 25
@@ -278,7 +278,10 @@ public class Utils {
         ArrayList<Student> sorted = sort(allStudents);
 
         System.out.println("********************** ################################## ******************************");
+        int k = 0;
         for (Student st : sorted) {
+            if (k > 50) break;
+            k++;
             System.out.println(st);
         }
 
