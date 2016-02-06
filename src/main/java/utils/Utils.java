@@ -263,7 +263,7 @@ public class Utils {
                 System.out.println("studentScore: " + studentScore);
                 char ch = correctedAnswers.charAt(i);
                 if (ch == 'C' || i == 2) {
-                    studentScore += correct[i];
+                    studentScore += score[i];
                 } else if (ch == 'W') {
 //                    studentScore -= negative[i];
                 } else if (ch != 'U') {
