@@ -217,7 +217,7 @@ public class Utils {
 //            System.out.println("answer: " + answer);
             for (int i = 0; i < MTT_CONSTANTS.NUMBER_OF_QUESTIONS_IN_2016; i++) {
                 char ch = answer.charAt(i);
-                if (ch == 'C') {
+                if (ch == 'C' || i == 2) {
                     correct[i]++;
                 } else if (ch == 'W') {
                     wrong[i]++;
@@ -260,7 +260,7 @@ public class Utils {
             double studentScore = 0.0;
             for (int i = 0; i < MTT_CONSTANTS.NUMBER_OF_QUESTIONS_IN_2016; i++) {
                 char ch = correctedAnswers.charAt(i);
-                if (ch == 'C') {
+                if (ch == 'C' || i == 2) {
                     studentScore += correct[i];
                 } else if (ch == 'W') {
 //                    studentScore -= negative[i];
