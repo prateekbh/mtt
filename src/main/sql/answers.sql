@@ -2,7 +2,7 @@ insert into answers(answer, created_on, modified_on) values('333300', now(), now
 insert into answers(answer, created_on, modified_on) values('207', now(), now());
 insert into answers(answer, created_on, modified_on) values('CORRECT FOR ALL', now(), now());
 insert into answers(answer, created_on, modified_on) values('1200', now(), now());
-insert into answers(answer, created_on, modified_on) values('150', now(), now());
+insert into answers(answer, created_on, modified_on) values('50', now(), now());
 insert into answers(answer, created_on, modified_on) values('249', now(), now());
 insert into answers(answer, created_on, modified_on) values('16', now(), now());
 insert into answers(answer, created_on, modified_on) values('20', now(), now());

@@ -20,9 +20,7 @@ insert into school(name, village, mandal, is_govt) values('Zilla Parishat High S
 insert into school(name, village, mandal, is_govt) values('Zilla Parishat High School Ooturu', 'Ooturu', 'Manakondur', true);
 insert into school(name, village, mandal, is_govt) values('Zilla Parishat High School Annaram', 'Annaram', 'Manakondur', true);
 insert into school(name, village, mandal, is_govt) values('Zilla Parishat High School Gangipelli', 'Gangipelli', 'Manakondur', true);
-insert into school(name, village, mandal, is_govt) values('Zilla Parishat High School Gattududdenapalli', 'Gattududdenapalli', 'Manakondur', true);
-insert into school(name, village, mandal, is_govt) values('Zilla Parishat High School Gattududdenapalli', 'Gattududdenapalli', 'Manakondur', true);
-insert into school(name, village, mandal, is_govt) values('Zilla Parishat High School Gattududdenapalli', 'Gattududdenapalli', 'Manakondur', true);
+
 
 
 insert into school(name, village, mandal, is_govt) values('Model School, Gangadhara', 'Gangadhara', 'Gangahdara', true);
@@ -30,6 +28,7 @@ insert into school(name, village, mandal, is_govt) values('Zilla Parishat High S
 insert into school(name, village, mandal, is_govt) values('Zilla Parishat High School Gundi', 'Gundi', 'Ramadugu', true);
 insert into school(name, village, mandal, is_govt) values('Zilla Parishat High School Ramadugu', 'Ramadugu', 'Ramadugu', true);
 insert into school(name, village, mandal, is_govt) values('Model School Ramadugu', 'Ramadugu', 'Ramadugu', true);
+
 
 
 -- private schools
@@ -45,3 +44,12 @@ insert into school(name, village, mandal, is_govt) values('Veenadhari High Schoo
 insert into school(name, village, mandal, is_govt) values('Others Govt School', 'Unknown', 'Unknown', true);
 
 insert into school(name, village, mandal, is_govt) values('Others Private School', 'Unknown', 'Unknown', false);
+
+
+----------------- entering now
+
+
+insert into school(name, village, mandal, is_govt) values('Zilla Parishat High School Gattu Bootkur', 'Gattu Bootkur', 'Gangadhara', true);
+insert into school(name, village, mandal, is_govt) values('Zilla Parishat High School Rudraram', 'Rudraram', 'Ramadugu', true);
+
+insert into school(name, village, mandal, is_govt) values('Saraswathi English Medium School', 'Velichala', 'Ramadugu', true);

@@ -14,7 +14,7 @@ public class ComputeStats {
 
         System.out.println("ans for Q1 " + ans);
         System.out.println("Answer 2 : " + g1(50));
-//        Utils.populateQuestionStats();
+        Utils.populateQuestionStats();
     }
 
     public static int f1(int n) {
