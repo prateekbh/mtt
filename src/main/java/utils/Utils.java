@@ -238,15 +238,10 @@ public class Utils {
             score[i] = effectiveScore(correct[i], wrong[i], unanswered[i]);
         }
 
-        double negative[] = new double[MTT_CONSTANTS.NUMBER_OF_QUESTIONS_IN_2016];
-        for (int i = 0; i < MTT_CONSTANTS.NUMBER_OF_QUESTIONS_IN_2016; i++) {
-            negative[i] = negativeScore(correct[i], wrong[i], unanswered[i]);
-        }
-
         System.out.println("Computed: ");
         for (int i = 0; i < MTT_CONSTANTS.NUMBER_OF_QUESTIONS_IN_2016; i++) {
             System.out.println("Question " + (i + 1) + " Correct: " + correct[i] + " Wrong: " + wrong[i] +
-                    " Unanswered: " + unanswered[i] + " score " + score[i] + " negative " + negative[i]);
+                    " Unanswered: " + unanswered[i] + " score " + score[i]);
         }
 
         System.out.println("********** computing student stats");
@@ -267,7 +262,7 @@ public class Utils {
                 if (ch == 'C') {
                     studentScore += correct[i];
                 } else if (ch == 'W') {
-                    studentScore -= negative[i];
+//                    studentScore -= negative[i];
                 } else if (ch != 'U') {
                     throw new Exception("Illegal response in answer sheet.");
                 }
@@ -320,9 +315,9 @@ public class Utils {
                 (1 - (double) correctly_answered / (double) (wrongly_answered + unanswered)); // 1 + 4 * (1 - solved/unsolved)
     }
 
-    public static double negativeScore(int corrects, int wrongs, int unanswered) {
-        double result =   ((double)corrects)/wrongs;
-        result = Math.max(0.1, result);     // at least 0.1
-        return Math.min(2.0, result);       // at most 2.0
-    }
+//    public static double negativeScore(int corrects, int wrongs, int unanswered) {
+//        double result =   ((double)corrects)/wrongs;
+//        result = Math.max(0.1, result);     // at least 0.1
+//        return Math.min(2.0, result);       // at most 2.0
+//    }
 }
