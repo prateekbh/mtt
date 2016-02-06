@@ -173,9 +173,22 @@ public class Utils {
         return summary;
     }
 
-    public static ArrayList<Student> getAllStudents() throws Exception{
-        String getStudentsQuery = String.format(MTT_CONSTANTS.GET_ALL_STUDENTS_QUERY);
-        System.out.println("getAllStQuery : " + getStudentsQuery);
+    public static ArrayList<Student> getAllStudents() throws Exception {
+        return getStudentsByQuery(MTT_CONSTANTS.GET_ALL_STUDENTS_QUERY);
+    }
+
+    public static ArrayList<Student> getGovtStudents() throws Exception {
+        String query = "select * from student where school in (select name from school where is_govt = true)";
+        return getStudentsByQuery(query);
+    }
+
+    public static ArrayList<Student> getGovtGirlStudents() throws Exception {
+        String query = "select * from student where school in (select name from school where is_govt = true)" +
+                "and sex = 'Female'";
+        return getStudentsByQuery(query);
+    }
+
+    public static ArrayList<Student> getStudentsByQuery(String getStudentsQuery) throws Exception {
         Statement statement = Resources.getConnection().createStatement();
         ResultSet resultSet = statement.executeQuery(getStudentsQuery);
         ArrayList<Student> students = new ArrayList<Student>();
@@ -190,6 +203,7 @@ public class Utils {
                     resultSet.getString(MTT_CONSTANTS.STUDENT_TABLE_COLUMN_GENDER),
                     0.0         // temp value
             );
+            students.add(student);
         }
         return students;
     }
@@ -240,12 +254,12 @@ public class Utils {
         // compute individual ranks
 
         // preprocessing
-        ArrayList<Student> students = getAllStudents();
-        System.out.println("total students: " + students.size());
-        for (Student student : students) {
+        ArrayList<Student> allStudents = getAllStudents();
+        System.out.println("total students: " + allStudents.size());
+        for (Student student : allStudents) {
             String correctedAnswers = summary.get(student.getId());
             if (null == correctedAnswers) {
-                throw new RuntimeException("Cannot complete process. This student does not have answers entry.");
+                throw new RuntimeException("This student does not have answers entry." + student);
             }
             double studentScore = 0.0;
             for (int i = 0; i < MTT_CONSTANTS.NUMBER_OF_QUESTIONS_IN_2016; i++) {
@@ -262,7 +276,10 @@ public class Utils {
             System.out.println("Student result: " + student);
         }
 
-        // Open
+        // Open top 25
+        ArrayList<Student> openTop25 = getTopNStudents(allStudents, 25);
+
+
 
         // Govt Open
 
@@ -277,6 +294,15 @@ public class Utils {
         // Govt
 
         return ;
+    }
+
+    public static ArrayList<Student> getTopNStudents(ArrayList<Student> studentsList, int number) {
+        ArrayList<Student> result = new ArrayList<Student>(number);
+        double leastScoreInToppers = -1.0;
+        for (int i = 0; i < studentsList.size(); i++) {
+
+        }
+        return result;
     }
 
     public static String convertToSet0Answers(String answers, int code) {
