@@ -22,27 +22,25 @@ public class Student {
 
     // Student Data
 
-    String name;
 
     int id;
+    String name;
+    int questionPaperCode;
+    String school;
     String place;
-    int schoolId;
-    int center;
+    String center;
+    String gender;
+    double score;
 
-    public Student(String name, int id, String place, int schoolId, int center) {
-        this.name = name;
+    public Student(int id, String name, int questionPaperCode, String school, String place, String center, String gender, double score) {
         this.id = id;
-        this.place = place;
-        this.schoolId = schoolId;
-        this.center = center;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
         this.name = name;
+        this.questionPaperCode = questionPaperCode;
+        this.school = school;
+        this.place = place;
+        this.center = center;
+        this.gender = gender;
+        this.score = score;
     }
 
     public int getId() {
@@ -53,39 +51,28 @@ public class Student {
         this.id = id;
     }
 
-    public int getSchoolId() {
-        return schoolId;
+    public String getName() {
+        return name;
     }
 
-    public void setSchoolId(int schoolId) {
-        this.schoolId = schoolId;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getCenter() {
-        return center;
+    public int getQuestionPaperCode() {
+        return questionPaperCode;
     }
 
-    public void setCenter(int center) {
-        this.center = center;
+    public void setQuestionPaperCode(int questionPaperCode) {
+        this.questionPaperCode = questionPaperCode;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (null == o || !(o instanceof Student)) return false;
-        Student that = (Student) o;
-        return this.id == that.id;
+    public String getSchool() {
+        return school;
     }
 
-    @Override
-    public String toString() {
-        return "Student{" +
-                "name='" + name + '\'' +
-                ", id=" + id +
-                ", place='" + place + '\'' +
-                ", schoolId=" + schoolId +
-                ", center=" + center +
-                '}';
+    public void setSchool(String school) {
+        this.school = school;
     }
 
     public String getPlace() {
@@ -94,5 +81,43 @@ public class Student {
 
     public void setPlace(String place) {
         this.place = place;
+    }
+
+    public String getCenter() {
+        return center;
+    }
+
+    public void setCenter(String center) {
+        this.center = center;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public double getScore() {
+        return score;
+    }
+
+    public void setScore(double score) {
+        this.score = score;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", questionPaperCode=" + questionPaperCode +
+                ", school='" + school + '\'' +
+                ", place='" + place + '\'' +
+                ", center='" + center + '\'' +
+                ", gender='" + gender + '\'' +
+                ", score=" + score +
+                '}';
     }
 }

@@ -43,7 +43,7 @@ public class MTT_CONSTANTS {
     public static final String STUDENT_TABLE_COLUMN_SCHOOL = "school";
     public static final String STUDENT_TABLE_COLUMN_PLACE = "place";
     public static final String STUDENT_TABLE_COLUMN_CENTER = "center";
-    public static final String STUDENT_TABLE_COLUMN_SEX = "sex";
+    public static final String STUDENT_TABLE_COLUMN_GENDER = "sex";
     public static final String STUDENT_TABLE_COLUMN_CREATED_ON = "created_on";
     public static final String STUDENT_TABLE_COLUMN_MODIFIED_ON = "modified_on";
 //    public static final String STUDENT_TABLE_COLUMN_CORRECTLY_ANSWERED_QUESTIONS = "correctly_answered_questions";
@@ -174,7 +174,7 @@ public class MTT_CONSTANTS {
     public static final String INSERT_STUDENT_QUERY = "insert into " + TABLE_NAME_STUDENT + "("
      + STUDENT_TABLE_COLUMN_ID + ", " + STUDENT_TABLE_COLUMN_QUESTION_PAPER_CODE + ", " + STUDENT_TABLE_COLUMN_NAME
             + ", " + STUDENT_TABLE_COLUMN_SCHOOL + ", " + STUDENT_TABLE_COLUMN_PLACE + ", "
-            + STUDENT_TABLE_COLUMN_CENTER + ", " + STUDENT_TABLE_COLUMN_SEX + ", " + STUDENT_TABLE_COLUMN_CREATED_ON + ", "
+            + STUDENT_TABLE_COLUMN_CENTER + ", " + STUDENT_TABLE_COLUMN_GENDER + ", " + STUDENT_TABLE_COLUMN_CREATED_ON + ", "
             + STUDENT_TABLE_COLUMN_MODIFIED_ON + ") values('%s', '%s', '%s', '%s', '%s', '%s', '%s', now(), now())" ;
 
     // TODO: clean this shit
@@ -192,6 +192,8 @@ public class MTT_CONSTANTS {
             " where name ilike '%%%s%%' or village ilike '%%%s%%' or mandal ilike '%%%s%%'";
 
     public static final String GET_ANSWER_SHEET_QUERY = "select * from " + TABLE_NAME_ANSWER_SHEET;
+    public static final String GET_ALL_STUDENTS_QUERY = "select * from " + TABLE_NAME_STUDENT;
+
 
     public static final int HTTP_UNAUTH_CODE = 401;
     public static final int HTTP_NOT_FOUND_CODE = 404;

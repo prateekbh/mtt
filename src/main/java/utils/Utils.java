@@ -3,13 +3,11 @@ package utils;
 import servlet.Sets;
 import servlet.Student;
 
-import java.lang.reflect.Array;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -161,23 +159,49 @@ public class Utils {
         return result;
     }
 
-    public static void populateQuestionStats() throws Exception {
+    public static HashMap<Integer, String> getAnswers() throws Exception{
         String getAnswerSheetQuery = String.format(MTT_CONSTANTS.GET_ANSWER_SHEET_QUERY);
         System.out.println("getAnsSheetQuery : " + getAnswerSheetQuery);
         Statement statement = Resources.getConnection().createStatement();
         ResultSet resultSet = statement.executeQuery(getAnswerSheetQuery);
-        List<String> summary = new ArrayList<String>();
+        HashMap<Integer, String> summary = new HashMap<Integer, String>();
         while (resultSet.next()) {
+            Integer studentId = resultSet.getInt("student_id");
             String answers = resultSet.getString("set0_equivalent_answers");
-            summary.add(answers);
+            summary.put(studentId, answers);
         }
+        return summary;
+    }
+
+    public static ArrayList<Student> getAllStudents() throws Exception{
+        String getStudentsQuery = String.format(MTT_CONSTANTS.GET_ALL_STUDENTS_QUERY);
+        System.out.println("getAllStQuery : " + getStudentsQuery);
+        Statement statement = Resources.getConnection().createStatement();
+        ResultSet resultSet = statement.executeQuery(getStudentsQuery);
+        ArrayList<Student> students = new ArrayList<Student>();
+        while (resultSet.next()) {
+            Student student = new Student(
+                    resultSet.getInt(MTT_CONSTANTS.STUDENT_TABLE_COLUMN_ID),
+                    resultSet.getString(MTT_CONSTANTS.STUDENT_TABLE_COLUMN_NAME),
+                    resultSet.getInt(MTT_CONSTANTS.STUDENT_TABLE_COLUMN_QUESTION_PAPER_CODE),
+                    resultSet.getString(MTT_CONSTANTS.STUDENT_TABLE_COLUMN_SCHOOL),
+                    resultSet.getString(MTT_CONSTANTS.STUDENT_TABLE_COLUMN_PLACE),
+                    resultSet.getString(MTT_CONSTANTS.STUDENT_TABLE_COLUMN_CENTER),
+                    resultSet.getString(MTT_CONSTANTS.STUDENT_TABLE_COLUMN_GENDER),
+                    0.0         // temp value
+            );
+        }
+        return students;
+    }
+
+    public static void populateQuestionStats() throws Exception {
 
         // index
         int[] correct = new int[MTT_CONSTANTS.NUMBER_OF_QUESTIONS_IN_2016];
         int[] wrong = new int[MTT_CONSTANTS.NUMBER_OF_QUESTIONS_IN_2016];
         int[] unanswered = new int[MTT_CONSTANTS.NUMBER_OF_QUESTIONS_IN_2016];
-
-        for (String answer : summary) {
+        HashMap<Integer, String> summary = getAnswers();
+        for (String answer : summary.values()) {
             System.out.println("answer: " + answer);
             for (int i = 0; i < MTT_CONSTANTS.NUMBER_OF_QUESTIONS_IN_2016; i++) {
                 char ch = answer.charAt(i);
@@ -211,9 +235,32 @@ public class Utils {
                     " Unanswered: " + unanswered[i] + " score " + score[i] + " negative " + negative[i]);
         }
 
+        System.out.println("********** computing student stats");
 
         // compute individual ranks
 
+        // preprocessing
+        ArrayList<Student> students = getAllStudents();
+        System.out.println("total students: " + students.size());
+        for (Student student : students) {
+            String correctedAnswers = summary.get(student.getId());
+            if (null == correctedAnswers) {
+                throw new RuntimeException("Cannot complete process. This student does not have answers entry.");
+            }
+            double studentScore = 0.0;
+            for (int i = 0; i < MTT_CONSTANTS.NUMBER_OF_QUESTIONS_IN_2016; i++) {
+                char ch = correctedAnswers.charAt(i);
+                if (ch == 'C') {
+                    studentScore += correct[i];
+                } else if (ch == 'W') {
+                    studentScore -= negative[i];
+                } else if (ch != 'U') {
+                    throw new Exception("Illegal response in answer sheet.");
+                }
+            }
+            student.setScore(studentScore);
+            System.out.println("Student result: " + student);
+        }
 
         // Open
 
