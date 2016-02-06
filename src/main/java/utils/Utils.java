@@ -214,7 +214,7 @@ public class Utils {
         int[] unanswered = new int[MTT_CONSTANTS.NUMBER_OF_QUESTIONS_IN_2016];
         HashMap<Integer, String> summary = getAnswers();
         for (String answer : summary.values()) {
-            System.out.println("answer: " + answer);
+//            System.out.println("answer: " + answer);
             for (int i = 0; i < MTT_CONSTANTS.NUMBER_OF_QUESTIONS_IN_2016; i++) {
                 char ch = answer.charAt(i);
                 if (ch == 'C') {
