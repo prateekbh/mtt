@@ -172,10 +172,16 @@ public class MTT_CONSTANTS {
             + TABLE_NAME_VOLUNTEER_AUTH_TOKEN + " where " + VOLUNTEER_AUTH_TOKEN_TABLE_COLUMN_AUTH_TOKEN + " = '%s'";
 
     public static final String INSERT_STUDENT_QUERY = "insert into " + TABLE_NAME_STUDENT + "("
-     + STUDENT_TABLE_COLUMN_ID + ", " + STUDENT_TABLE_COLUMN_QUESTION_PAPER_CODE + ", " + STUDENT_TABLE_COLUMN_NAME
-            + ", " + STUDENT_TABLE_COLUMN_SCHOOL + ", " + STUDENT_TABLE_COLUMN_PLACE + ", "
-            + STUDENT_TABLE_COLUMN_CENTER + ", " + STUDENT_TABLE_COLUMN_GENDER + ", " + STUDENT_TABLE_COLUMN_CREATED_ON + ", "
-            + STUDENT_TABLE_COLUMN_MODIFIED_ON + ") values('%s', '%s', '%s', '%s', '%s', '%s', '%s', now(), now())" ;
+            + STUDENT_TABLE_COLUMN_ID + ", "
+            + STUDENT_TABLE_COLUMN_QUESTION_PAPER_CODE + ", "
+            + STUDENT_TABLE_COLUMN_NAME + ", "
+            + STUDENT_TABLE_COLUMN_SCHOOL + ", "
+            + STUDENT_TABLE_COLUMN_PLACE + ", "
+            + STUDENT_TABLE_COLUMN_CENTER + ", "
+            + STUDENT_TABLE_COLUMN_GENDER + ", "
+            + STUDENT_TABLE_COLUMN_CREATED_ON + ", "
+            + STUDENT_TABLE_COLUMN_MODIFIED_ON + ") " +
+            "values('%s', '%s', '%s', '%s', '%s', '%s', '%s', now(), now())" ;
 
     // TODO: clean this shit
     public static final String INSERT_ANSWERS_QUERY = "insert into answer_sheet(student_id, set_number, " +

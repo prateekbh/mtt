@@ -285,7 +285,7 @@ public class Utils {
         System.out.println("********************** ################################## ******************************");
         int k = 0;
         for (Student st : sorted) {
-            if (k > 50) break;
+//            if (k > 100) break;
             k++;
             System.out.println(st);
         }

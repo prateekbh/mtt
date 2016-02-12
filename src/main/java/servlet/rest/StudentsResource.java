@@ -51,9 +51,9 @@ public class StudentsResource {
         JsonNode jsonNode = objectMapper.readTree(jsonRequest);
         String studentName = jsonNode.get(MTT_CONSTANTS.STUDENT_NAME_REQUEST_PARAM).textValue();
         String questionPaperCode = jsonNode.get(MTT_CONSTANTS.QUESTION_PAPER_CODE_REQUEST_PARAM).textValue();
-        String schoolId = Utils.getSchoolIdForName(jsonNode.get(MTT_CONSTANTS.SCHOOL_ID_REQUEST_PARAM).asText());
+        String schoolName = jsonNode.get(MTT_CONSTANTS.SCHOOL_ID_REQUEST_PARAM).asText();
         String studentPlace = jsonNode.get(MTT_CONSTANTS.STUDENT_PLACE_REQUEST_PARAM).asText();
-        String studentCenter = Utils.getCenterIdForName(jsonNode.get(MTT_CONSTANTS.CENTER_ID_REQUEST_PARAM).asText());
+        String studentCenter = jsonNode.get(MTT_CONSTANTS.CENTER_ID_REQUEST_PARAM).asText();
         String sex = jsonNode.get(MTT_CONSTANTS.STUDENT_SEX_REQUEST_PARAM).asText();
 
         Logger logger = Logger.getAnonymousLogger();
@@ -63,7 +63,7 @@ public class StudentsResource {
         synchronized (this) {
             id = Utils.getMaxOfTable(MTT_CONSTANTS.TABLE_NAME_STUDENT, MTT_CONSTANTS.STUDENT_TABLE_COLUMN_ID) + 1;
             System.out.println("student id : " + id);
-            insertStudentIntoDB(id, questionPaperCode, studentName, schoolId, studentPlace, studentCenter, sex);
+            insertStudentIntoDB(id, questionPaperCode, studentName, schoolName, studentPlace, studentCenter, sex);
         }
         System.out.println("\n\nInserted student successfully.\n\n");
         HashMap<String, String> resp = new HashMap<String, String>(2);
@@ -72,11 +72,11 @@ public class StudentsResource {
         return Response.ok(new Gson().toJson(resp)).build();
     }
 
-    private void insertStudentIntoDB(int id, String questionPaperCode, String studentName, String schoolId,
+    private void insertStudentIntoDB(int id, String questionPaperCode, String studentName, String schoolName,
                                      String place, String center, String sex) throws Exception {
 
         String insertStudentQuery = String.format(MTT_CONSTANTS.INSERT_STUDENT_QUERY, String.valueOf(id),
-                questionPaperCode, studentName, schoolId, place, center, sex);
+                questionPaperCode, studentName, schoolName, place, center, sex);
         System.out.println("insertStudentQuery : " + insertStudentQuery);
         Statement getStatement = Resources.connection.createStatement();
         getStatement.execute(insertStudentQuery);
