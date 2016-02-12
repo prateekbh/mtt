@@ -33,7 +33,7 @@ StudentCtrl.prototype.onLoadFailure_ = function(scope) {
 }
 
 StudentCtrl.prototype.correctQuestionPaper_ = function(state, student) {
-  state.go('questionpaper', {
+  state.go('createstudent', {
     studentId: this.studentId_,
     questionPaperCode: student.question_paper_code
   });

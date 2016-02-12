@@ -40,8 +40,8 @@ public class Signup {
         String volunteerCenterId = "1";     // no center id for now
 
         //store the uname and pwd in DB. Also call login to get auth_token and return the same.
-//        System.out.println("uname: " + vuname + " pwd " + pwd
-//                + " volunteerName " + volunteerName + " center: " + volunteerCenterId);
+        System.out.println("uname: " + vuname + " pwd " + pwd
+                + " volunteerName " + volunteerName + " center: " + volunteerCenterId);
         Response.ResponseBuilder responseBuilder =
                 Response.ok("{\"message\" : \"Thank you for being a volunteer.\"}");
         if (userAlreadyExists(vuname)) {
@@ -75,7 +75,7 @@ public class Signup {
             throws Exception {
         String hashedPassword = getHashedPassword(pwd);
         String insertVolunteerQuery =
-                String.format(MTT_CONSTANTS.INSERT_VOLUNTEER_DB_QUERY, uname, hashedPassword, volunteerName, centerId);
+                String.format(MTT_CONSTANTS.INSERT_VOLUNTEER_DB_QUERY, volunteerName, uname, hashedPassword, centerId);
         Statement query = Resources.connection.createStatement();
         query.execute(insertVolunteerQuery);
         query.close();
