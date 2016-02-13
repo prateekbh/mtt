@@ -3,15 +3,20 @@
   <md-list-item class="md-2-line"
                 ng-repeat="question in questionPaper.questions track by $index">
     <div class="md-list-item-text">
+      <br><br>
       <h3>Q{{$index+1}}. {{question}}</h3>
+      <br>
       <p>
         <md-radio-group ng-model="answers[$index + 1]" layout="row">
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <md-radio-button value="Correct" aria-label="Correct" style="color:green;">Correct</md-radio-button>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <md-radio-button value="Wrong" aria-label="Wrong" style = "color:red;">Wrong</md-radio-button>
-        </md-radio-group> 
+        </md-radio-group>
       </p>
     </div>
   </md-list-item>
   </md-list>
+  <br><br><br>
   <md-button class="md-raised md-primary" ng-click="submit(answers)">Submit</md-button>
 </md-content>

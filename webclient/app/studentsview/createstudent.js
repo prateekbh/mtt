@@ -19,11 +19,7 @@ var AddStudentCtrl = function($scope, $q, $mdToast, $state, Api) {
   $scope.create = this.create_.bind(this, $mdToast, $state);
   
   $scope.test_centers = [
-    'Choppadandi',
-    'Gangadhara',
-    'GopalRaoPet',
-    'Kottapalli (H)',
-    'Manakondur',
+    'Narsapur',
   ];
 }
 
@@ -34,7 +30,7 @@ AddStudentCtrl.prototype.create_ = function(mdToast, state, student) {
 
 AddStudentCtrl.prototype.validate_ = function(c) {
   var d = this.q_.defer();
-  var compulsoryFields = ['studentName', 'schoolId', 'centerId', 'questionPaperCode']
+  var compulsoryFields = ['studentName', 'studentId', 'questionPaperCode']
   var validateCount = 0;
   for (var i = 0; i < compulsoryFields.length; i++) {
     if (!c[compulsoryFields[i]]) {
