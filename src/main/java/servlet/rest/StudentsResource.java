@@ -55,16 +55,22 @@ public class StudentsResource {
         String studentPlace = jsonNode.get(MTT_CONSTANTS.STUDENT_PLACE_REQUEST_PARAM).asText();
         String studentCenter = jsonNode.get(MTT_CONSTANTS.CENTER_ID_REQUEST_PARAM).asText();
         String sex = jsonNode.get(MTT_CONSTANTS.STUDENT_SEX_REQUEST_PARAM).asText();
+        int id = jsonNode.get(MTT_CONSTANTS.STUDENT_ID_REQUEST_PARAM).asInt();
 
         Logger logger = Logger.getAnonymousLogger();
         logger.log(Level.SEVERE, "\n\n #### insertStudent form json : " + jsonRequest);
 
-        int id = 1;
+//        int id = 1;
+//        synchronized (this) {
+//            id = Utils.getMaxOfTable(MTT_CONSTANTS.TABLE_NAME_STUDENT, MTT_CONSTANTS.STUDENT_TABLE_COLUMN_ID) + 1;
+//            System.out.println("student id : " + id);
+//            insertStudentIntoDB(id, questionPaperCode, studentName, schoolName, studentPlace, studentCenter, sex);
+//        }
+
         synchronized (this) {
-            id = Utils.getMaxOfTable(MTT_CONSTANTS.TABLE_NAME_STUDENT, MTT_CONSTANTS.STUDENT_TABLE_COLUMN_ID) + 1;
-            System.out.println("student id : " + id);
             insertStudentIntoDB(id, questionPaperCode, studentName, schoolName, studentPlace, studentCenter, sex);
         }
+
         System.out.println("\n\nInserted student successfully.\n\n");
         HashMap<String, String> resp = new HashMap<String, String>(2);
         resp.put(MTT_CONSTANTS.STUDENT_ID_REQUEST_PARAM, String.valueOf(id));

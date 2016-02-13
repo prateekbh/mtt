@@ -202,6 +202,8 @@ public class MTT_CONSTANTS {
     public static final String GET_ANSWER_SHEET_QUERY = "select * from " + TABLE_NAME_ANSWER_SHEET;
     public static final String GET_ALL_STUDENTS_QUERY = "select * from " + TABLE_NAME_STUDENT;
 
+    public static final String GET_STUDENT_FOR_ID_QUERY = "select * from " + TABLE_NAME_STUDENT + " where "
+            + STUDENT_TABLE_COLUMN_ID + " = %s";
 
     public static final int HTTP_UNAUTH_CODE = 401;
     public static final int HTTP_NOT_FOUND_CODE = 404;

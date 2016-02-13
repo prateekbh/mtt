@@ -206,6 +206,27 @@ public class Utils {
         return students;
     }
 
+    public static Student getStudentById(int id) throws Exception {
+        String getStudentForIdQuery = String.format(MTT_CONSTANTS.GET_STUDENT_FOR_ID_QUERY, id);
+        Logger.getAnonymousLogger().log(Level.INFO, "getStudentForIdQuery: " + getStudentForIdQuery);
+        Statement statement = Resources.getConnection().createStatement();
+        ResultSet resultSet = statement.executeQuery(getStudentForIdQuery);
+        Student student = null;
+        if (resultSet.next()) {
+            student = new Student(
+                    resultSet.getInt(MTT_CONSTANTS.STUDENT_TABLE_COLUMN_ID),
+                    resultSet.getString(MTT_CONSTANTS.STUDENT_TABLE_COLUMN_NAME),
+                    resultSet.getInt(MTT_CONSTANTS.STUDENT_TABLE_COLUMN_QUESTION_PAPER_CODE),
+                    resultSet.getString(MTT_CONSTANTS.STUDENT_TABLE_COLUMN_SCHOOL),
+                    resultSet.getString(MTT_CONSTANTS.STUDENT_TABLE_COLUMN_PLACE),
+                    resultSet.getString(MTT_CONSTANTS.STUDENT_TABLE_COLUMN_CENTER),
+                    resultSet.getString(MTT_CONSTANTS.STUDENT_TABLE_COLUMN_GENDER),
+                    0.0         // temp value
+            );
+        }
+        return student;
+    }
+
     public static void populateQuestionStats() throws Exception {
 
         // index
