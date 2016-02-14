@@ -13,11 +13,11 @@ HomepageCtrl.prototype.correctPaper_ = function(state) {
   state.go('questionpaper');
 };
 
-angular.module('myApp.volunteerview', ['ui.router'])
+angular.module('myApp.homepageview', ['ui.router'])
 .config(['$stateProvider', function($stateProvider) {
   $stateProvider.state('home', {
     url: '/home',
-    templateUrl: 'volunteerview/volunteerview.html',
+    templateUrl: 'homepageview/homepageview.html',
     controller: 'HomepageCtrl'
   });
 }])

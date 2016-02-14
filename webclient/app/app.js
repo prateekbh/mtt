@@ -15,6 +15,7 @@ angular.module('myApp', [
   'myApp.authservice',
   'myApp.loginview',
   'myApp.registerview',
+  'myApp.homepageview',
   'myApp.customersview',
   'myApp.customerview',
   'myApp.volunteersview',
