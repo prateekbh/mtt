@@ -22,12 +22,13 @@ angular.module('myApp', [
   'myApp.volunteerview',
   'myApp.createstudent',
   'myApp.studentview',
+  'myApp.studentinfo',
   'myApp.questionpaperview',
   'myApp.version'
 
 ])
 // localhost should be replaced with backend's ip
-.constant('API_BASE_URL', lh)
+.constant('API_BASE_URL', vm)
 //.constant('API_BASE_URL', 'http://www.mtt.com')
 //.constant('API_BASE_URL', vm)
 

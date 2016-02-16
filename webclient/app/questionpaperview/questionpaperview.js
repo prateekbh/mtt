@@ -1,8 +1,10 @@
 'use strict';
 
-var QuestionPaperCtrl = function($q, $scope, $stateParams, $state, Api) {
+var QuestionPaperCtrl = function($q, $scope, $stateParams, $state, $mdDialog, Api) {
   this.q_ = $q;
   this.Api_ = Api;
+
+  this.questionPaperCode_ = $stateParams.questionPaperCode;
 
   $scope.submit = this.submitAnswers_.bind(this, $scope, $state);
   $scope.answers = {};
@@ -32,13 +34,14 @@ QuestionPaperCtrl.prototype.onLoadFailure_ = function(scope) {
 
 QuestionPaperCtrl.prototype.submitAnswers_ = function(scope, state, qpaper) {
   console.log(answers);
+  qpaper.question_paper_code = this.questionPaperCode_;
   this.Api_.Answers.submit(qpaper,
     this.onAnswersSubmitSuccess_.bind(this, scope, state),
     this.onAnswersSubmitFailure_.bind(this));
 };
 
 QuestionPaperCtrl.prototype.onAnswersSubmitSuccess_ = function(scope, state) {
-  state.go('home');
+  state.go('studentinfo');
 };
 
 QuestionPaperCtrl.prototype.onAnswersSubmitFailure_ = function() {
@@ -48,7 +51,7 @@ QuestionPaperCtrl.prototype.onAnswersSubmitFailure_ = function() {
 angular.module('myApp.questionpaperview', ['ui.router'])
 .config(['$stateProvider', function($stateProvider) {
   $stateProvider.state('questionpaper', {
-    url: '/questionpaper',
+    url: '/questionpaper/:questionPaperCode',
     templateUrl: 'questionpaperview/questionpaperview.html',
     controller: 'QuestionPaperCtrl'
   });

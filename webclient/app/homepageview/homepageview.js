@@ -10,7 +10,7 @@ HomepageCtrl.prototype.createStudent_ = function(state) {
 };
 
 HomepageCtrl.prototype.correctPaper_ = function(state) {
-  state.go('questionpaper');
+  state.go('studentinfo');
 };
 
 angular.module('myApp.homepageview', ['ui.router'])
