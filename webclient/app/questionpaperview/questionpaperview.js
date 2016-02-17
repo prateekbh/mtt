@@ -37,7 +37,7 @@ QuestionPaperCtrl.prototype.onLoadFailure_ = function(scope) {
 QuestionPaperCtrl.prototype.submitAnswers_ = function(scope, state, answers) {
   console.log("gonna submit answers");
   console.log(answers);
-  qpaper = {}
+  var qpaper = {};
   qpaper.studentId = this.studetnId_;
   qpaper.questionPaperCode = this.questionPaperCode_;
   qpaper.answers = answers;
