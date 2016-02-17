@@ -33,7 +33,8 @@ QuestionPaperCtrl.prototype.onLoadFailure_ = function(scope) {
 };
 
 QuestionPaperCtrl.prototype.submitAnswers_ = function(scope, state, qpaper) {
-  console.log(answers);
+  console.log("gonna submit answers");
+  console.log(qpaper);
   qpaper.question_paper_code = this.questionPaperCode_;
   this.Api_.Answers.submit(qpaper,
     this.onAnswersSubmitSuccess_.bind(this, scope, state),

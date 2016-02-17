@@ -15,14 +15,15 @@ StudentInfoCtrl.prototype.submit_ = function(scope, state, student, ev) {
 };
 
 StudentInfoCtrl.prototype.onSubmitSuccess_ = function(state, ev, student) {
+  console.log("student name " + student.name + " qpcode " + student.questionPaperCode);
   var confirm = this.mdDialog_.confirm()
         .title('Please confirm the student details')
-        .textContent('Student name: ' + student.studentName + ' School: ' + student.schoolId)
+        .textContent('Student id ' + student.id + ' name: ' + student.name + ' question paper id: ' + student.questionPaperCode)
         .targetEvent(ev)
         .ok('Confirm')
         .cancel('Incorrect');
   this.mdDialog_.show(confirm).then(function() {
-    state.go('questionpaper', {questionPaperCode: student.question_paper_id});
+    state.go('questionpaper', {questionPaperCode: student.questionPaperCode});
   }, function() {
     alert('Please try again!');
   });
