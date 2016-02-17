@@ -24,7 +24,7 @@ StudentInfoCtrl.prototype.onSubmitSuccess_ = function(state, ev, student) {
         .cancel('Incorrect');
   this.mdDialog_.show(confirm).then(function() {
     state.go('questionpaper', {
-      studentId: student.studentId,
+      studentId: student.id,
       questionPaperCode: student.questionPaperCode
     });
   }, function() {
