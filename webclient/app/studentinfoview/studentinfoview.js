@@ -23,7 +23,10 @@ StudentInfoCtrl.prototype.onSubmitSuccess_ = function(state, ev, student) {
         .ok('Confirm')
         .cancel('Incorrect');
   this.mdDialog_.show(confirm).then(function() {
-    state.go('questionpaper', {questionPaperCode: student.questionPaperCode});
+    state.go('questionpaper', {
+      studentId: student.studentId,
+      questionPaperCode: student.questionPaperCode
+    });
   }, function() {
     alert('Please try again!');
   });

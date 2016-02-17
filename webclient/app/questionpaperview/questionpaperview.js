@@ -4,6 +4,7 @@ var QuestionPaperCtrl = function($q, $scope, $stateParams, $state, $mdDialog, Ap
   this.q_ = $q;
   this.Api_ = Api;
 
+  this.studentId_ = $stateParams.studentId;
   this.questionPaperCode_ = $stateParams.questionPaperCode;
 
   $scope.submit = this.submitAnswers_.bind(this, $scope, $state);
@@ -35,7 +36,8 @@ QuestionPaperCtrl.prototype.onLoadFailure_ = function(scope) {
 QuestionPaperCtrl.prototype.submitAnswers_ = function(scope, state, qpaper) {
   console.log("gonna submit answers");
   console.log(qpaper);
-  qpaper.question_paper_code = this.questionPaperCode_;
+  qpaper.studentId = this.studetnId_;
+  qpaper.questionPaperCode = this.questionPaperCode_;
   this.Api_.Answers.submit(qpaper,
     this.onAnswersSubmitSuccess_.bind(this, scope, state),
     this.onAnswersSubmitFailure_.bind(this));
@@ -52,7 +54,7 @@ QuestionPaperCtrl.prototype.onAnswersSubmitFailure_ = function() {
 angular.module('myApp.questionpaperview', ['ui.router'])
 .config(['$stateProvider', function($stateProvider) {
   $stateProvider.state('questionpaper', {
-    url: '/questionpaper/:questionPaperCode',
+    url: 'students/:studentId/questionpaper/:questionPaperCode',
     templateUrl: 'questionpaperview/questionpaperview.html',
     controller: 'QuestionPaperCtrl'
   });

@@ -51,8 +51,8 @@ public class AnswerSheetsResource {
 
         ObjectMapper objectMapper = new ObjectMapper();
         JsonNode jsonNode = objectMapper.readTree(jsonRequest);
-        String studentId = jsonNode.get("student_id").textValue();
-        String questionPaperCode = jsonNode.get("question_paper_code").textValue();
+        String studentId = jsonNode.get("studentId").textValue();
+        String questionPaperCode = jsonNode.get("questionPaperCode").textValue();
         JsonNode answers = jsonNode.get("answers");
         System.out.println("extracted studentId: " + studentId + " qp code " + questionPaperCode + " answers " + answers);
         // TODO: shit hacky way. Gotta cleanup.
