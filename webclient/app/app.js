@@ -35,7 +35,7 @@ angular.module('myApp', [
 .config(['$urlRouterProvider', '$mdThemingProvider', '$httpProvider', 
     function($urlRouterProvider, $mdThemingProvider, $httpProvider) {
       // $routeProvider.otherwise({redirectTo: '/login'});
-      $urlRouterProvider.otherwise('login');
+      // $urlRouterProvider.otherwise('login');
 
       $mdThemingProvider.theme('docs-dark', 'default')
         .primaryPalette('yellow')
