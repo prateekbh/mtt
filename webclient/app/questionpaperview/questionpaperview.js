@@ -29,9 +29,13 @@ QuestionPaperCtrl.prototype.onLoadSuccess_ = function(scope, questionPaper) {
   console.log(questionPaper);
 };
 
-QuestionPaperCtrl.prototype.onLoadFailure_ = function(scope) {
-  // alert('Unable to load questionPaper.');
-  this.onLoadSuccess_(scope);
+QuestionPaperCtrl.prototype.onLoadFailure_ = function(scope, error) {
+  // this.onLoadSuccess_(scope);
+  if(error.status >= 400 && error.status < 500) {
+    state.go('login');
+  } else {
+    alert('Unable to load questionPaper. Please try again!');
+  }
 };
 
 QuestionPaperCtrl.prototype.submitAnswers_ = function(scope, state, answers) {
