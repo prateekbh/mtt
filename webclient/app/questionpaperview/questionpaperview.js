@@ -9,6 +9,7 @@ var QuestionPaperCtrl = function($q, $scope, $stateParams, $state, $mdDialog, Ap
 
   $scope.submit = this.submitAnswers_.bind(this, $scope, $state);
   $scope.answers = {};
+  $scope.questions = [];
 
   this.refresh_($scope);
 }
@@ -24,7 +25,7 @@ QuestionPaperCtrl.prototype.load_ = function(scope) {
 };
 
 QuestionPaperCtrl.prototype.onLoadSuccess_ = function(scope, questionPaper) {
-  scope.questionPaper = questionPaper;
+  scope.questions = questionPaper.questions;
   console.log(questionPaper);
 };
 
@@ -33,11 +34,13 @@ QuestionPaperCtrl.prototype.onLoadFailure_ = function(scope) {
   this.onLoadSuccess_(scope);
 };
 
-QuestionPaperCtrl.prototype.submitAnswers_ = function(scope, state, qpaper) {
+QuestionPaperCtrl.prototype.submitAnswers_ = function(scope, state, answers) {
   console.log("gonna submit answers");
-  console.log(qpaper);
+  console.log(answers);
+  qpaper = {}
   qpaper.studentId = this.studetnId_;
   qpaper.questionPaperCode = this.questionPaperCode_;
+  qpaper.answers = answers;
   this.Api_.Answers.submit(qpaper,
     this.onAnswersSubmitSuccess_.bind(this, scope, state),
     this.onAnswersSubmitFailure_.bind(this));

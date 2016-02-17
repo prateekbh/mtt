@@ -1,13 +1,13 @@
 <md-content layout="column">
   <md-list>
   <md-list-item class="md-2-line"
-                ng-repeat="question in questionPaper.questions track by $index">
+                ng-repeat="question in questions track by $index">
     <div class="md-list-item-text">
       <br><br>
       <h3>Q{{$index+1}}. {{question}}</h3>
       <br>
       <p>
-        <md-radio-group ng-model="qpaper.answers[$index + 1]" layout="row">
+        <md-radio-group ng-model="answers[$index + 1]" layout="row">
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           <md-radio-button value="Correct" aria-label="Correct" style="color:green;">Correct</md-radio-button>
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -18,5 +18,5 @@
   </md-list-item>
   </md-list>
   <br><br><br>
-  <md-button class="md-raised md-primary" ng-click="submit(qpaper)">Submit</md-button>
+  <md-button class="md-raised md-primary" ng-click="submit(answers)">Submit</md-button>
 </md-content>
