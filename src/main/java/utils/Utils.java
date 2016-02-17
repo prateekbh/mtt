@@ -227,6 +227,7 @@ public class Utils {
         return student;
     }
 
+    // todo: very bad code. Refactor.
     public static void populateQuestionStats() throws Exception {
 
         // index
@@ -299,18 +300,15 @@ public class Utils {
         }
 
         // Open top 25
-//        ArrayList<Student> openTop25 = getTopNStudents(allStudents, 25);
+        ArrayList<Student> openTop25 = getTopNStudents(allStudents, 25);
 
-        ArrayList<Student> sorted = sort(allStudents);
 
         System.out.println("********************** ################################## ******************************");
-        int k = 0;
-        for (Student st : sorted) {
-//            if (k > 100) break;
-            k++;
-            System.out.println(st);
-        }
 
+        int rank = 1;
+        for (Student student : openTop25) {
+            System.out.println("Rank " + rank + " :: " + student);
+        }
 
         // Govt Open
 
@@ -324,10 +322,9 @@ public class Utils {
 
         // Govt
 
-        return ;
     }
 
-    public static ArrayList<Student> sort(ArrayList<Student> all) {
+    public static ArrayList<Student> sortDesc(ArrayList<Student> all) {
         ArrayList<Student> result = new ArrayList<Student>(all.size());
         for (int i = 0; i < all.size(); i++) {
             for (int j = i + 1; j < all.size(); j++) {
@@ -343,20 +340,10 @@ public class Utils {
     }
 
     public static ArrayList<Student> getTopNStudents(ArrayList<Student> studentsList, int number) {
-        ArrayList<Student> result = new ArrayList<Student>(number);
-        double leastScoreInToppers = 0.0;
-        Set<Integer> visited = new HashSet<Integer>();
+        final ArrayList<Student> sorted = sortDesc(studentsList);
+        final ArrayList<Student> result = new ArrayList<Student>(number);
         for (int i = 0; i < number; i++) {
-            double max = -1;
-            Student maxStudent = null;
-            for (Student student : studentsList) {
-                if (visited.contains(Integer.valueOf(student.getId()))) continue;
-                if (max <= student.getScore()) {
-                    max = student.getScore();
-                    maxStudent = student;
-                }
-            }
-            result.add(maxStudent);
+            result.add(sorted.get(i));
         }
         return result;
     }
