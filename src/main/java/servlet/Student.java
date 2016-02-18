@@ -30,9 +30,11 @@ public class Student {
     String place;
     String center;
     String gender;
+    int solvedCorrectly;
     double score;
 
-    public Student(int id, String name, int questionPaperCode, String school, String place, String center, String gender, double score) {
+    public Student(int id, String name, int questionPaperCode, String school, String place, String center,
+                   String gender, int solvedCorrectly, double score) {
         this.id = id;
         this.name = name;
         this.questionPaperCode = questionPaperCode;
@@ -40,6 +42,7 @@ public class Student {
         this.place = place;
         this.center = center;
         this.gender = gender;
+        this.solvedCorrectly = solvedCorrectly;
         this.score = score;
     }
 
@@ -107,6 +110,14 @@ public class Student {
         this.score = score;
     }
 
+    public int getSolvedCorrectly() {
+        return solvedCorrectly;
+    }
+
+    public void setSolvedCorrectly(int solvedCorrectly) {
+        this.solvedCorrectly = solvedCorrectly;
+    }
+
     @Override
     public String toString() {
         return "Student{" +
@@ -117,6 +128,7 @@ public class Student {
                 ", place='" + place + '\'' +
                 ", center='" + center + '\'' +
                 ", gender='" + gender + '\'' +
+                ", solvedCorrectly=" + solvedCorrectly +
                 ", score=" + score +
                 '}';
     }

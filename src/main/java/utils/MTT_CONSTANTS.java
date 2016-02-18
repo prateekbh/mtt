@@ -4,7 +4,7 @@ package utils;
 public class MTT_CONSTANTS {
 
     public static final double MIN_SCORE = 1.0;
-    public static final double WEIGHT_FACTOR = 4.0;
+    public static final double WEIGHT_FACTOR = 3.0;
     public static final int NUMBER_OF_QUESTIONS_IN_2016 = 10;
     public static final int NUMBER_OF_SETS = 20;
 //    create table question (

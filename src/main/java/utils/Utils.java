@@ -199,6 +199,7 @@ public class Utils {
                     resultSet.getString(MTT_CONSTANTS.STUDENT_TABLE_COLUMN_PLACE),
                     resultSet.getString(MTT_CONSTANTS.STUDENT_TABLE_COLUMN_CENTER),
                     resultSet.getString(MTT_CONSTANTS.STUDENT_TABLE_COLUMN_GENDER),
+                    0,
                     0.0         // temp value
             );
             students.add(student);
@@ -221,6 +222,7 @@ public class Utils {
                     resultSet.getString(MTT_CONSTANTS.STUDENT_TABLE_COLUMN_PLACE),
                     resultSet.getString(MTT_CONSTANTS.STUDENT_TABLE_COLUMN_CENTER),
                     resultSet.getString(MTT_CONSTANTS.STUDENT_TABLE_COLUMN_GENDER),
+                    0,
                     0.0         // temp value
             );
         }
@@ -281,17 +283,20 @@ public class Utils {
             }
             double studentScore = 0.0;
             student.setScore(0.0);
+            int correctlySolved = 0;
             for (int i = 0; i < MTT_CONSTANTS.NUMBER_OF_QUESTIONS_IN_2016; i++) {
 //                System.out.println("studentScore: " + studentScore);
                 char ch = correctedAnswers.charAt(i);
-                if (ch == 'C' || i == 2) {
+                if (ch == 'C') {
                     studentScore += score[i];
+                    correctlySolved++;
                 } else if (ch == 'W') {
 //                    studentScore -= negative[i];
                 } else if (ch != 'U') {
                     throw new Exception("Illegal response in answer sheet.");
                 }
             }
+            student.setSolvedCorrectly(correctlySolved);
             student.setScore(studentScore);
 //            if (studentScore < 20) {
 //                System.out.println(" ********** student: " + student);
@@ -307,7 +312,7 @@ public class Utils {
 
         int rank = 1;
         for (Student student : openTop25) {
-            System.out.println("Rank " + rank + " :: " + student);
+            System.out.println("Rank " + rank++ + " :: " + student);
         }
 
         // Govt Open
@@ -340,6 +345,7 @@ public class Utils {
     }
 
     public static ArrayList<Student> getTopNStudents(ArrayList<Student> studentsList, int number) {
+        number = Math.min(number, studentsList.size());
         final ArrayList<Student> sorted = sortDesc(studentsList);
         final ArrayList<Student> result = new ArrayList<Student>(number);
         for (int i = 0; i < number; i++) {

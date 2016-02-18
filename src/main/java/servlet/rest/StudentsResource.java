@@ -51,10 +51,16 @@ public class StudentsResource {
         JsonNode jsonNode = objectMapper.readTree(jsonRequest);
         String studentName = jsonNode.get(MTT_CONSTANTS.STUDENT_NAME_REQUEST_PARAM).textValue();
         String questionPaperCode = jsonNode.get(MTT_CONSTANTS.QUESTION_PAPER_CODE_REQUEST_PARAM).textValue();
-        String schoolName = jsonNode.get(MTT_CONSTANTS.SCHOOL_ID_REQUEST_PARAM).asText();
-        String studentPlace = jsonNode.get(MTT_CONSTANTS.STUDENT_PLACE_REQUEST_PARAM).asText();
-        String studentCenter = jsonNode.get(MTT_CONSTANTS.CENTER_ID_REQUEST_PARAM).asText();
-        String sex = jsonNode.get(MTT_CONSTANTS.STUDENT_SEX_REQUEST_PARAM).asText();
+//        String schoolName = jsonNode.get(MTT_CONSTANTS.SCHOOL_ID_REQUEST_PARAM).asText();
+//        String studentPlace = jsonNode.get(MTT_CONSTANTS.STUDENT_PLACE_REQUEST_PARAM).asText();
+//        String studentCenter = jsonNode.get(MTT_CONSTANTS.CENTER_ID_REQUEST_PARAM).asText();
+//        String sex = jsonNode.get(MTT_CONSTANTS.STUDENT_SEX_REQUEST_PARAM).asText();
+        // Custom to ZPHS Narsapur test. Remove later.
+        System.out.println("Custom for Narsapur");
+        String schoolName = "ZPHS Narsapur, Narsapur, Adilabad";
+        String studentPlace = "Narsapur";
+        String studentCenter = "Narsapur";
+        String sex = "...";
         int id = jsonNode.get(MTT_CONSTANTS.STUDENT_ID_REQUEST_PARAM).asInt();
 
         Logger logger = Logger.getAnonymousLogger();
