@@ -40,7 +40,7 @@ RegisterCtrl.prototype.onRegisterSuccess_ = function(scope, state) {
       .position('top right')
       .hideDelay(3000)
    );
-  state.go('login');
+  state.go('home');
 };
 
 RegisterCtrl.prototype.onRegisterFailure_ = function(scope, error) {

@@ -42,7 +42,7 @@ QuestionPaperCtrl.prototype.submitAnswers_ = function(scope, state, answers) {
   console.log("gonna submit answers");
   console.log(answers);
   var qpaper = {};
-  qpaper.studentId = this.studetnId_;
+  qpaper.studentId = this.studentId_;
   qpaper.questionPaperCode = this.questionPaperCode_;
   qpaper.answers = answers;
   this.Api_.Answers.submit(qpaper,

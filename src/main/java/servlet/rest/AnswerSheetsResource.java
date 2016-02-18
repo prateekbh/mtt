@@ -41,6 +41,7 @@ public class AnswerSheetsResource {
     public Response processAnswers(String jsonRequest,
                                @HeaderParam(MTT_CONSTANTS.HTTP_COOKIE_HEADER_NAME) String cookie) throws Exception {
         String authToken = Utils.getAuthToken(cookie);
+
         if (!Utils.isValidAuthToken(authToken)) {
 //            Response.ResponseBuilder builder = Response.serverError();
 //            builder.status(MTT_CONSTANTS.HTTP_UNAUTH_CODE);
