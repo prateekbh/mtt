@@ -15,6 +15,7 @@ public class QuestionPaperCreator {
             String set = "set" + (i + 1) + ".txt";
             systemCommand = " touch " + set + " ";
 	    systemCommand += " && cat header >> " + set + " && echo Question Paper Code: " + (i + 1) + " >> " + set;
+        systemCommand += " && echo -e \"\\n\" >> " + set;
 	    systemCommand += " && echo ' ' >> " + set;
 //            System.out.println("order: " + order);
             int serialNum = 1;
@@ -24,6 +25,7 @@ public class QuestionPaperCreator {
             }
             System.out.println(systemCommand);
         }
+        System.out.println("for ((num=1; num<=" + MTT_CONSTANTS.NUMBER_OF_SETS + "; num++)); do doc2pdf set$num.txt; done");
     }
 
     private static void concatenateTwoFiles() {
