@@ -284,7 +284,7 @@ public class Utils {
             for (int i = 0; i < MTT_CONSTANTS.NUMBER_OF_QUESTIONS_IN_2016; i++) {
 //                System.out.println("studentScore: " + studentScore);
                 char ch = correctedAnswers.charAt(i);
-                if (ch == 'C' || i == 2) {
+                if (ch == 'C') {
                     studentScore += score[i];
                 } else if (ch == 'W') {
 //                    studentScore -= negative[i];
