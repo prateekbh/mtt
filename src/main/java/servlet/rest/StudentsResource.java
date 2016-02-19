@@ -53,7 +53,7 @@ public class StudentsResource {
         String questionPaperCode = jsonNode.get(MTT_CONSTANTS.QUESTION_PAPER_CODE_REQUEST_PARAM).textValue();
         int qpCode = Integer.parseInt(questionPaperCode);
         if (qpCode < 1 || qpCode > MTT_CONSTANTS.NUMBER_OF_SETS) {
-            System.out.println("Invalid Question Paper code : " + qpCode);
+            System.out.println("Invalid Question Paper code: " + qpCode);
             Response.serverError().status(MTT_CONSTANTS.HTTP_NOT_FOUND_CODE).build();
         }
 //        String schoolName = jsonNode.get(MTT_CONSTANTS.SCHOOL_ID_REQUEST_PARAM).asText();
