@@ -63,7 +63,10 @@ public class Login {
     }
 
     private boolean isValid(String userName, String password) throws Exception {
+        userName = userName.toLowerCase();
+        password = password.toLowerCase();
         String getUnamePwdQuery = String.format(MTT_CONSTANTS.GET_UNAME_PWD_DB_QUERY, userName);
+
         Statement getStatement = Resources.connection.createStatement();
         ResultSet resultSet = getStatement.executeQuery(getUnamePwdQuery);
         String readPwd = null;

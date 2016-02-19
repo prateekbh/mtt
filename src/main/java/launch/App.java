@@ -20,7 +20,6 @@ public class App {
             CorsResponseFilter.class.getCanonicalName(),
             StudentResource.class.getCanonicalName(),
             StudentsResource.class.getCanonicalName(),
-            AnswerSheetResource.class.getCanonicalName(),
             AnswerSheetsResource.class.getCanonicalName(),
             QuestionPaperResource.class.getCanonicalName(),
             QuestionPapersResource.class.getCanonicalName(),
