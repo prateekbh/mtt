@@ -262,8 +262,8 @@ public class Utils {
 
         System.out.println("Computed: ");
         for (int i = 0; i < MTT_CONSTANTS.NUMBER_OF_QUESTIONS_IN_2016; i++) {
-            System.out.println("Question " + (i + 1) + " Correct: " + correct[i] + " Wrong: " + wrong[i] +
-                    " Unanswered: " + unanswered[i] + " score " + score[i]);
+            System.out.println("Question " + (i + 1) + " Correct: " + correct[i] + " Total " + (unanswered[i] + wrong[i])
+                    + " score " + score[i]);
         }
 
         System.out.println("********** computing student stats");
