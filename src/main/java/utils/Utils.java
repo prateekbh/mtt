@@ -241,7 +241,7 @@ public class Utils {
 //            System.out.println("answer: " + answer);
             for (int i = 0; i < MTT_CONSTANTS.NUMBER_OF_QUESTIONS_IN_2016; i++) {
                 char ch = answer.charAt(i);
-                if (ch == 'C' || i == 2) {
+                if (ch == 'C') {
                     correct[i]++;
                 } else if (ch == 'W') {
                     wrong[i]++;
