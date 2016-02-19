@@ -19,6 +19,7 @@ QuestionPaperCtrl.prototype.refresh_ = function(scope) {
 };
 
 QuestionPaperCtrl.prototype.load_ = function(scope) {
+  console.log(this.questionPaperCode_);
   this.Api_.QuestionPapers.get({questionPaperCode: this.questionPaperCode_},
       this.onLoadSuccess_.bind(this, scope),
       this.onLoadFailure_.bind(this));

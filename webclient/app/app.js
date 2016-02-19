@@ -28,10 +28,10 @@ angular.module('myApp', [
 
 ])
 // localhost should be replaced with backend's ip
-//.constant('API_BASE_URL', lh)
+.constant('API_BASE_URL', lh)
 //.constant('API_BASE_URL', loc2)
 //.constant('API_BASE_URL', 'http://www.mtt.com')
-.constant('API_BASE_URL', vm)
+//.constant('API_BASE_URL', vm)
 
 .config(['$urlRouterProvider', '$mdThemingProvider', '$httpProvider', 
     function($urlRouterProvider, $mdThemingProvider, $httpProvider) {

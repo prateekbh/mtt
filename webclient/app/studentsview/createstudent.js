@@ -60,10 +60,19 @@ AddStudentCtrl.prototype.onAddSuccess_ = function(mdToast, state, student) {
       .position('top right')
       .hideDelay(3000)
    );
-  state.go('home');
+
+//  state.go(state.current, {}, {reload:true});
+  state.transitionTo(state.current, {}, {
+      reload: true,
+      inherit: true,
+      notify: false
+  });
+//  scope.$state = $state;
+//  state.forceReload();
 };
 
 AddStudentCtrl.prototype.onAddFailure_ = function(state, error) {
+    alert("Creation failed. Please double check the data and retry!!");
   if (this.isAuthFailure_(error)) {
     state.go('login');
   }

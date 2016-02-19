@@ -27,7 +27,7 @@ public class QuestionPaperResource {
         System.out.println("qpId: " + qpId);
         int id = Integer.parseInt(qpId);
         int code = id;
-        if (-1 == code || code > MTT_CONSTANTS.NUMBER_OF_QUESTIONS_IN_2016) {
+        if (-1 == code || code > MTT_CONSTANTS.NUMBER_OF_SETS) {
             return Response.ok().status(MTT_CONSTANTS.HTTP_NOT_FOUND_CODE).build();
         }
         System.out.println("Valid question paper code");

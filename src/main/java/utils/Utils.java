@@ -305,13 +305,12 @@ public class Utils {
         }
 
         // Open top 25
-        ArrayList<Student> openTop25 = getTopNStudents(allStudents, 25);
-
+        ArrayList<Student> openTop50 = getTopNStudents(allStudents, 50);
 
         System.out.println("********************** ################################## ******************************");
 
         int rank = 1;
-        for (Student student : openTop25) {
+        for (Student student : openTop50) {
             System.out.println("Rank " + rank++ + " :: " + student);
         }
 
