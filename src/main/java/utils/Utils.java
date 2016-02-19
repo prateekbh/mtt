@@ -292,6 +292,7 @@ public class Utils {
                     throw new Exception("Illegal response in answer sheet.");
                 }
             }
+            
             student.setScore(studentScore);
 //            if (studentScore < 20) {
 //                System.out.println(" ********** student: " + student);
