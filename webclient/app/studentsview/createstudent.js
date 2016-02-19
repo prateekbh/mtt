@@ -60,7 +60,7 @@ AddStudentCtrl.prototype.onAddSuccess_ = function(mdToast, state, student) {
       .position('top right')
       .hideDelay(3000)
    );
-  state.go('home'); 
+  state.go('createstudent');
 };
 
 AddStudentCtrl.prototype.onAddFailure_ = function(state, error) {

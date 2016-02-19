@@ -1,3 +1,5 @@
+delete from answers;
+
 --insert into answers(answer, created_on, modified_on) values('333300', now(), now());
 --insert into answers(answer, created_on, modified_on) values('207', now(), now());
 --insert into answers(answer, created_on, modified_on) values('CORRECT FOR ALL', now(), now());
