@@ -51,6 +51,10 @@ public class StudentsResource {
         JsonNode jsonNode = objectMapper.readTree(jsonRequest);
         String studentName = jsonNode.get(MTT_CONSTANTS.STUDENT_NAME_REQUEST_PARAM).textValue();
         String questionPaperCode = jsonNode.get(MTT_CONSTANTS.QUESTION_PAPER_CODE_REQUEST_PARAM).textValue();
+        int qpCode = Integer.parseInt(questionPaperCode);
+        if (qpCode < 1 || qpCode > MTT_CONSTANTS.NUMBER_OF_SETS) {
+            Response.serverError().status(MTT_CONSTANTS.HTTP_NOT_FOUND_CODE).build();
+        }
 //        String schoolName = jsonNode.get(MTT_CONSTANTS.SCHOOL_ID_REQUEST_PARAM).asText();
 //        String studentPlace = jsonNode.get(MTT_CONSTANTS.STUDENT_PLACE_REQUEST_PARAM).asText();
 //        String studentCenter = jsonNode.get(MTT_CONSTANTS.CENTER_ID_REQUEST_PARAM).asText();
